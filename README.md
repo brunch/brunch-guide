@@ -12,8 +12,8 @@ This is a attempt at a comprehensive guide to [Brunch](http://brunch.io/), an ex
   * [Full builds vs. incremental builds](chapter1-whats-brunch.md#full-builds-vs-incremental-builds)
   * [The paramount importance of speed](chapter1-whats-brunch.md#the-paramount-importance-of-speed)
   * [Then why do I only ever hear about the others?](chapter1-whats-brunch.md#then-why-do-i-only-ever-hear-about-the-others)
-2. Getting started with Brunch
-  * Should I use a skeleton?
+2. [Getting started with Brunch](chapter2-getting-started.md)
+  * [Should I use a skeleton?](chapter2-getting-started.md#should-i-use-a-skeleton)
 3. Conventions and defaults
   * Built-in processing
   * Configuration files
