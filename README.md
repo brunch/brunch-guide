@@ -31,7 +31,7 @@ This is a attempt at a comprehensive guide to [Brunch](http://brunch.io/), an ex
   * [Globals; because, reasons.](chapter4-starting-from-scratch.md#globals-because-reasons)
   * [Getting modular again](chapter4-starting-from-scratch.md#getting-modular-again)
   * [Split targets](chapter4-starting-from-scratch.md#split-targets)
-5. Using third-party module registries
+5. [Using third-party module registries](chapter5-using-third-party-registries.md)
 6. A shot at templating
 7. Using Brunch on a legacy codebase
 8. Production builds
