@@ -23,7 +23,14 @@ This is a attempt at a comprehensive guide to [Brunch](http://brunch.io/), an ex
   * [Watcher](chapter3-conventions-and-defaults.md#watcher)
   * [Built-in web server](chapter3-conventions-and-defaults.md#built-in-web-server)
   * [Plugin loading](chapter3-conventions-and-defaults.md#plugin-loading)
-4. Starting from scratch
+4. [Starting from scratch](chapter4-starting-from-scratch.md)
+  * [How about a shortcut?](chapter4-starting-from-scratch.md#how-about-a-shortcut)
+  * [Just a couple files](chapter4-starting-from-scratch.md#just-a-couple-files)
+  * [Installing a starting set of Brunch modules](chapter4-starting-from-scratch.md#installing-a-starting-set-of-brunch-modules)
+  * [Our first build](chapter4-starting-from-scratch.md#our-first-build)
+  * [Globals; because, reasons.](chapter4-starting-from-scratch.md#globals-because-reasons)
+  * [Getting modular again](chapter4-starting-from-scratch.md#getting-modular-again)
+  * [Split targets](chapter4-starting-from-scratch.md#split-targets)
 5. Using third-party module registries
 6. A shot at templating
 7. Using Brunch on a legacy codebase
