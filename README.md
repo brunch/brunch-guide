@@ -14,15 +14,15 @@ This is a attempt at a comprehensive guide to [Brunch](http://brunch.io/), an ex
   * [Then why do I only ever hear about the others?](chapter1-whats-brunch.md#then-why-do-i-only-ever-hear-about-the-others)
 2. [Getting started with Brunch](chapter2-getting-started.md)
   * [Should I use a skeleton?](chapter2-getting-started.md#should-i-use-a-skeleton)
-3. Conventions and defaults
-  * Built-in processing
-  * Configuration files
-  * Folders
-  * CommonJS module wrapping
-  * Sourcemaps
-  * Watcher
-  * Built-in web server
-  * Plugin loading
+3. [Conventions and defaults](chapter3-conventions-and-defaults.md)
+  * [Built-in processing](chapter3-conventions-and-defaults.md#build-in-processing)
+  * [Configuration files](chapter3-conventions-and-defaults.md#configuration-files)
+  * [Folders](chapter3-conventions-and-defaults.md#folders)
+  * [CommonJS module wrapping](chapter3-conventions-and-defaults.md#commonjs-module-wrapping)
+  * [Sourcemaps](chapter3-conventions-and-defaults.md#sourcemaps)
+  * [Watcher](chapter3-conventions-and-defaults.md#watcher)
+  * [Built-in web server](chapter3-conventions-and-defaults.md#built-in-web-server)
+  * [Plugin loading](chapter3-conventions-and-defaults.md#plugin-loading)
 4. Starting from scratch
 5. Using third-party module registries
 6. A shot at templating
