@@ -36,7 +36,7 @@ This is a attempt at a comprehensive guide to [Brunch](http://brunch.io/), an ex
 7. [Using Brunch on a legacy codebase](chapter7-using-brunch-on-legacy-code.md)
 8. [Production builds](chapter8-production-builds.md)
 9. [Watcher](chapter9-watcher.md)
-10. Web server: built-in or custom
+10. [Web server: built-in or custom](chapter10-web-server.md)
 11. Plugins for all your build needs
   * Enabling a plugin
   * Fine-tuning through optional configuration
