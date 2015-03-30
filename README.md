@@ -37,15 +37,15 @@ This is a attempt at a comprehensive guide to [Brunch](http://brunch.io/), an ex
 8. [Production builds](chapter8-production-builds.md)
 9. [Watcher](chapter9-watcher.md)
 10. [Web server: built-in or custom](chapter10-web-server.md)
-11. Plugins for all your build needs
-  * Enabling a plugin
-  * Fine-tuning through optional configuration
-  * Brunch and CSS
-  * Brunch and JavaScript
-  * Brunch and templates
-  * Brunch and development workflows
-  * Brunch and web performance
-  * Writing a Brunch plugin
+11. [Plugins for all your build needs](chapter11-plugins.md)
+  * [Enabling a plugin](chapter11-plugins.md#enabling-a-plugin)
+  * [Fine-tuning through optional configuration](chapter11-plugins.md#fine-tuning-through-optional-configuration)
+  * [Brunch and CSS](chapter11-plugins.md#brunch-and-css)
+  * [Brunch and JavaScript](chapter11-plugins.md#brunch-and-javascript)
+  * [Brunch and templates](chapter11-plugins.md#brunch-and-templates)
+  * [Brunch and development workflows](chapter11-plugins.md#brunch-and-development-workflows)
+  * [Brunch and web performance](chapter11-plugins.md#brunch-and-web-performance)
+  * [Writing a Brunch plugin](chapter11-plugins.md#writing-a-brunch-plugin)
 12. Conclusion
 
 ## Brunch version
