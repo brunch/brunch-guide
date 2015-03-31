@@ -64,7 +64,7 @@ module.exports = App;
 
 Rebuild, open your `public/index.html` file, and then…
 
-![Our rendered template](../images/brunche-simple-templating.png)
+![Our rendered template](../images/brunch-simple-templating.png)
 
 How cool is that?!
 
