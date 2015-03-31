@@ -1,6 +1,6 @@
 # Contributing to the Brunch.io guide
 
-So you want to contribute to this guide?  Hey, that's **awesome**! :party:  Welcome aboard!
+So you want to contribute to this guide?  Hey, that's **awesome**! :tada:  Welcome aboard!
 
 ## Types of contribution
 
