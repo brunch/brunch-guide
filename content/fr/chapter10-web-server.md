@@ -1,45 +1,45 @@
-# Web server: built-in or custom
+# Serveur web, intégré ou personnalisé
 
-This is part of [The Brunch.io Guide](README.md).
+Ceci fait partie du [Guide de Brunch.io](README.md).
 
-Earlier in this guide, I mentioned that the watcher also lets you run a **web server** in the background, to serve the resulting files over HTTP.  Some client-side technologies do need to be served over HTTP(S) instead of a regular file.  This also makes for shorter URLs…
+Comme je l’ai signalé plus tôt dans ce guide, le *watcher* permet aussi de lancer en parallèle un **serveur web** pour servir les fichiers produits.  Certaines technologies ont besoin que la page soit servie en HTTP(S), et une simple ouverture du fichier dans le navigateur ne suffit pas.  Ça permet aussi des URLs plus courtes…
 
-There are two ways to run this server:
+Il existe deux manières de lancer ce serveur :
 
-  * **Explicitly** through the command line: `brunch watch --server`, `brunch watch -s` or even `brunch w -s` if you feel super lazy;
-  * **Through the `server` settings** in `brunch-config.coffee`.
+  * **Explicitement** dans la ligne commande : `brunch watch --server`, `brunch watch -s` voire `brunch w -s` si on a bien la flemme ;
+  * **Via les réglages** `server` du `brunch-config.coffee`.
 
-The built-in server is provided through an npm module named `pushserve`, and is therefore a bit more than a bare-bones static file server: it offers CORS header, systematic routing of unknown paths to `index.html` to make `pushState` easier, and more.
+Le serveur par défaut est fourni en fait par le module npm [`pushserve`](https://github.com/paulmillr/pushserve), et fournit donc un peu plus qu’un bête serveur statique : il offre une gestion CORS, un routage systématique pour faciliter le recours à l’API [`pushState`](https://developer.mozilla.org/fr/docs/Web/Guide/DOM/Manipuler_historique_du_navigateur), etc.
 
-If you want that server to **always run** when the watcher starts, you just need to add this to your configuration:
+Si vous souhaitez **toujours lancer** ce serveur quand le *watcher* démarre, il vous suffit de rajouter à la configuration le réglage suivant :
 
 ```coffeescript
 server:
   run: yes
 ```
 
-If you want a **different port** than 333, you can use the `-p` or `--port` CLI option, or the `server.port` setting.
+Si vous voulez **un port différent** de 3333, renseignez aussi le réglage `server.port` avec le numéro.
 
-## Writing your custom server
+## Écrire notre propre serveur
 
-This is great already, but sometimes you’ll need **a few more features**, if only for **demo** or **training** purposes…  Let's see ho to **write our own server**, that would provide two REST API endpoints for us:
+Il n’empêche, parfois votre micro-serveur a besoin de **fonctionnalités en plus**, ne serait-ce que pour une **démo** ou une **formation**…  Voyons comment réaliser **notre propre serveur**, qui fournirait en plus deux points d’accès REST :
 
-  * A POST on `/items` with a `title` field would add an entry;
-  * A GET on `/items` would obtain the list of entries.
+  * POST sur `/items` avec un champ `title` ajoute une entrée.
+  * GET sur `/items` renvoie la liste des entrées.
 
-We’ll keep it simple and use good ol' [Express](http://expressjs.com/), with the minimum set of modules we need to achieve this.
+Nous allons rester simples et utiliser ce bon vieux [Express](http://expressjs.com/), avec le minimum de modules pour fournir notre service.
 
-You let Brunch know about your custom server through the `server.path` setting, that will contain the path of your **module**.  This module must **export a `startServer(…)` function** with the following signature:
+On fournit un serveur personnalisé à Brunch en renseignant le réglage `server.path`, qui indique un **module** à vous.  Ce module doit **exporter une fonction `startServer(…)`** avec la signature suivante :
 
-```javascript
+```js
 startServer(port, path, callback)
 ```
 
-When your server is up and ready (to serve, ha ha), it calls `callback()` so **Brunch can resume its work**.  The server is **automatically stopped** when Brunch’s watcher terminates.
+Lorsque votre serveur a fini de démarrer, il appelle `callback()` pour que **Brunch reprenne la main**.  Le serveur est **automatiquement arrêté** quand le *watcher* de Brunch s’arrête.
 
-Here's our example server.  I could have written it in CoffeeScript, but in order to remain readable by everyone, I went with vanilla JS.  I put this in a `custom-server.js` file.
+Voici notre serveur d’exemple.  Il aurait pu être écrit en CoffeeScript, mais pour rester accessible à la totalité de mes lecteurs, le voici en JS.  Je l'ai mis dans un fichier `custom-server.js` :
 
-```javascript
+```js
 'use strict';
 
 var bodyParser = require('body-parser');
@@ -48,25 +48,25 @@ var http       = require('http');
 var logger     = require('morgan');
 var Path       = require('path');
 
-// Our server start function
+// Notre fonction de démarrage serveur
 exports.startServer = function startServer(port, path, callback) {
   var app = express();
   var server = http.createServer(app);
 
-  // We’ll just store entries sent through REST in-memory here
+  // Stockage en mémoire des entrées gérées via REST
   var items = [];
 
-  // Basic middlewares: static files, logs, form fields
+  // Middlewares de base : fichiers statiques, logs, champs de formulaire
   app.use(express.static(Path.join(__dirname, path)));
   app.use(logger('dev'));
   app.use(bodyParser.urlencoded({ extended: true }));
 
-  // GET `/items` -> JSON for the entries array
+  // GET `/items` -> JSON du tableau des entrées
   app.get('/items', function(req, res) {
     res.json(items);
   });
 
-  // POST `/items` -> Add an entry using the `title` field
+  // POST `/items` -> Ajout d’une entrée d’après le champ `title`
   app.post('/items', function(req, res) {
     var item = (req.body.title || '').trim();
     if (!item) {
@@ -77,18 +77,19 @@ exports.startServer = function startServer(port, path, callback) {
     res.status(201).end('Created!');
   })
 
-  // Listen on the right port, and notify Brunch once ready through `callback`.
+  // Mise en écoute du serveur sur le bon port, notif à Brunch une fois
+  // prêts, grâce à `callback`.
   server.listen(port, callback);
 };
 ```
 
-For this to work, you must first add the necessary modules in your `package.json`:
+Pour que ça marche, on prend soin d’ajouter les modules nécessaires à notre `package.json` :
 
 ```sh
 $ npm install --save-dev express body-parser morgan
 ```
 
-Then we'll let our `brunch-config.coffee` know about it, and make the server auto-run in watch mode, too:
+Puis on modifie notre configuration, en rendant le serveur automatique tant qu’à faire :
 
 ```coffeescript
 server:
@@ -96,7 +97,7 @@ server:
   run: yes
 ```
 
-Let's try watching:
+Tentez un *watcher* :
 
 ```sh
 $ brunch w
@@ -105,7 +106,7 @@ $ brunch w
 02 Mar 12:45:04 - info: compiled 3 files into 3 files, copied index.html in 269ms
 ```
 
-Notice the custom server info in there.  Try loading `http://localhost:3333/` in your browser now: it works!  In order to test this more thoroughly, let's adjust our `application.js` to use the server's API:
+Remarquez les infos sur le serveur personnalisé.  Tentez un accès à `localhost:3333` désormais : ça marche !  Histoire de tester ça, modifions notre `application.js` pour qu’il utilise l’API exposée par le serveur :
 
 ```javascript
 "use strict";
@@ -143,12 +144,12 @@ function requestItem(item) {
 module.exports = App;
 ```
 
-The watcher picks our update right up, and if we refresh the page and look at the console, we should see this:
+Le *watcher* récupère notre mise à jour, et si nous rafraîchissons la page et que nous examinons la console, nous voyons ceci :
 
-![Our developer tools console says this works!](../images/brunch-simple-json.png)
+![Notre serveur personnalisé fonctionne bien](../images/brunch-simple-json.png)
 
-All good! (づ￣ ³￣)づ
+Tout roule ! (づ￣ ³￣)づ
 
 ----
 
-« Previous: [Watcher](chapter09-watcher.md) • Next: [Plugins for all your build needs](chapter11-plugins.md) »
+« Précédent : [*Watcher*](chapter09-watcher.md) • Suivant : [Des plugins pour tous les besoins de build](chapter11-plugins.md) »

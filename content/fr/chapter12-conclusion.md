@@ -1,15 +1,15 @@
 # Conclusion
 
-And to think this whole guide was originally supposed to be a reasonably short article (say, 5–6 hours of writing)…  Ha ha ha!  But then I kept thinking “Oh dang, I've got to mention this and that too!”
+Eh ben, quand je pense que l’article qui a servi de base à ce guide était censé être écrit en 5–6 heures…   Mais comme j'arrêtais pas d'en rajouter au fil de l'eau, forcément.
 
-I hope you **enjoyed this guide**, and more importantly that it **tentalized you to try out Brunch** instead of your usual build tool, because in the vast majority of situations, it'll be **simpler, faster, and overall nicer!**
+J'éspère que **ça vous a plu**, et surtout que ça vous a **donné envie de tester Brunch** à la place de votre outil habituel, parce que la grande majorité du temps, ça sera **plus simple, plus rapide, en bref plus sympa !**
 
-This guide is not entirely comprehensive: it doesn't explain all possible plugin situations, all types of module wrappings, etc.  But it does try to give you a good, solid understaning of Brunch, why it works the way it does, and how that makes it great.
+Ce guide n’est pas absolument complet : il n’explique pas tous les cas de plugins possibles, tous les types d'enrobages de modules, etc.  Mais il essaie vraiment de vous donner une bonne compréhension solide de Brunch, de sa façon de fonctionner, et de ce qui en fait un outil génial.
 
-Remember: if you want to extend this, just [contribute](README.md#contributing)!
+Et souvenez-vous : si vous voulez étendre ce guide, il suffit de [contribuer](README.md#contributing) !
 
-Cheers!
+Bon dev à tous !
 
 ----
 
-« Previous: [Plugins for all your build needs](chapter11-plugins.md)
+« Précédent : [Plugins for all your build needs](chapter11-plugins.md)
