@@ -14,6 +14,8 @@ Item 1 determines how you'll set `paths.watched`, to describe the base path(s) y
 
 Item 2 states with **Brunch plugins** you'll need to use; it's absolutely possible to mix-and-match multiple options for a given type of source: for instance, when I use Bootstrap, I like to go with its SASS source, to make it easier for me to tweak and theme it, usually through `_variables.scss`.  But for my own styling, I favor Stylus, so I often have both `sass-brunch` and `stylus-brunch` installed.
 
+If my app uses client-side MVC, I’ll always try to keep my templates apart in their own files, so I’ll go with `jade-brunch` or `dust-linkedin-brunch` to transparently turn these into modules exporting a unique rendering function resulting from template precompilation.
+
 Item 3 impacts the `paths.public` setting, that defaults to `'public'`.  This path doesn't need to exist prior to your build.  Target file paths are relative to this path.
 
 Item 4 drives the structure of your `files` setting, that has up to three sub-sections:
@@ -22,7 +24,7 @@ Item 4 drives the structure of your `files` setting, that has up to three sub-se
   * `stylesheets`: everything that ends up being CSS;
   * `templates`: every pre-compiled template (again, templates pre-compile to single functions that take a *presenter*—or *view model*—object as argument and return HTML).  Most often, the target is the same as the core JS target.
 
-Each of these keys can range from super-simple to quite advanced.  If the value is a single `String`, it's a unique file all concatenations for that scope merge into.  If it's an object, keys are the target files, and values define the sources for a specifi target.  These values are *[anymatch sets](https://github.com/es128/anymatch#anymatch-)*, which means they can be:
+Each of these keys can range from super-simple to quite advanced.  If the value is a single `String`, it's a unique file all concatenations for that scope merge into.  If it's an object, keys are the target files, and values define the sources for a specific target.  These values are *[anymatch sets](https://github.com/es128/anymatch#anymatch-)*, which means they can be:
 
   * A simple **`String`**, which will have to match the exact file path that Brunch sees (more on that in a bit);
   * A **regular expression** that will have to match the file path; very useful for path prefixes, such as `/^app\//` or `/^vendor\//`;
