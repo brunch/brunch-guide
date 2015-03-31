@@ -2,7 +2,7 @@
 
 Ceci fait partie du [Guide de Brunch.io](README.md).
 
-Si vous avez lu attentivement les chapitres précédents, je vous dis bravo, je sais combien il peut être tentant de sauter directement à la partie code/didacticiel.  Je suis toutefois sûr que vous êtes contents d’avoir lu ces chapitres, qui restent très utiles.
+Si vous avez lu attentivement les chapitres précédents, je vous dis bravo :clap:, je sais combien il peut être tentant de sauter directement à la partie code/didacticiel.  Je suis toutefois sûr que vous êtes contents d’avoir lu ces chapitres, qui restent très utiles. :grin:
 
 ## Envie de suivre facilement ?
 
@@ -47,7 +47,6 @@ Voici les fichiers de départ (vous les trouverez dans le dossier `0-starter` du
   </h1>
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
   <script src="app.js"></script>
-  <script>require('application').init();</script>
 </body>
 </html>
 ```
