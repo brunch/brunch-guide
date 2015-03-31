@@ -20,7 +20,7 @@ If it conforms to this, it gets automatically instantiated, with the global conf
 
 In short, forget about crazy splatters of redundant `loadNpmTasks` here.  Brunch keeps it short and sweet.
 
-## Fine-tuning through optional configuration-configuration)
+## Fine-tuning through optional configuration
 
 Every plugin is usually designed to be **operational and useful without any configuration**; that being said, it's often possible to tweak their behavior through specific configuration.  These settings are defined inside `brunch-config.coffee`, under the `plugins` key and a subkey named after the plugin.
 
