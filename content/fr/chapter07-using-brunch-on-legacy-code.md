@@ -1,51 +1,55 @@
-# Using Brunch on a legacy codebase
+# Adapter Brunch à un projet existant
 
-This is part of [The Brunch.io Guide](README.md).
+Ceci fait partie du [Guide de Brunch.io](README.md).
 
-So far we've started from scratch, letting us lay out our codebase in a manner that stuck to Brunch's conventions.  What if we already have a codebase, and wish to entrust our front assets building to Brunch?  Perhaps you come from Grunt, Gulp whatever…  There are a number of questions you need to ask yourself:
+Jusqu’ici nous sommes partis de zéro, en suivant les conventions de Brunch pour notre codebase.
 
-  1. **Where are the source files** for the build?
-  2. What **languages** do they use?
-  3. In what **target folder** does the build go?
-  4. What are the source &#2192; target **mappings** for the build?
-  5. Do I want to wrap my application JS in **modules**?
+Supposons à présent que vous partiez d’un projet existant, dont vous souhaitez confier le *build* front à Brunch.  Peut-être venez-vous de Grunt, ou Gulp, ou que sais-je…  Peu importe.  Il faut se poser quelques questions de base :
 
-Item 1 determines how you'll set `paths.watched`, to describe the base path(s) you'll be building from / watching.  The default value is `['app', 'test', 'vendor']`, but you'll likely want to change that.  Another setting is `conventions.assets`, that'll define what folders get copy-pasted as-is, and `conventions.vendor`, that specifies what directories contain JS not to be wrapped in modules, if any (be careful if you go with Bower, these components are never wrapped).
+  1. **Où sont les fichiers sources** pour le build ?
+  2. Quels **langages** utilisent-ils ?
+  3. Dans quel **dossier cible** va le build ?
+  4. Quel est le **mapping** source -> cible au sein du build ?
+  5. Est-ce que je veux enrober mon JS applicatif en **modules** ?
 
-Item 2 states with **Brunch plugins** you'll need to use; it's absolutely possible to mix-and-match multiple options for a given type of source: for instance, when I use Bootstrap, I like to go with its SASS source, to make it easier for me to tweak and theme it, usually through `_variables.scss`.  But for my own styling, I favor Stylus, so I often have both `sass-brunch` and `stylus-brunch` installed.
+Le point 1 détermine la valeur du réglage `paths.watched`, pour le ou les répertoires de base à exploiter/surveiller.  La valeur par défaut est `['app', 'test', 'vendor']`, mais il y a fort à parier que vous devrez changer ça.  Autres réglages concernés : `conventions.assets`, qui va déterminer les dossiers dont le contenu sera copié-collé tel quel, et `conventions.vendor`, qui indique les dossiers dont le JS ne doit pas être enrobé en modules, s’il y en a (attention, si vous passez par Bower, les composants qu’il fournit ne sont jamais enrobés).
 
-Item 3 impacts the `paths.public` setting, that defaults to `'public'`.  This path doesn't need to exist prior to your build.  Target file paths are relative to this path.
+Le point 2 détermine les **plugins Brunch** à utiliser, sachant qu'on peut très bien mélanger les genres ; par exemple, quand j’utilise Bootstrap, je préfère largement utiliser son code source SASS, afin de facilement personnaliser le thème, notamment dans `_variables.scss`.  Cependant, je préfère Stylus pour mes propres styles, j'ai donc souvent à la fois `sass-brunch` et `stylus-brunch` installés.
 
-Item 4 drives the structure of your `files` setting, that has up to three sub-sections:
+Si mon app utilise du MVC côté client, je vais toujours isoler mes templates dans leurs propres fichiers, et donc utiliser par exemple `jade-brunch` ou `dust-linkedin-brunch` pour les convertir de façon transparente en modules exportant une unique fonction de *rendering* qui résulte de la précompilation du template.
 
-  * `javascripts`: everything that ends up being JS, except pre-compiled templates;
-  * `stylesheets`: everything that ends up being CSS;
-  * `templates`: every pre-compiled template (again, templates pre-compile to single functions that take a *presenter*—or *view model*—object as argument and return HTML).  Most often, the target is the same as the core JS target.
+Le point 3 détermine la valeur du réglage `paths.public`, qui vaut par défaut `'public'`.  Ce dossier n’a pas besoin d’exister en début de build.  Les fichiers cibles sont exprimés relativement à ce chemin de base.
 
-Each of these keys can range from super-simple to quite advanced.  If the value is a single `String`, it's a unique file all concatenations for that scope merge into.  If it's an object, keys are the target files, and values define the sources for a specifi target.  These values are *[anymatch sets](https://github.com/es128/anymatch#anymatch-)*, which means they can be:
+Le point 4 gouverne la structure du réglage `files`, avec jusqu'à trois sous-sections :
 
-  * A simple **`String`**, which will have to match the exact file path that Brunch sees (more on that in a bit);
-  * A **regular expression** that will have to match the file path; very useful for path prefixes, such as `/^app\//` or `/^vendor\//`;
-  * A **predicate function** that takes the exact file path as argument and synchronously returns a boolean stating whether to include it or not in the concatenation;
-  * An **array** mixing any of the previous items.
+  * `javascripts` : tout ce qui produit du JS à terme, hors pré-compilation de templates (statut spécial) ;
+  * `stylesheets` : tout ce qui produit du CSS à terme ;
+  * `templates` : tout ce qui concerne la précompilation de templates pour produire à chaque fois une fonction de *rendering* (avec un argument contenant le *presenter*, ou *view model*, et le HTML en valeur de retour synchrone).  Souvent, la cible sera la même que pour la partie noyau de `javascripts`.
 
-This is an **amazingly versatile** way to define your split targets (or a unique target that still filters incoming sources).
+Chacune de ces clés peut être très simple ou très avancée.  Si on fournit juste un chemin de fichier (une `String`) comme valeur, tous les fichiers candidats iront vers cette unique concaténation.  Si on fournit plutôt un objet, les clés sont les chemins cibles, et les valeurs, qui déterminent quelle portion de la codebase source va vers la cible, sont des *ensembles [anymatch](https://github.com/es128/anymatch#anymatch-)*, c'est-à-dire qu’il peut s’agir de :
 
-Item 5 shouldn't be an actual question: **of course you want to use modules**.  This is 2015, for crying out loud, get out of the Cretacean already, people!  And you should pick CommonJS for now, too (this makes both isomorphic JS and later migration to ES6B modules easier).
+  * Une simple **`String`**, qui devra correspondre au chemin exact du fichier, tel que perçu par Brunch (on y reviendra dans un instant) ;
+  * Une **expression rationnelle**, qui devra correspondre au chemin du fichier ; très utile pour des préfixes, genre `/^app\//` ou `/^vendor\//` ;
+  * Une **fonction prédicat**, qui prendra le chemin exact en argument et renverra de façon synchrone une valeur interprétée comme booléenne ;
+  * Un **tableau** de valeurs, qui peuvent chacune être un des types précédents.
 
-Still, you tweak this through the `modules.wrapper` and `modules.definition` settings.  Should you decide to remain in the swamp, you can set both to `false`.  If you still believe in AMD (or that the Earth is flat), you can even set them to `"amd"`.  Or you can go all-exotic and provide custom functions for both.  By default, they are set to `"commonjs"`.
+C'est donc **extrêmement flexible** comme méthode de répartition entre les cibles (ou même si on n’a qu’une cible, mais qu'on veut filtrer ce qui y va).
 
-## What’s in a (module) name?
+Le point 5 ne devrait pas être une vraie question : **bien sûr que vous devriez utiliser des modules**.  On est en 2015, bordel, faut sortir de la préhistoire et du code bordélique, les gens !  Et tant qu'à faire, vous devriez opter pour CommonJS jusqu'à nouvel ordre (ce qui facilite le JS isomorphique et la migration ultérieure vers des modules natifs ES6).
 
-One last important topic.  If you elect to go with modules (well done you!), you should consider the **module names**.  By default, what Brunch does is:
+Ça se définit avec les réglages `modules.wrapper` et `modules.definition`.  Si vous avez décidé de rester en mode porcherie, vous pouvez les mettre tous les deux à `false`.  Si vous croyez encore en AMD (ou que la Terre est plate), vous pouvez mettre `amd`.  Il est même possible de fournir des fonctions de personnalisation pour des systèmes plus exotiques.  Par défaut, les deux valent `commonjs`.
 
-  1. Take your file's exact path, starting from the watched directory (e.g. `"app/application.js"`);
-  2. Strip the extension (e.g. `"app/application"`);
-  3. If you only have one watched path that is subject to module wrapping (by default there's only `"app"`), it strips that prefix (e.g. `"application"`).  But if you have multiple watched paths that use wrapping, the prefix stays.
+## D’où sortent les noms de modules ?
 
-If that doesn't cut it for you, you can provide a custom name-computing function, through the `modules.nameCleaner` setting.
+Un dernier point, si vous recourez aux modules (bravo !), est **le nom de ces modules**.  Par défaut, Brunch procède comme suit :
 
-For instance, in one of my JS training classes, I have this situation where I wrap third-party libraries in modules but want to group them inside my `app/externals` directory, and also retain version and language info in their filenames (so I have, say, `jquery-1.11.2-min.js` and `moment-2.2.1-fr.js`), but **I still want generic module names** (e.g. `"jquery"` and `"moment"`).  So I put in the following code in `brunch-config.coffee`:
+  1. Il prend le chemin exact du fichier, à partir des chemins surveillés (ex. `"app/application.js"`) ;
+  2. Il vire l’extension (`"app/application"`) ;
+  3. Si vous n’avez qu’un chemin surveillé qui soit sujet à l'enrobage par modules (c'est le cas par défaut, avec juste `"app"`), il retire ce préfixe (ex. `"application"`).  Dans le cas contraire, le préfixe reste.
+
+Si cela vous dérange, vous devrez fournir une fonction de calcul de nom de module personnalisée, via le réglage `modules.nameCleaner`.
+
+Par exemple, dans notre formation [JS Total](http://www.js-attitude.fr/js-total/), nous souhaitons isoler les bibliothèques tierces dans `app/externals/`, et préserver leurs noms longs par-dessus le marché (genre `jquery-1.11.2-min.js` et `moment-2.2.1-fr.js`), mais voulons conserver des **noms de modules simples** (du genre `"jquery"` et `"moment"`).  On a donc le code suivant dans `brunch-config.coffee` :
 
 ```coffeescript
 modules:
@@ -59,8 +63,8 @@ modules:
       .replace '-fr.', '.'
 ```
 
-No biggie.
+Tranquille…
 
 ----
 
-« Previous: [A shot at templating](chapter06-a-shot-at-templating.md) • Next: [Production builds](chapter08-production-builds.md) »
+« Précédent : [Un petit coup de *templating*](chapter06-a-shot-at-templating.md) • Suivant : [Builds de développement et de production](chapter08-production-builds.md) »

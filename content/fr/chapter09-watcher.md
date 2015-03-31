@@ -1,10 +1,10 @@
-# Watcher
+# *Watcher*
 
-This is part of [The Brunch.io Guide](README.md).
+Ceci fait partie du [Guide de Brunch.io](README.md).
 
-So far in this guide, we've manually rebuilt every time we needed to.  Sure, it's fast, but still.  In real life, we'd much rather have a watcher keep an eye on our source code and update the build on the fly, as fast as possible.
+Depuis le début de ce guide, on rebuilde manuellement à chaque fois.  D'accord, ça va vite, mais quand même.  Dans la vraie vie, on préfère avoir un *watcher* qui surveille notre codebase source et met à jour, le plus vite possible, notre build.
 
-This is something **Brunch rocks at**.  It comes with a built-in incremental watcher that is **super fast**.  Instead of running a one-shot `brunch build` every fifteen seconds, just go with a `brunch watch`.  Then make a few changes to your files, saving as you go.  Here's what it looks like on our demo:
+C'est là quelque chose où **Brunch excelle**.  Il incorpore de base un *watcher* incrémental **très performant**.  Au lieu de lancer `brunch build` toutes les quinze secondes, lancez une seule fois `brunch watch`.  Puis faites quelques modifs à vos fichiers et sauvez à chaque fois.  Voyez ce à quoi ça ressemble pour notre démo :
 
 ```sh
 $ brunch watch    # Ou brunch w, pour les flemmasses
@@ -14,18 +14,19 @@ $ brunch watch    # Ou brunch w, pour les flemmasses
 26 Feb 16:47:14 - info: compiled main.scss into app.css in 71ms
 ```
 
-Brunch has made significant changes in 1.7.0 to its internal watcher engine, `chokidar`, and now uses a **minimal check interval** to lighten the load even more.  By default, this interval is **65ms**.  If I wanted to be aggressive about it, I could set `fileListInterval` to `20`, for instance, and get this:
+Brunch a modifié vers sa version 1.7.0 sa couche de surveillance interne, `chokidar`, et utilise désormais un **intervalle de vérification minimal** pour réduire la charge, et cet intervalle est par défaut à **65ms**.  Si je voulais la jouer agressif et réglais `fileListInterval` à `20`, par exemple, ça donnerait ça :
 
 ```sh
+$ brunch watch
 26 Feb 16:49:31 - info: compiled 3 files into 3 files, copied index.html in 266ms
 26 Feb 16:49:36 - info: compiled application.js into app.js in 26ms
 26 Feb 16:49:43 - info: copied index.html in 25ms
 26 Feb 16:49:44 - info: compiled main.scss into app.css in 26ms
 ```
 
-But 65ms is pretty fast already, so I generally stay with it :smile:.
+Mais en vrai, 65ms, c'est très raisonnable, hein… :smile:
 
-You may think that it's fast right now because of how ridiculously small our demo is (although Grunt or Gulp would happily take 1000 to 2000ms already).  Alright, let's try with one of my JS training class codebases:
+Vous vous dites peut-être que là, notre codebase est ridicule, c'est normal que ça aille si vite (même si Grunt et Gulp seraient déjà allègrement à 1000 voire 2000ms).  Okay, prenons la codebase d'exemple de notre formation [JS Total](http://www.js-attitude.fr/js-total/) :
 
 ```text
 app
@@ -154,7 +155,7 @@ vendor
         └── bootstrap.less
 ```
 
-Aaaaah, I don't hear you dissing the codebase size anymore, do I? :wink:  Let's see what this runs like, even at the default 65ms interval:
+Aaaah, on fait moins les malins là, hein !? :wink:  Eh bah, voyez ce que ça donne (intervalle par défaut à 65ms) :
 
 ```sh
 $ brunch watch
@@ -164,7 +165,7 @@ $ brunch watch
 … 16:55:03 - info: copied index.html in 67ms
 ```
 
-So yeah, for JS and CSS builds, we went "overboard" to an average 200ms, but that's mostly because we embed heavy JS libs (jQuery 1.11, etc.) and heavy CSS (all of Bootstrap 3), so even as an incremental build, we write "fat" files:
+Alors oui, pour les builds JS et CSS, on est passés à « carrément » 200ms en moyenne, mais c'est surtout parce qu’on a une tonne de bibliothèques JS lourdes (jQuery 1.11, etc.), et du CSS lourd (tout Bootstrap 3), ce qui fait que même en incrémental, on écrit nettement plus gros sur le disque :
 
 ```sh
 $ ls -lah public/*.{js,css}
@@ -172,7 +173,7 @@ $ ls -lah public/*.{js,css}
 -rw-r--r-- 1 tdd staff 709K fév 26 16:54 public/app.js
 ```
 
-Say, that'd be a good time to try out production mode on this other repo, with **minification**:
+Tiens, profitons-en pour tester la **minification** :
 
 ```sh
 $ brunch build --production
@@ -182,10 +183,10 @@ $ ls -lah public/*.{js,css}
 -rw-r--r-- 1 tdd staff 252K fév 26 16:57 public/app.js
 ```
 
-Aaaah, [much better](https://www.youtube.com/watch?v=mvwd13F_1Gs).
+Aaaah, *[much better](https://www.youtube.com/watch?v=mvwd13F_1Gs)*.
 
-Be careful though, the current `chokidar` (in Brunch 1.7.x) seems to sometimes have trouble on Windows with detecting new files, sometimes even changes to known files.  I’ve seen it happen a couple times on Linux or even OSX.  This should go away with upcoming 1.8, but in the meantime, I find switching `watcher.usePolling` to `true` alleviates most of this issue.
+Attention, il arrive hélas fréquemment sur Windows (notamment depuis cette mise à jour de `chokidar`, que j'ai évoquée plus haut) que les nouveaux fichiers soient mal détectés, voire que certaines modifs passent à la trappe.  Plus rarement, je l'ai vu arriver sur Linux voire OSX.  Il semble qu'activer le réglage `watcher.usePolling` (à `true`, donc) résolve la majorité de ces problèmes (mais pas tous…).  Ça devrait s'améliorer considérablement avec la 1.8 à venir…
 
 ----
 
-« Previous: [Production builds](chapter08-production-builds.md) • Next: [Web server: built-in or custom](chapter10-web-server.md) »
+« Précédent : [Builds de développement et de production](chapter08-production-builds.md) • Suivant : [Serveur web, intégré ou personnalisé](chapter10-web-server.md) »

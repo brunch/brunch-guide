@@ -1,12 +1,12 @@
-# Production builds
+# Builds de développement et de production
 
-This is part of [The Brunch.io Guide](README.md).
+Ceci fait partie du [Guide de Brunch.io](README.md).
 
-By default, Brunch runs in a **development** environment, or mode.  This mostly means minification plugins (be it JS or CSS) don't run (because the `optimize` setting defaults to `false` in development mode; which you can change, if you really want to).
+Par défaut, Brunch s'exécute en environnement de **développement**.  Cela signifie notamment que les plugins de minification (JS ou CSS) ne sont pas appliqués (le réglage `optimize` vaut par défaut `false` en environnement de développement ; on peut bien sûr le changer).
 
-You specify what environment to run in through the `-e` or `--env` CLI option, followed by the environment's name.  You can have any environments you want, with a special case for `production`, that is predefined with `optimize` set to `true`, and has its own CLI shortcut `-P` (or `--production`).
+L’environnement est précisé en ligne de commande, par l’option `-e` ou `--env`, à laquelle on passe le nom de l’environnement.  On peut avoir tous les environnements qu’on veut, sachant que `production` est une valeur prédéfinie (avec son option dédiée, `-P` ou `--production`, qui équivaut à `--env production`), notamment parce qu’elle recale par défaut `optimize` à `true`.
 
-More importantly, you can **alter settings based on the environment**, through the root settings key `overrides`.  In it, you can have one key per environment, each with replacements (overrides…) for any general settings you may have.  The official docs use an example that is not too shabby:
+Mais surtout, on peut **modifier les réglages pour des environnements précis**, au moyen de la clé racine `overrides`.  On précise en-dessous le nom de l'environnement, et à l'intérieur de celui-ci, des remplacements pour tout réglage où on le juge nécessaire.  La doc officielle donne un exemple pas mauvais :
 
 ```coffeescript
 overrides:
@@ -16,8 +16,8 @@ overrides:
     plugins: autoReload: enabled: false
 ```
 
-In this situation, production enables minifiers, skips source maps (I would keep them, but hey), and disables the `auto-reload` (LiveReload-style) plugin when in watcher mode.
+Dans cet exemple, en production on active les minifieurs, on vire les source maps (moi je les garde, mais bon…), et on désactive le plugin `auto-reload` (fonction du style LiveReload) si on *watche* en mode production.
 
 ----
 
-« Previous: [Using Brunch on a legacy codebase](chapter07-using-brunch-on-legacy-code.md) • Next: [Watcher](chapter09-watcher.md) »
+« Précédent : [Adapter Brunch à un projet existant](chapter07-using-brunch-on-legacy-code.md) • Suivant : [*Watcher*](chapter09-watcher.md) »
