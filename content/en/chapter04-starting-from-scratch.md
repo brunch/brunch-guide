@@ -1,6 +1,6 @@
 # Starting from scratch
 
-This is part of [The Brunch.io Guide](README.md).
+This is part of [The Brunch.io Guide](../../README.md).
 
 If you’ve carefully read through the previous sections, well done you, I know it can be tempting to skip straight to the code/tutorial.  I'm sure you're glad you read these chapters, though.
 

@@ -1,6 +1,6 @@
 # Plugins for all your build needs
 
-This is part of [The Brunch.io Guide](README.md).
+This is part of [The Brunch.io Guide](../../README.md).
 
 With Brunch, features don't get provided through the same architectural split as you’d fine in Grunt, Gulp, etc.  A ton of features and behaviors are **built-in** (build pipeline, incremental watcher, sourcemaps, etc.) but everything else remains in **plugins**, including the handling of every **source language**.
 
@@ -329,4 +329,4 @@ OK, we're all set to try this out.  Here's a simple test scenario: open `app/app
 
 ----
 
-« Previous: [Web server: built-in or custom](chapter10-web-server.md) • Next: [Conslusion](chapter12-conclusion.md) »
+« Previous: [Web server: built-in or custom](chapter10-web-server.md) • Next: [Conclusion](chapter12-conclusion.md) »

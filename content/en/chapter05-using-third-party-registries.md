@@ -1,6 +1,6 @@
 # Using third-party module registries
 
-This is part of [The Brunch.io Guide](README.md).
+This is part of [The Brunch.io Guide](../../README.md).
 
 In practice, the nicer way to deal with third-party dependencies is through **existing module registries**.  In the JS world, this mostly means **[npm](https://www.npmjs.com/)** (for Node.js and for front-end code; it recently became the official registry for jQuery plugins!) or [Bower](http://bower.io/) (which, IMHO, is on the way out, with npm slowly replacing it).
 

@@ -1,6 +1,6 @@
 # Conventions and defaults
 
-This is part of [The Brunch.io Guide](README.md).
+This is part of [The Brunch.io Guide](../../README.md).
 
 The [official docs](https://github.com/brunch/brunch/tree/stable/docs) do a good job of explaining Brunch’s conventions.  Pretty much all of them can be overridden through configuration, to better fit your specific needs.
 

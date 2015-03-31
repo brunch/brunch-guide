@@ -1,6 +1,6 @@
 # Using Brunch on a legacy codebase
 
-This is part of [The Brunch.io Guide](README.md).
+This is part of [The Brunch.io Guide](../../README.md).
 
 So far we've started from scratch, letting us lay out our codebase in a manner that stuck to Brunch's conventions.  What if we already have a codebase, and wish to entrust our front assets building to Brunch?  Perhaps you come from Grunt, Gulp whatever…  There are a number of questions you need to ask yourself:
 

@@ -1,6 +1,6 @@
 # Getting started with Brunch
 
-This is part of [The Brunch.io Guide](README.md).
+This is part of [The Brunch.io Guide](../../README.md).
 
 Let’s start exploring everything you need to know to happily use Brunch in your own projects, be they new ones or legacy codebases.
 

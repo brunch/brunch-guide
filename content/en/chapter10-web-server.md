@@ -1,6 +1,6 @@
 # Web server: built-in or custom
 
-This is part of [The Brunch.io Guide](README.md).
+This is part of [The Brunch.io Guide](../../README.md).
 
 Earlier in this guide, I mentioned that the watcher also lets you run a **web server** in the background, to serve the resulting files over HTTP.  Some client-side technologies do need to be served over HTTP(S) instead of a regular file.  This also makes for shorter URLs…
 

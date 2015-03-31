@@ -1,6 +1,6 @@
 # Production builds
 
-This is part of [The Brunch.io Guide](README.md).
+This is part of [The Brunch.io Guide](../../README.md).
 
 By default, Brunch runs in a **development** environment, or mode.  This mostly means minification plugins (be it JS or CSS) don't run (because the `optimize` setting defaults to `false` in development mode; which you can change, if you really want to).
 

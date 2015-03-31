@@ -1,6 +1,6 @@
 # Watcher
 
-This is part of [The Brunch.io Guide](README.md).
+This is part of [The Brunch.io Guide](../../README.md).
 
 So far in this guide, we've manually rebuilt every time we needed to.  Sure, it's fast, but still.  In real life, we'd much rather have a watcher keep an eye on our source code and update the build on the fly, as fast as possible.
 
