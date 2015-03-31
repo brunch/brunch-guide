@@ -9,7 +9,7 @@ Supposons à présent que vous partiez d’un projet existant, dont vous souhait
   1. **Où sont les fichiers sources** pour le build ?
   2. Quels **langages** utilisent-ils ?
   3. Dans quel **dossier cible** va le build ?
-  4. Quel est le **mapping** source -> cible au sein du build ?
+  4. Quel est le **mapping** source :arrow_right: cible au sein du build ?
   5. Est-ce que je veux enrober mon JS applicatif en **modules** ?
 
 Le point 1 détermine la valeur du réglage `paths.watched`, pour le ou les répertoires de base à exploiter/surveiller.  La valeur par défaut est `['app', 'test', 'vendor']`, mais il y a fort à parier que vous devrez changer ça.  Autres réglages concernés : `conventions.assets`, qui va déterminer les dossiers dont le contenu sera copié-collé tel quel, et `conventions.vendor`, qui indique les dossiers dont le JS ne doit pas être enrobé en modules, s’il y en a (attention, si vous passez par Bower, les composants qu’il fournit ne sont jamais enrobés).
@@ -26,7 +26,7 @@ Le point 4 gouverne la structure du réglage `files`, avec jusqu'à trois sous-s
   * `stylesheets` : tout ce qui produit du CSS à terme ;
   * `templates` : tout ce qui concerne la précompilation de templates pour produire à chaque fois une fonction de *rendering* (avec un argument contenant le *presenter*, ou *view model*, et le HTML en valeur de retour synchrone).  Souvent, la cible sera la même que pour la partie noyau de `javascripts`.
 
-Chacune de ces clés peut être très simple ou très avancée.  Si on fournit juste un chemin de fichier (une `String`) comme valeur, tous les fichiers candidats iront vers cette unique concaténation.  Si on fournit plutôt un objet, les clés sont les chemins cibles, et les valeurs, qui déterminent quelle portion de la codebase source va vers la cible, sont des *ensembles [anymatch](https://github.com/es128/anymatch#anymatch-)*, c'est-à-dire qu’il peut s’agir de :
+Chacune de ces sections a au minimum une propriété `joinTo` qui peut être très simple ou très avancée.  Si on fournit juste un chemin de fichier (une `String`) comme valeur, tous les fichiers candidats iront vers cette unique concaténation.  Si on fournit plutôt un objet, les clés sont les chemins cibles, et les valeurs, qui déterminent quelle portion de la codebase source va vers la cible, sont des *ensembles [anymatch](https://github.com/es128/anymatch#anymatch-)*, c'est-à-dire qu’il peut s’agir de :
 
   * Une simple **`String`**, qui devra correspondre au chemin exact du fichier, tel que perçu par Brunch (on y reviendra dans un instant) ;
   * Une **expression rationnelle**, qui devra correspondre au chemin du fichier ; très utile pour des préfixes, genre `/^app\//` ou `/^vendor\//` ;
