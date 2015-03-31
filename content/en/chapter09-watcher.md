@@ -2,12 +2,12 @@
 
 This is part of [The Brunch.io Guide](../../README.md).
 
-So far in this guide, we've manually rebuilt every time we needed to.  Sure, it's fast, but still.  In real life, we'd much rather have a watcher keep an eye on our source code and update the build on the fly, as fast as possible.
+So far in this guide, we’ve manually rebuilt every time we needed to.  Sure, it’s fast, but still.  In real life, we’d much rather have a watcher keep an eye on our source code and update the build on the fly, as fast as possible.
 
-This is something **Brunch rocks at**.  It comes with a built-in incremental watcher that is **super fast**.  Instead of running a one-shot `brunch build` every fifteen seconds, just go with a `brunch watch`.  Then make a few changes to your files, saving as you go.  Here's what it looks like on our demo:
+This is something **Brunch rocks at**.  It comes with a built-in incremental watcher that is **super fast**.  Instead of running a one-shot `brunch build` every fifteen seconds, just go with a `brunch watch`.  Then make a few changes to your files, saving as you go.  Here’s what it looks like on our demo:
 
 ```sh
-$ brunch watch    # Ou brunch w, pour les flemmasses
+$ brunch watch    # Or brunch w, for the lazy…
 26 Feb 16:46:42 - info: compiled 3 files into 3 files, copied index.html in 304ms
 26 Feb 16:47:01 - info: compiled application.js into app.js in 69ms
 26 Feb 16:47:10 - info: copied index.html in 72ms
@@ -25,7 +25,7 @@ Brunch has made significant changes in 1.7.0 to its internal watcher engine, `ch
 
 But 65ms is pretty fast already, so I generally stay with it :smile:.
 
-You may think that it's fast right now because of how ridiculously small our demo is (although Grunt or Gulp would happily take 1000 to 2000ms already).  Alright, let's try with one of my JS training class codebases:
+You may think that it’s fast right now because of how ridiculously small our demo is (although Grunt or Gulp would happily take 1,000 to 2,000ms already).  Alright, let’s try with one of my JS training class codebases:
 
 ```text
 app
@@ -154,7 +154,7 @@ vendor
         └── bootstrap.less
 ```
 
-Aaaaah, I don't hear you dissing the codebase size anymore, do I? :wink:  Let's see what this runs like, even at the default 65ms interval:
+Aaaaah, I don’t hear you dissing the codebase size anymore, do I? :wink:  Let’s see what this runs like, even at the default 65ms interval:
 
 ```sh
 $ brunch watch
@@ -164,7 +164,7 @@ $ brunch watch
 … 16:55:03 - info: copied index.html in 67ms
 ```
 
-So yeah, for JS and CSS builds, we went "overboard" to an average 200ms, but that's mostly because we embed heavy JS libs (jQuery 1.11, etc.) and heavy CSS (all of Bootstrap 3), so even as an incremental build, we write "fat" files:
+So yeah, for JS and CSS builds, we went “overboard” to an average 200ms, but that’s mostly because we embed heavy JS libs (jQuery 1.11, etc.) and heavy CSS (all of Bootstrap 3), so even with an incremental build, we write “fat” files:
 
 ```sh
 $ ls -lah public/*.{js,css}
@@ -172,10 +172,10 @@ $ ls -lah public/*.{js,css}
 -rw-r--r-- 1 tdd staff 709K fév 26 16:54 public/app.js
 ```
 
-Say, that'd be a good time to try out production mode on this other repo, with **minification**:
+Say, that’d be a good time to try out production mode on this other repo, with **minification**:
 
 ```sh
-$ brunch build --production
+$ brunch build --production # or brunch b -P, if you like it unreadable
 …
 $ ls -lah public/*.{js,css}
 -rw-r--r-- 1 tdd staff  97K fév 26 16:57 public/app.css
@@ -184,7 +184,7 @@ $ ls -lah public/*.{js,css}
 
 Aaaah, [much better](https://www.youtube.com/watch?v=mvwd13F_1Gs).
 
-Be careful though, the current `chokidar` (in Brunch 1.7.x) seems to sometimes have trouble on Windows with detecting new files, sometimes even changes to known files.  I’ve seen it happen a couple times on Linux or even OSX.  This should go away with upcoming 1.8, but in the meantime, I find switching `watcher.usePolling` to `true` alleviates most of this issue.
+Be careful though, the current `chokidar` (in Brunch 1.7.x) seems to sometimes have trouble on Windows with detecting new files, occasionally even changes to known files.  I’ve also seen it happen a couple times on Linux or even OSX.  This should go away with upcoming 1.8, but in the meantime, I find switching `watcher.usePolling` to `true` alleviates most of this issue.
 
 ----
 
