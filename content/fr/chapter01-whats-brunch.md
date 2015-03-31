@@ -109,7 +109,7 @@ En un mot ?  **Le marketing**.
 
 Broccoli reste à la marge, même s'il fait de temps en temps parler de lui.  Et Glou n'a pas encore vraiment lancé son marketing, ses développeurs souhaitant lui donner encore un peu plus de *polish* avant de battre le rappel.
 
-Et Brunch ?  Brunch n'a jamais fait beaucoup de bruit.  Il vit sa vie, la communauté de ses utilisateurs est **extrêmement fidèle**, et la grande majorité de ceux à qui on le montre sont vite convaincus : depuis près de 3 ans que je m’en sers dans mes formations JS (JS Guru puis [JS Total](/js-total/) et [Node.js](/node-js/)), c'est le premier truc que les apprenants veulent mettre en œuvre, de retour au boulot le lundi qui suit :-)  Et chaque fois que je présente [Dev Avengers](https://www.youtube.com/watch?v=2Dl9ES6IC3c), les gens ouvrent des yeux comme des ronds de flan…
+Et Brunch ?  Brunch n'a jamais fait beaucoup de bruit.  Il vit sa vie, la communauté de ses utilisateurs est **extrêmement fidèle**, et la grande majorité de ceux à qui on le montre sont vite convaincus : depuis près de 3 ans que je m’en sers dans mes formations JS (JS Guru puis [JS Total](http://www.js-attitude.fr/js-total/) et [Node.js](http://www.js-attitude.fr/node-js/)), c'est le premier truc que les apprenants veulent mettre en œuvre, de retour au boulot le lundi qui suit :-)  Et chaque fois que je présente [Dev Avengers](https://www.youtube.com/watch?v=2Dl9ES6IC3c), les gens ouvrent des yeux comme des ronds de flan…
 
 Mais il reste plutôt discret.  Avec environ 4 000 *stars* GitHub (44% de Grunt), 270 forks et 4 ans d'existence active, il est tout sauf faiblard, juste… discret.
 
