@@ -16,7 +16,7 @@ We welcome any and all types of contributions, with a particular eye towards the
 
 This is GitHub, my friends, so let's do it the clean way:
 
-  1. [Fork this repo](#fork-destination)
+  1. Fork this repo
   2. Work on your own fork
   3. Clean up your local history so it reads nicely.  If you don't know how to do that, [check this out](https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa#541c).  Seize the opportunity to proofread everything.
   4. Push the clean history to your repo (if you had pushed earlier, it's okay to **force-push**; if that bothers you, create a new branch over the clean history and push it fresh).
