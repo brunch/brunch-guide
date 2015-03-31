@@ -46,7 +46,7 @@ This is a attempt at a comprehensive guide to [Brunch](http://brunch.io/), an ex
   * [Brunch and development workflows](chapter11-plugins.md#brunch-and-development-workflows)
   * [Brunch and web performance](chapter11-plugins.md#brunch-and-web-performance)
   * [Writing a Brunch plugin](chapter11-plugins.md#writing-a-brunch-plugin)
-12. Conclusion
+12. [Conclusion](chapter12-conclusion.md)
 
 ## Brunch version
 
