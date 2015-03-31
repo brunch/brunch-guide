@@ -1,6 +1,6 @@
 # The Brunch.io Guide
 
-This is a attempt at a comprehensive guide to [Brunch](http://brunch.io/), an excellent builder for browser apps that gives Grunt, Gulp, Broccoli et al. a run for their money.  I adapted this from [my (French language) article from early March 2015](http://www.js-attitude.fr/2015/03/04/brunch-mon-builder-prefere/).
+This is an attempt at a comprehensive guide to [Brunch](http://brunch.io/), an excellent builder for browser apps that gives Grunt, Gulp, Broccoli et al. a run for their money.  I adapted this from [my (French language) article from early March 2015](http://www.js-attitude.fr/2015/03/04/brunch-mon-builder-prefere/).
 
 Is your English reading not so good? Check out our [translations](#translations).
 

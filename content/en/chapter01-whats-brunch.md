@@ -10,7 +10,7 @@ This is an **extremely common need among front-end developers** (or front-end de
 
 The vast majority of automation tool users use either [Grunt](http://gruntjs.com/) or [Gulp](http://gulpjs.com/) (much more rarely [Broccoli](https://github.com/broccolijs/broccoli) or [Glou](https://www.npmjs.com/package/glou)).  Although extremely popular, these got on the market later than Brunch did, and are **often inferior for common use-cases**.
 
-I’ve been using Brunch since June 2012 (around version 1.3; it dates back all the way to Spring 2011) and to this day, it’s proved for me to be **vastly superior** to later actors in the field.
+I’ve been using Brunch since June 2012 (around version 1.3; it dates back all the way to Spring 2011) and to this day, it’s proved—for me—to be **vastly superior** to later actors in the field.
 
 In order to properly understand what sets Brunch apart from other such tools, this chapter dives into several technical and architectural aspects, that are as many **design choices** that you can categorize this ecosystem with.
 
@@ -20,7 +20,7 @@ Once we have a firm grasp of this, we’ll move on to tons of concrete code, dem
 
 The market is dominated by **generic task runners**.  These tools provide a mechanism for describing tasks, and dependencies between tasks.  These tasks can be anything: copy a file, write a file, send an e-mail, compile something, run tests, do a Git commit… absolutely anything you can think of.
 
-This is a **very old** concept; on of the first well-known generic task runners was the venerable [Make](http://www.gnu.org/software/make/) (and its famous `Makefile`s); in the Java world, we first had [Ant](http://ant.apache.org/), then as if that wasn’t verbose enough already, we now have the friggin' [Maven](http://maven.apache.org/) wooly mammoth; Ruby has [Rake](http://docs.seattlerb.org/rake/), and so on and so forth.
+This is a **very old** concept; one of the first well-known generic task runners was the venerable [Make](http://www.gnu.org/software/make/) (and its famous `Makefile`); in the Java world, we first had [Ant](http://ant.apache.org/), then as if that wasn’t verbose enough already, we now have the friggin’ [Maven](http://maven.apache.org/) wooly mammoth; Ruby has [Rake](http://docs.seattlerb.org/rake/), and so on and so forth.
 
 Because these runners are generic, they **seldom can automatically optimize** for specific scenarios, or even define useful default conventions.  Any task requires writing **a non-trivial volume of code** and/or configuration, and must be **explicitly invoked** in all the right places.
 
@@ -37,7 +37,7 @@ Brunch is **fundamentally** specialized and geared towards **building assets**, 
   * **Minification** of resulting files if we’re in “production mode;”
   * **Watching** of source files to update the build on the fly.
 
-All these features are there already because this is a specialized tool, yet they remain **super-easy to use** (most of the time, they’re actually **automatic**) thanks to a nifty set of conventions, that we’ll explore later on.
+All these features are here already because this is a specialized tool, yet they remain **super-easy to use** (most of the time, they’re actually **automatic**) thanks to a nifty set of conventions, that we’ll explore later on.
 
 ## File-based processing vs. pipelines
 
@@ -63,7 +63,7 @@ The first approach has the advantage of being explicit, devoid of any “magic�
 
 The convention-based approach **trims down the required code or configuration** to whatever “strays from the established path,” a path crystallized by the tool’s elected conventions.  Follow these, and you’ll have next to nothing to write or customize; get custom, and you’ll have to write code or use settings for your specific needs.
 
-The advantage is clear: **brevity and expressiveness** of your content, that doesn't include anything superfluous.  The drawback: for anyone who hasn't read the docs (and developers *loathe* reading the docs, as they apparently all expect instant knowledge), this feels a bit like “black-box magic.”
+The advantage is clear: **brevity and expressiveness** of your content, that doesn’t include anything superfluous.  The drawback: for anyone who hasn’t read the docs (and developers *loathe* reading the docs, as they apparently all expect instant knowledge), this feels a bit like “black-box magic.”
 
 **Brunch relies on solid conventions, reducing your configuration needs to the bare minimum.**
 
@@ -71,23 +71,23 @@ This is a well-established architectural choice known as **Convention Over Confi
 
 ## Full builds vs. incremental builds
 
-The majority of task runners or builders operate along two modes: the **one-shot build** and the **watcher**.  In this second mode, the tool creates the initial build, then watches over all relevant source files and trees, looking for changes: these trigger an update of the build.
+The majority of task runners or builders operate along one of two modes: the **one-shot build** and the **watcher**.  In this second mode, the tool creates the initial build, then watches over all relevant source files and trees, looking for changes: these trigger an update of the build.
 
 This update can itself operate along one of two modes: either it **rebuilds everything** from scratch (which requires no particular knowledge of the semantics of the tasks involved), or it **only reruns the necessary build steps** based on the detected changes, which greatly reduces the required work.
 
 This second way is **obviously preferable** in terms of performance, as it can turn a 2-second build into a 0.2-second one, or even a 50-second build into a 0.5-second one.  But to achieve this, you need a fine-grained understanding of task semantics and dependencies, a pipeline, and a caching mechanism for all your processing steps.  This is referred to as an **incremental build** system.
 
-I only recently realized, astonished, that neither Grunt nor Gulp operate like this; although [plugins](https://github.com/wearefractal/gulp-cached) [exist](https://github.com/ahaurw01/gulp-remember), from everything I read online or heard live, they’re pretty tough to set up properly, and the best results they get are often rather sub-optimal.
+I only recently realized, flabbergasted, that neither Grunt nor Gulp operate like this; although [plugins](https://github.com/wearefractal/gulp-cached) [exist](https://github.com/ahaurw01/gulp-remember), from everything I‘ve read online or heard live, they’re pretty tough to set up properly, and the best results they get are often rather sub-optimal.
 
 **Brunch uses incremental builds.**
 
-In my humble opinion, this is the only worthy approach; without it, watcher performance is dismal, far too low to be really useful throughout your day.  It is so obvious to me that it had not even occurred to me that Grunt and Gulp didn't work this way.
+In my humble opinion, this is the only worthy approach; without it, watcher performance is dismal, far too low to be really useful throughout your day.  It is so obvious to me that it had not even occurred to me that Grunt and Gulp didn’t work this way.
 
 Brunch has always done so, naturally—as has Glou, for that matter.
 
 ## The paramount importance of speed
 
-You likely noticed that across all the previous points, speed was a recurring concern.  There's a good reason for this.
+You likely noticed that across all the previous points, speed was a recurring concern.  There’s a good reason for this.
 
 To really be useful, to actually provide us with **operational comfort** regardless of the amount, size and type of source files we have (JS, CoffeeScript, TypeScript, ES6 or even ES7, React, LESS, SASS, Stylus, Handlebars, Jade, Dust or what have you…) and still let us see the results of our changes in our browsers **hundreds of times a day**, our watcher must update the build **fast**.
 
@@ -95,23 +95,23 @@ And by “fast” I mean **under 300ms**, even for super-heavy use cases.  Actua
 
 This might sound excessive, but as soon as you’re slower than that and reach 2, 3 or even 10 seconds, as is far too often the case with Grunt or Gulp, what do you get?  Developers and designers who spend **more time checking their tool’s console** after each file save than looking at the result of their change in the browser.
 
-The wonders of hot-swapping and live injection of CSS or JS in an open browser page **are useless** if you must first wait several seconds for the build to update.  Even a good ol' `Alt+Tab` followed by a keyboard-based Refresh quickly trips over itself if it must first wait a while.  **The feedback loop crumbles**, its transmission belt gets stuck.
+The wonders of hot-swapping and live injection of CSS or JS in an open browser page **are useless** if you must first wait several seconds for the build to update.  Even a good ol’ `Alt+Tab` followed by a keyboard-based Refresh quickly trips over itself if it must first wait a while.  **The feedback loop crumbles**, its transmission belt gets stuck.
 
 **Brunch is insanely fast.**
 
-If you want to see for yourself what an **efficient feedback loop** looks like, check out [this segment](http://youtu.be/2Dl9ES6IC3c?t=26m55s) of my (French-language) screencast “Dev-Avengers for the front-end web.”  I just need to watch the looks on the audience’s eyes when I showcase this stuff to feel how *hungry* front-end devs are for this.
+If you want to see for yourself what an **efficient feedback loop** looks like, check out [this segment](http://youtu.be/2Dl9ES6IC3c?t=26m55s) of my (French-language) screencast “Dev-Avengers for the front-end web.”  I just need to watch the looks in the audience’s eyes when I showcase this stuff to feel how *hungry* front-end devs are for this.
 
 ## Then why do I only ever hear about the others?
 
-In a word?  **Marketing.**
+In a word?  **Marketing.**  *(OK, and perhaps docs too, to some extent.)*
 
 **Grunt** was the first to really get noticed (starting in the second semester of 2012), and its popularity soared again when it got selected as the build tool for the Angular ecosystem; it **peaked by late 2013**, at which time Gulp started eating its lunch.
 
-Broccoli remains on the fringe, even if it occasionally gets some spotlight.  And Glou hasn't started marketing itself in earnest yet, as its developers want to add some more polish to it first.
+Broccoli remains on the fringe, even if it occasionally gets some spotlight.  And Glou hasn’t started marketing itself in earnest yet, as its developers want to add some more polish to it first.
 
-And Brunch?  Brunch never made the news much.  It's alive and kickin', has an **extremely loyal user base**, and just about anyone I show it to switches quite quickly to it: after 3+ years of teaching advanced JS and front-end dev or Node.js, this is still the first thing my trainees apply back at work on the next Monday :smile:.  And every time I present on [Dev Avengers](https://www.youtube.com/watch?v=2Dl9ES6IC3c), people ogle…
+And Brunch?  Brunch never made the news much.  It’s alive and kickin’, has an **extremely loyal user base**, and just about anyone I show it to switches quite quickly to it: after 3+ years of teaching advanced JS and front-end dev or Node.js, this is still the first thing my trainees apply back at work on the next Monday :smile:.  And every time I present on [Dev Avengers](https://www.youtube.com/watch?v=2Dl9ES6IC3c), people ogle…
 
-Still, Brunch remains discreet.  With 4,000 GitHub stars (43% of Grunt's), 270+ forks and 4+ years of active existence, it’s no small project, it’s just… discreet.
+Still, Brunch remains discreet.  With 4,000 GitHub stars (43% of Grunt’s), 270+ forks and 4+ years of active existence, it’s no small project, it’s just… discreet.
 
 That being said, it looks like 2014 was a renaissance year for Brunch, as developer mindshare goes.  [Various](http://alxhill.com/blog/articles/brunch-coffeescript-angular/) [articles](http://blog.jetbrains.com/webstorm/2014/06/the-brunch-build-tool/) got published. 3 years after its birth, people seemed to suddenly realize Brunch was there.  To wit:
 
