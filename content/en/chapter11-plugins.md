@@ -250,7 +250,7 @@ We're certain that `config.plugins` exist, even if it's an empty object.  So its
 
 Then we compile the regex once and for all.
 
-Now, eery time `compile(…)` is called (which means the file we get matched our `pattern`), we'll need to get the current Git HEAD's SHA1, and proceed to replacing it through the file's in-memory contents.
+Now, every time `compile(…)` is called (which means the file we get matched our `pattern`), we'll need to get the current Git HEAD's SHA1, and proceed to replacing it through the file's in-memory contents.
 
 We don't get this SHA just once at construction time, because committing along througout the dev phase is a common scenario (without stopping Brunch's watcher, that is), so our value would quickly become obsolete.
 
