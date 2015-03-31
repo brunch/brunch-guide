@@ -62,7 +62,7 @@ Ce guide est © 2015 Christophe Porteneuve, sous [licence MIT](../../LICENSE).
 
 J’accueille avec plaisir tout type de contribution : fautes de frappe, correctifs de bug, reformulations, meilleures explications, meilleurs exemples, infos complémentaires, démos, traductions, etc.
 
-Faites simplement un fork de ce dépôt, faites le boulot, mettez votre historique au propre, faites le push, et envoyez-moi une *Pull Request* bien propre !
+Assurez-vous de consulter nos [règles de contribution](../../CONTRIBUTING.md) !
 
 ## Remerciements
 

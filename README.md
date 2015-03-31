@@ -56,6 +56,8 @@ This guide is also available in the following languages:
 
   * [French](content/fr/README.md)
 
+To contribute translations, check out our [guidelines](CONTRIBUTING.md).
+
 ## Brunch version
 
 This guide was written against Brunch 1.7.20.  Most of it likely works in earlier 1.7.x versions, but may need updates when the upcoming 1.8 or 2.0 gets out (especially WRT npm / `node_modules` integration).
@@ -68,7 +70,7 @@ This work is © 2015 Christophe Porteneuve, licensed under [the MIT license](LIC
 
 I welcome all useful contributions: typos, bug fixes, rephrasings, better explanations or examples, extra information and demos, translations, etc.
 
-Just fork this repo, push a clean history of your changes to your fork, and submit a well-formed Pull Request!
+Be sure to check our [contribution guidelines](CONTRIBUTING.md)!
 
 ## Acknowledgments
 

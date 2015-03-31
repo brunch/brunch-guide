@@ -6,7 +6,7 @@ I hope you **enjoyed this guide**, and more importantly that it **tentalized you
 
 This guide is not entirely comprehensive: it doesn't explain all possible plugin situations, all types of module wrappings, etc.  But it does try to give you a good, solid understanding of Brunch, why it works the way it does, and how that makes it great.
 
-Remember: if you want to extend this, just [contribute](README.md#contributing)!
+Remember: if you want to extend this, just [contribute](../../CONTRIBUTING.md)!
 
 Cheers!
 

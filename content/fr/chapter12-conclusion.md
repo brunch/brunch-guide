@@ -6,7 +6,7 @@ J'éspère que **ça vous a plu**, et surtout que ça vous a **donné envie de t
 
 Ce guide n’est pas absolument complet : il n’explique pas tous les cas de plugins possibles, tous les types d'enrobages de modules, etc.  Mais il essaie vraiment de vous donner une bonne compréhension solide de Brunch, de sa façon de fonctionner, et de ce qui en fait un outil génial.
 
-Et souvenez-vous : si vous voulez étendre ce guide, il suffit de [contribuer](README.md#contributing) !
+Et souvenez-vous : si vous voulez étendre ce guide, il suffit de [contribuer](../../CONTRIBUTING.md) !
 
 Bon dev à tous !
 
