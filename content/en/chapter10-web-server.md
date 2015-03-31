@@ -18,7 +18,7 @@ server:
   run: yes
 ```
 
-If you want a **different port** than 333, you can use the `-p` or `--port` CLI option, or the `server.port` setting.
+If you want a **different port** than 3333, you can use the `-p` or `--port` CLI option, or the `server.port` setting.
 
 ## Writing your custom server
 
