@@ -64,4 +64,4 @@ If you want to link to another demo repo, this is fine.  Please name it `brunch-
 
 This section lists all contributors to this repository.
 
-* [Christophe Porteneuve](/tdd) (original guide, EN and FR)
+* [Christophe Porteneuve](https://github.com/tdd) (original guide, EN and FR)
