@@ -1,6 +1,6 @@
 # Le Guide de Brunch.io
 
-*[English version here](../../README.md)*
+*[English version and translations list here](../../README.md)*
 
 Ceci est une tentative de fournir un guide raisonnablement complet pour [Brunch](http://brunch.io/), un excellent builder pour des applications web front, qui s'avère souvent très supérieur à Grunt, Gulp, Broccoli et compagnie.  Je l’ai adapté de [mon article de début mars 2015](http://www.js-attitude.fr/2015/03/04/brunch-mon-builder-prefere/).
 
