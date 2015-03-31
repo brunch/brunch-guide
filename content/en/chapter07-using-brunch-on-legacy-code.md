@@ -63,4 +63,4 @@ No biggie.
 
 ----
 
-« Previous: [A shot at templating](chapter6-a-shot-at-templating.md) • Next: [Production builds](chapter8-production-builds.md) »
+« Previous: [A shot at templating](chapter06-a-shot-at-templating.md) • Next: [Production builds](chapter08-production-builds.md) »

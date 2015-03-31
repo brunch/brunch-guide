@@ -64,10 +64,10 @@ module.exports = App;
 
 Rebuild, open your `public/index.html` file, and then…
 
-![Our rendered template](images/brunche-simple-templating.png)
+![Our rendered template](../images/brunche-simple-templating.png)
 
 How cool is that?!
 
 ----
 
-« Previous: [Using third-party module registries](chapter5-using-third-party-registries.md) • Next: [Using Brunch on a legacy codebase](chapter7-using-brunch-on-legacy-code.md) »
+« Previous: [Using third-party module registries](chapter05-using-third-party-registries.md) • Next: [Using Brunch on a legacy codebase](chapter07-using-brunch-on-legacy-code.md) »

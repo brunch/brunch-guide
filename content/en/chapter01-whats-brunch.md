@@ -127,4 +127,4 @@ Personally, I’ve been using Brunch on absolutely every front build I do, from 
 
 With this guide, I’m trying to give you a comprehensive understanding of the power of Brunch; I hope this will tease you into trying it out on your next projects, big or small.  And if you come from a Grunt or Gulp background, especially on complex build needs, prepare to be amazed :smile:.
 
-Now let’s move on to chapter 2: [Getting started with Brunch](chapter2-getting-started.md)!
+Now let’s move on to chapter 2: [Getting started with Brunch](chapter02-getting-started.md)!

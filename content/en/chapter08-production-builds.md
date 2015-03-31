@@ -20,4 +20,4 @@ In this situation, production enables minifiers, skips source maps (I would keep
 
 ----
 
-« Previous: [Using Brunch on a legacy codebase](chapter7-using-brunch-on-legacy-code.md) • Next: [Watcher](chapter9-watcher.md) »
+« Previous: [Using Brunch on a legacy codebase](chapter07-using-brunch-on-legacy-code.md) • Next: [Watcher](chapter09-watcher.md) »

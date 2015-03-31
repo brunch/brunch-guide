@@ -217,13 +217,13 @@ $ brunch b  # Shortcut for "brunch build"
 
 And now, if we refresh this:
 
-![Our module runs at page load](images/brunch-simple-console.png)
+![Our module runs at page load](../images/brunch-simple-console.png)
 
 Notice the path you get in the log: `application.js:5` instead of `app.js:98`: this is sourcemaps for you!  If you don't get this mapping, check that sourcemaps are enabled in your developer tool settings, and also open developer tools *before* refreshing the page, otherwise sourcemaps won't get loaded in time.  In doubt, once the console is visible, just refresh the page.
 
 Sourcemaps work for CSS, too:
 
-![Sourcemaps work for CSS as well](images/brunch-simple-styles.png)
+![Sourcemaps work for CSS as well](../images/brunch-simple-styles.png)
 
 Notice the `main.scss:2` location for our `body` rule?  And if you click it (or one of its properties), you'll get the original source code, naturally.
 
@@ -247,7 +247,7 @@ module.exports = App;
 
 We’ll first stay with the global-variable approach, as a transition thing.  So we put our `jquery.js` in a new `vendor` folder, in the same place as `app`, and rebuild.  When we refresh, it works, and the message appears at the end of our page:
 
-![Global jQuery kinda works](images/brunch-simple-jquery.png)
+![Global jQuery kinda works](../images/brunch-simple-jquery.png)
 
 The entire jQuery codebase is actually injected as-is between Brunch’s “bootstrapper” code an our own wrapped modules.  Brunch will inject all the files in `vendor`there, in alphabetical order (unless we specify another order in our configuration).
 
@@ -306,4 +306,4 @@ For this to still work, you'll need to adjust the bottom of your `index.html` fi
 
 In the next chapter, we'll learn how to rely on third-party module registries to be able to use versioned dependencies in our own code.
 
-« Previous: [Conventions and defaults](chapter3-conventions-and-defaults.md) • Next: [Using third-party module registries](chapter5-using-third-party-registries.md) »
+« Previous: [Conventions and defaults](chapter03-conventions-and-defaults.md) • Next: [Using third-party module registries](chapter05-using-third-party-registries.md) »

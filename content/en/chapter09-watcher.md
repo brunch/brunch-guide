@@ -188,4 +188,4 @@ Be careful though, the current `chokidar` (in Brunch 1.7.x) seems to sometimes h
 
 ----
 
-« Previous: [Production builds](chapter8-production-builds.md) • Next: [Web server: built-in or custom](chapter10-web-server.md) »
+« Previous: [Production builds](chapter08-production-builds.md) • Next: [Web server: built-in or custom](chapter10-web-server.md) »

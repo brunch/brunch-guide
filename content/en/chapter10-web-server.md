@@ -145,10 +145,10 @@ module.exports = App;
 
 The watcher picks our update right up, and if we refresh the page and look at the console, we should see this:
 
-![Our developer tools console says this works!](images/brunch-simple-json.png)
+![Our developer tools console says this works!](../images/brunch-simple-json.png)
 
 All good! (づ￣ ³￣)づ
 
 ----
 
-« Previous: [Watcher](chapter9-watcher.md) • Next: [Plugins for all your build needs](chapter11-plugins.md) »
+« Previous: [Watcher](chapter09-watcher.md) • Next: [Plugins for all your build needs](chapter11-plugins.md) »

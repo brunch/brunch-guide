@@ -104,4 +104,4 @@ Most Brunch plugins are designed to be **useful and working without any configur
 
 Aaaaand well done you, you’ve made it through all the “lay of the land” material of this guide.  It’s time to **crank out some code!**.  On to the next chapter, and the concrete side of things.
 
-« Previous: [Getting started with Brunch](chapter2-getting-started.md) • Next: [Starting from scratch](chapter4-starting-from-scratch.md) »
+« Previous: [Getting started with Brunch](chapter02-getting-started.md) • Next: [Starting from scratch](chapter04-starting-from-scratch.md) »

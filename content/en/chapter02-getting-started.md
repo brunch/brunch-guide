@@ -24,4 +24,4 @@ And yes, this was a tiny chapter.  Not so with the next ones!
 
 ----
 
-« Previous: [Brunch?!  What’s Brunch?](chapter1-whats-brunch.md) • Next: [Conventions and Defaults](chapter3-conventions-and-defaults.md) »
+« Previous: [Brunch?!  What’s Brunch?](chapter01-whats-brunch.md) • Next: [Conventions and Defaults](chapter03-conventions-and-defaults.md) »

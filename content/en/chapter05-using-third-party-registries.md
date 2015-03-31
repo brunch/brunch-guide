@@ -45,4 +45,4 @@ Rebuild, refresh: it works!
 
 ----
 
-« Previous: [Starting from scratch](chapter4-starting-from-scratch.md) • Next: [A shot at templating](chapter6-a-shot-at-templating.md) »
+« Previous: [Starting from scratch](chapter04-starting-from-scratch.md) • Next: [A shot at templating](chapter06-a-shot-at-templating.md) »
