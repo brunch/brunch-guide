@@ -1,14 +1,14 @@
-# Using third-party module registries
+# Utiliser des référentiels de modules tiers
 
-This is part of [The Brunch.io Guide](README.md).
+Ceci fait partie du [Guide de Brunch.io](README.md).
 
-In practice, the nicer way to deal with third-party dependencies is through **existing module registries**.  In the JS world, this mostly means **[npm](https://www.npmjs.com/)** (for Node.js and for front-end code; it recently became the official registry for jQuery plugins!) or [Bower](http://bower.io/) (which, IMHO, is on the way out, with npm slowly replacing it).
+Dans la pratique, ce qui est vraiment agréable pour les dépendances tierces, c'est de pouvoir s'appuyer sur des **référentiels de modules existants**.  Côté front, on trouve essentiellement **[npm](https://www.npmjs.com/)** (valable pour Node.js et pour le front, et qui vient notamment de remplacer le référentiel officiel des plugins jQuery) et [Bower](http://bower.io/) (qui est, à mon humble avis, sur le départ, car npm est en train de le rendre obsolète).
 
-The big benefit of formal dependency management is that you get to express **flexible version dependencies**, easing the installation and **upgrade** of your dependencies.
+Tout l'intérêt d'une gestion de dépendances formelle, c'est qu'on peut exprimer des **dépendances flexibles sur les versions**, et faciliter l'installation et la **mise à jour** des dépendances.
 
-At the time of this writing, the Brunch team is hard at work to provide first-class integration with npm, which will greatly ease isomorphic JS and will let us use our `node_modules`-installed code transparently inside our front-end application code, as modules still.  For now though, we'd need to hack around with the [Browserify plugin for Brunch](https://www.npmjs.com/package/browserify-brunch).
+Brunch est en train de bosser dur pour nous fournir une intégration de tout premier ordre avec npm, ce qui facilitera le JS isomorphique et nous permettra d'exploiter nos installations `node_modules` de façon transparente dans notre code applicatif front.  Pour le moment, en revanche, on est contraints de jouer avec le [plugin pour Browserify](https://www.npmjs.com/package/browserify-brunch).
 
-In the meantime, Bower integration [is already here](https://github.com/brunch/brunch/blob/stable/docs/faq.md#how-to-use-bower).  We could have used that for jQuery, for instance.  If we use the following `bower.json` to describe our project:
+En attendant, l'intégration Bower [est déjà là](https://github.com/brunch/brunch/blob/stable/docs/faq.md#how-to-use-bower).  On aurait pu s'en servir pour jQuery, par exemple.  Si nous utilisons le `bower.json` suivant pour décrire notre projet :
 
 ```json
 {
@@ -19,7 +19,7 @@ In the meantime, Bower integration [is already here](https://github.com/brunch/b
 }
 ```
 
-We can then install jQuery like so:
+On installerait alors comme ceci :
 
 ```sh
 $ bower install --save jquery#1.*
@@ -28,7 +28,7 @@ $ bower install --save jquery#1.*
 jquery#1.11.2 bower_components/jquery
 ```
 
-We then can strip `jquery.js` from our `app`.  In order to retain the split targets we had in the previous chapter, we need to adjust our `brunch-config.coffee` so regexes match the new file layout:
+On peut désormais retirer le `jquery.js` de notre `app`.  On va ajuster `brunch-config.coffee` pour qu'il colle toujours nos éléments dans deux cibles distinctes, sachant que les *regexes* de tout à l'heure ne sont plus adaptées :
 
 ```coffeescript
 module.exports = config:
@@ -39,10 +39,10 @@ module.exports = config:
     stylesheets: joinTo: 'app.css'
 ```
 
-What's more (or less, actually) is that Bower **doesn't expose modules (ಥ﹏ಥ)**.  So we must strip our `require(…)` call from our `app/application.js`, assuming `$` is a global again (bleuargh).
+Qui plus est, c'est Bower, donc **ça n'expose pas de modules (ಥ﹏ಥ)**.  On ajuste notre `app/application.js` pour supposer à nouveau que `$` est global, en retirant la ligne `require(…)` (bleuargh).
 
-Rebuild, refresh: it works!
+Puis on rebuilde, et ça marche !
 
 ----
 
-« Previous: [Starting from scratch](chapter04-starting-from-scratch.md) • Next: [A shot at templating](chapter06-a-shot-at-templating.md) »
+« Précédent : [Partir de zéro](chapter04-starting-from-scratch.md) • Suivant : [Un petit coup de *templating*](chapter06-a-shot-at-templating.md) »

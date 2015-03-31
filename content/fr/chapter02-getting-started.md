@@ -1,27 +1,27 @@
-# Getting started with Brunch
+# Démarrer avec Brunch
 
-This is part of [The Brunch.io Guide](README.md).
+Ceci fait partie du [Guide de Brunch.io](README.md).
 
-Let’s start exploring everything you need to know to happily use Brunch in your own projects, be they new ones or legacy codebases.
+Voyons tout ce que vous besoin de savoir pour utiliser agréablement Brunch dans vos projets, nouveaux comme existants.
 
-Just like other tools in this space (and like a truckload of other tools these days), Brunch is **based on Node and gets installed through `npm`**.  You can install it globally, so as to be able to use the `brunch` command from anywhere:
+Comme tous les outils cités plus haut, et comme une térachiée d'outils aujourd'hui, Brunch est **basé sur Node.js et s'installe via `npm`**.  Vous pouvez choisir de l'installer en global, pour pouvoir utiliser la commande `brunch` depuis n'importe où :
 
 ```sh
-npm install -g brunch   # You should install it locally instead…
+npm install -g brunch   # Mais préférez une installation locale…
 ```
 
-…but I would **advise you to install it locally instead**, within your current project, that will need a `package.json` file anyway (just like with other competing tools).  This way, you can use various versions of Brunch from one project to another, **with no conflicts**.  We’ll see that in more detail in later sections of this guide.
+…mais **je vous recommanderais plutôt de l'installer localement** à votre projet courant, qui aura de toutes façons besoin d'un `package.json` pour fonctionner (au même titre que les autres outils évoqués dans cet article).  Ainsi, vous pouvez utiliser plusieurs versions distinctes d'un projet à l'autre, **sans conflits**.  On verra ça dans les sections ultérieures.
 
-## Should I use a skeleton?
+### Faut-il partir d'un squelette ?
 
-Brunch emphasizes the concept of **skeleton**.  Unlike generators like those based on Yeoman, these are just **Git repos suggesting a default infrastructure** for a front-end app using Brunch in development.  There are [a number of existing skeletons](http://brunch.io/skeletons.html), and their main usefuleness lies in providing a **kickstarter** by creating a few folders, pre-requiring dependencies in `package.json` and providing a default Brunch configuration.
+Brunch met en avant la notion de **squelette**.  Contrairement à des générateurs comme ceux associés à Yeoman, il s'agit là simplement de **dépôts Git proposant une infra par défaut** pour une application front utilisant Brunch.  Il en existe [un certain nombre](http://brunch.io/skeletons.html), dont l'intérêt principal est de fournir une **base de départ** en créant certains dossiers, en prédéfinissant les dépendances dans le `package.json` et en fournissant une configuration Brunch de départ.
 
-Brunch has a `brunch new` command that you pass a GitHub repo to (or any Git repo URL, for that matter), and an optional clone path.  This is really just a `git clone` followed by an `npm install`…
+Brunch propose une commande `brunch new` à laquelle on passe un dépôt GitHub (ou toute URL publique de dépôt Git), et un chemin de clonage éventuel.  Ça se limite à un `git clone` suivi d'un `npm install`…
 
-I would advise you to **start from scratch (or from your own codebase)** and then define your own folders and configuration, to get a firm grip on what you’re doing.
+Je vous recommande plutôt de **partir de zéro (ou de votre propre projet)** et de mettre vos fichiers au point vous-mêmes, pour bien maîtriser ce que vous faites.
 
-And yes, this was a tiny chapter.  Not so with the next ones!
+Et oui, ce chapitre est tout petit.  Mais pas les suivants !
 
 ----
 
-« Previous: [Brunch?!  What’s Brunch?](chapter01-whats-brunch.md) • Next: [Conventions and Defaults](chapter03-conventions-and-defaults.md) »
+« Précédent : [Brunch ?!  C’est quoi, Brunch ?](chapter01-whats-brunch.md) • Suivant : [Conventions et valeurs par défaut](chapter03-conventions-and-defaults.md) »

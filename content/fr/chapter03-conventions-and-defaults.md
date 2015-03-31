@@ -1,107 +1,107 @@
-# Conventions and defaults
+# Conventions et valeurs par défaut
 
-This is part of [The Brunch.io Guide](README.md).
+Ceci fait partie du [Guide de Brunch.io](README.md).
 
-The [official docs](https://github.com/brunch/brunch/tree/stable/docs) do a good job of explaining Brunch’s conventions.  Pretty much all of them can be overridden through configuration, to better fit your specific needs.
+Les [docs officielles](https://github.com/brunch/brunch/tree/stable/docs) expliquent bien les bases et conventions pré-établies.  La quasi-totalité peut être modifiée en configuration, pour s'adapter à vos besoins spécifiques d'architecture.
 
-Do keep in mind that what we'll be seeing here describes **the default behavior**, nothing is asbolutely mandatory.  That being said, the more you follow these conventions, the less code/configuration you’ll have to create and maintain in order to enjoy Brunch’s benefits.
+Gardez donc à l'esprit que ce que je décris dans cette section constitue le fonctionnement **par défaut**, mais pas une obligation.  Ceci dit, plus vous suivrez ces conventions, moins vous aurez de code/configuration à créer et maintenir pour bénéficier des services de Brunch.
 
-For every section, I will succinctly list the command line options and configuration settings you can use to choose another way; for full details, [this page is your friend](https://github.com/brunch/brunch/blob/stable/docs/config.md).
+Je vous préciserai à chaque fois, de façon succincte, les éléments de ligne de commande ou de configuration qui permettent de quitter ces conventions ; pour tous les détails, [cette page est votre amie](https://github.com/brunch/brunch/blob/stable/docs/config.md).
 
-## Built-in processing
+## Traitements prédéfinis
 
-Brunch will always take care of the following for you, from the get-go:
+Brunch va s'occuper en tous les cas de :
 
-* **Concatenate** files, by category, towards 1+ target files you define;
-* **Publish** the resulting files in a target directory, along with **static asset files** you may have put in proper source asset folders;
-* **Wrap** the relevant JS soure files as **CommonJS modules** (during the concatenation phase);
-* Produce the matching **sourcemaps** so you can easily debug in your browser by using the source contents, not the resulting files;
-* **Watch** your source files and trees for changes, triggering an incremental build update on any relevant change (if you run Brunch in watch mode instead of one-shot build);
-* Provide an **HTTP server** that does more than just static file serving (if you ask for the server to launch).
+  * **Concaténer** les fichiers, par catégorie, vers une ou plusieurs destinations que vous définissez ;
+  * **Déposer** les résultats dans un dossier cible, accompagnés de fichiers et répertoires **statiques** que vous auriez posés au bon endroit source ;
+  * **Enrober** ceux de vos JS sources qui le prévoient en **modules CommonJS** (pendant la phase de concaténation) ;
+  * Produire les **source maps** nécessaires pour pouvoir déboguer dans votre navigateur sur base des contenus d'origine, non des concaténations ;
+  * **Surveiller** vos fichiers et dossiers sources pour réaliser une mise à jour incrémentale du build à la moindre modification (si vous le lancez en mode surveillance plutôt qu'en build unique) ;
+  * Fournir un **serveur HTTP** statique mais malin pour vos fichiers (si vous lui demandez).
 
-The exact nature of the concatenated files depends on the **installed plugins**, though.  We’ll get to that later, and start already with diving into the details of these default behaviors and features.
+La nature exacte des fichiers concaténés dépend des **plugins installés**, en revanche.  Voyons déjà ces aspects « par défaut » un peu plus en détail.
 
-## Configuration files
+## Fichiers de configuration
 
-Brunch will look for its configuration in the first of the following files it finds in the current directory:
+Brunch va rechercher son fichier de configuration parmi les noms suivants, dans cet ordre :
 
-* **`brunch-config.coffee`**
-* `brunch-config.js`
-* `config.coffee`
-* `config.js`
+  * **`brunch-config.coffee`**
+  * `brunch-config.js`
+  * `config.coffee`
+  * `config.js`
 
-Note how CoffeeScript is favored (Brunch is written in CoffeeScript, then transpiled to JS on each release); historically, Brunch only looked for `config.*` files, but that quickly proved to be too generic a name, so it now favors the more explicit ones.
+On note une préférence pour CoffeeScript (Brunch est écrit en CoffeeScript, et transpilé en JS à chaque release) ; historiquement, il cherchait uniquement les `config.*`, mais c'est vite devenu un peu trop générique, donc il préfère désormais le nom plus spécifique.
 
-If you don't know any CoffeeScript, **don't panic**: the vast majority of the time, this will be nothing but a big object (JSON style), so CoffeeScript will “just” spare you the noise of curlies, commas and quotes.  It looks pretty much like YAML, all clean and concise :grin:.
+Si vous ne connaissez pas CoffeeScript, **ne paniquez pas** : la quasi-totalité du temps, vous n'aurez qu'un gros objet (type JSON) à y mettre, et CoffeeScript vous épargnera « juste » le bruit des accolades, virgules et guillemets.  On dirait du YAML, c'est tout propre et concis :-)
 
-*Customizing: pass an explicit config file path through the `-c` or `--config` command-line (CLI) option.*
+*Personnalisation : passez le chemin de votre configuration avec l'option `-c` ou `--config` en ligne de commande.*
 
-## Folders
+## Dossiers
 
-By default, Brunch pays attention to the following folders:
+Brunch fait par défaut attention aux dossiers suivants :
 
-* `app` contains the entire *source codebase*, except for third-party JS files that are not designed to be wrappable as CommonJS modules.  You’d find there a tree of script files, style sheets and template files.
-* Any `assets` folder (usually just `app/assets`) will get its contents **copy-pasted** (recursively) into the target folder, as-is, **without any processing**.
-* Any `vendor` folder (usually just one besides `app`) will have its contents concatenated, much like `app`, with a significant difference: its script files **will not get wrapped in modules**.  You’d generally put there third-party libraries that do not play well with being wrapped as modules (no UMD-style loader, etc.).  You’d also put there code that *is* capable of being wrapped, but that your current codebase still relies on as globals (for now :wink:) instead of using `require(…)`.
-* Any file whose name starts with an underscore (`_`) is considered a partial, to be embedded into another file, and is therefore not processed standalone.
-* `public` is the default **target folder**.  This is consistent with the conventions of numerous micro-serveurs and middleware systems such as [Rack](http://rack.github.io/).
+  * `app` contient toute la **partie source**, à l'exception des fichiers JS fournis par des tiers et non conçus pour être enrobés en modules.  On y trouverait donc, dans les sous-dossiers de votre choix (ou à même `app`), des fichiers scripts, feuilles de style, et fichiers templates.
+  * Tout dossier `assets` (généralement juste `app/assets`) verra son contenu **copié-collé** (récursivement) dans le dossier cible, tel quel, **sans aucun traitement**.
+  * Tout dossier `vendor` (généralement à côté du dossier `app`) sera concaténé comme `app`, à un gros détail près : les fichiers scripts ne seront **pas enrobés en modules**.  On y met donc généralement les bibliothèques tierces 100% front qui n'auraient pas de chargeur intégré type UMD, ou simplement que notre code utilise encore (pour le moment ;-)) comme un bon vieux global, au lieu de faire des `require(…)`.
+  * Tout fichier démarrant par un *underscore* (`_`) est considéré comme un fichier partiel, inclus par un autre, et ne sera pas utilisé de façon autonome.
+  * `public` est le **dossier cible** par défaut.  On retrouve là la convention de nombre de micro-serveurs type [Rack](http://rack.github.io/) et consorts.
 
-The `app`, `vendor` and `public` folders are considered relative to Brunch’s configuration file.
+Les dossiers `app`, `vendor` et `public` sont exprimés en relatif vis-à-vis du fichier de configuration de Brunch.
 
-*Customizing: source paths can be changed through an array of names/paths in the `paths.watched` setting.  The target folder is set by `paths.public`.  Special-treatment folders are defined through `conventions.assets` and `conventions.vendor` (which can be regexes or functions).  Ignored files (not processed standalone, that is) are specified in `conventions.ignored`.*
+*Personnalisation : les chemins sources sont modifiables avec un tableau de noms/chemins dans le réglage `paths.watched`.  Le dossier cible est défini par `paths.public`.  Les chemins à traitement spécial sont définis par `conventions.assets` et `conventions.vendor` (regex ou fonctions).  Les fichiers à ignorer sont définis par `conventions.ignored`.*
 
-## CommonJS module wrapping
+## Enrobage CommonJS
 
-**Modules are Good.**  If you’re still playing the globals game, without formal dependencies of any kind, it’s **high time you catch that train…** We’ve been preaching JS modules for **six years**, there even was a sort of formats war that ended with **[native ES6 modules](http://jsmodules.io/)** winning, which [look more like](http://jsmodules.io/cjs.html) Node’s popular **CommonJS** format than this good ol' AMD (and AMD is on the way out now).
+Les modules, **c'est le bien**.  Si vous en êtes encore à empiler les globales sans dépendances formelles, il est **plus que temps de rattraper le train…**  Voilà **six ans** qu'on prêche les modules, il y a même eu une espèce de guerre des formats qui a abouti aux **[modules natifs dans ES6](http://jsmodules.io/)**, lesquels [ressemblent davantage](http://jsmodules.io/cjs.html) au format **CommonJS** couramment utilisé par Node.js qu'à ce bon vieux AMD, qui est en nette perte de vitesse…
 
-The signs are all there: on the one hand, **major projects** such as [Ember 2](http://www.ember-cli.com/using-modules/) and [Angular 2](https://www.airpair.com/angularjs/posts/preparing-for-the-future-of-angularjs#3-4-transition-to-es6-modules) are switching to native ES6 modules, on the other hand [isomorphic JS](http://isomorphic.net/) is on a meteoric rise, with tools like [Browserify](http://browserify.org/), that package code “Node style” (and even shim several core Node modules) for in-browser execution, gaining in popularity at breack-neck pace.
+Les signes ne trompent pas : d'un côté, le passage aux modules ES6 natifs pour des **projets ambitieux** comme [Ember 2](http://www.ember-cli.com/using-modules/) et [Angular 2](https://www.airpair.com/angularjs/posts/preparing-for-the-future-of-angularjs#3-4-transition-to-es6-modules), de l'autre le succès phénoménal du [JS isomorphique](http://isomorphic.net/) et d’outils comme [Browserify](http://browserify.org/), qui packagent du code « façon Node » (et même quelques modules Node.js noyau) pour une exécution dans le navigateur.
 
-By default, Brunch wraps your own script files (unless they’re in `vendor`) as **CommonJS modules**: they therefore exist in a closure (all your explicit declarations, notably `var` and `function`, are thus private).  Because of this, you can (I should say you *ought to*) slap a big fat `"use strict";` at the top of your files, without fear of mandating strict mode for third-party scripts.  You also have automatic access to `exports`, `module.exports` and `require(…)`.
+Par défaut, Brunch enrobe tous vos fichiers scripts qui ne sont pas à l'intérieur d'un dossier `vendor` comme des **modules CommonJS** : vous y êtes donc dans une *closure* (toutes vos déclarations explicites, et notamment `var` et `function`, sont donc privées), vous avez le droit (je dirais même le devoir !) d'y coller un bon gros `"use strict";` en tête de fichier sans craindre de casser des scripts tiers, et vous avez accès à `exports`, `module.exports` et `require()`.
 
-*Customizing: `modules.wrapper` and `modules.definition` specify the type of wrapping you use (you can also disable it, period), and `modules.nameCleaner` lets you define how source file paths map to module names.*
+*Personnalisation : `modules.wrapper` et `modules.definition` définissent le type d'enrobage (sachant qu'on peut désactiver l'enrobage, point barre), tandis que `modules.nameCleaner` construit les noms des modules à partir des chemins des fichiers.*
 
 ## Sourcemaps
 
-Any concatenation, minification, and generally any kind of processing step between source files and resulting files is tracked by sourcemaps.
+Toute concaténation, minification ou autre forme de traitement entre les fichiers sources et les productions déposées dans le dossier cible fait l'objet d'un suivi de débogage par *source map*.
 
-Every target file comes with a matching v3 multi-level sourcemap file that lets your development tools (such as your browser’s developer tools) **display and debug the original source files, right at the beginning of your build chain**, instead of the target files that are actually used by your runtime.
+Chaque fichier cible est accompagné d'une *source map* v3 multi-niveaux qui permettra aux outils de développement du navigateur (entre autres) **d'afficher et de déboguer les fichiers sources en tout début de chaîne de build**, et non les fichiers cibles réellement utilisés par la plate-forme.
 
-This is a must-have for sane debugging.
+Indispensable pour un débogage sain.
 
-*Customizing: the `sourceMaps` setting can disable, or downgrade, sourcemap generation.  But why on Earth would you want that!*
+*Personnalisation : le réglage `sourceMaps` peut désactiver, ou modifier, la génération des source maps.  Mais quelle drôle d'idée !*
 
-## Watcher
+## Surveillance des sources
 
-Brunch can, out of the box, watch your files and trees in order to **automagically update the build** when changes are detected.  This update is **incremental and super-fast**.  Brunch will log a detailed message telling you what source files changed, what target files got updated, and how long this all took.
+Brunch est, de base, capable de surveiller vos fichiers et dossiers sources pour, en cas de modification, **mettre automatiquement à jour les fichiers produits**.  Cette mise à jour est **incrémentale et très performante**.  Brunch affiche un message détaillé sur les fichiers sources détectés, les fichiers finaux mis à jour, et le temps que ça a pris.
 
-Do note that watching is not always 100% reliable, though, usually on Windows, more rarely on Linux or OSX (this is true as of 1.7.20; the next release should have improved things in this regard).  A couple settings can help reduce what rare faux-pas you could see, we’ll explore these later.
+Remarquez toutefois que cette surveillance n'est pas toujours parfaitement fiable sur Windows, et plus rarement Linux ou OSX (en tout cas jusqu'en 1.7.20 ; la prochaine version devrait avoir amélioré les choses).  Certains réglages permettent de réduire ces faux-pas éventuels à presque rien, nous y reviendrons.
 
-This watching happens when you use the `brunch watch` command instead of the one-shot `brunch build`.
+Cette surveillance a lieu en utilisant la commande `brunch watch` plutôt que le simple `brunch build`.
 
-By the way, you can also get **notified** (through Growl on OSX/Windows, or through your OS's notification center on OSX/Ubuntu) when an error happens (or if you tweak settings, for warnings and info as well), which spares you from even having to keep an eye on your terminal.
+Au passage, il est également possible d'être **notifié** (par Growl (OSX/Windows) ou votre centre de notifications système OSX / Ubuntu) lors d'une erreur (par défaut) ou d'autres niveaux (avertissement, info), pour ne même pas avoir à regarder le terminal.
 
-*Customizing: the `fileListInterval` setting defines the minimum time between two checks for change detection.  The `watcher.usePolling` setting changes the underlying tech used for change detection, opting for something ever so slightly slower, but more reliable on a few platforms.  The `notifications` setting lets you disable notifications or change what message levels trigger them.*
+*Personnalisation : le réglage `fileListInterval` indique le temps minimum entre deux détections.  Le réglage `watcher.usePolling` change le substrat technique de la détection de changement vers un mode technique très légèrement plus lent, mais parfois plus fiable.  Le réglage `notifications` permet de désactiver les notifications, ou de choisir les niveaux signalés.*
 
-## Built-in web server
+## Serveur web intégré
 
-Brunch comes with a built-in **HTTP server** that can serve your target files statically, letting you use HTTP for testing instead of simple file access.  This assumes you're running in watcher mode. We’ll explore the details of this server later on (we’ll even learn how to write our own when needed) but for now, here’s a quick rundown on what you’ll get when calling `brunch watch --server`:
+Brunch peut fournir un **serveur HTTP** statique pour vos fichiers produits, ce qui permet de tester en HTTP et non en fichiers simples.  Il faut que Brunch tourne, ce qui implique qu'on est en mode *watcher*.  Nous verrons les détails de ce serveur tout à l'heure, et notamment comment écrire le nôtre si besoin, mais voici quelques infos sur celui par défaut, obtenu en faisant `brunch watch --server` :
 
-  * HTTP listener on port 3333, with `/` mapped to your target folder.
-  * Automatic serving of `index.html` on folder URLs or unknown paths (so you can use `pushState` on the client side, mostly).
-  * [CORS](http://en.wikipedia.org/wiki/Cross-origin_resource_sharing) headers.
+  * Écoute en HTTP sur le port 3333, avec `/` mappé sur le dossier public.
+  * Charge automatiquement `index.html` sur une URL de dossier ou un chemin inconnu (afin d'autoriser du `pushState` côté client, notamment).
+  * Envoie les en-têtes [CORS](http://en.wikipedia.org/wiki/Cross-origin_resource_sharing).
 
-*Customizing: the `server` setting is an obejct that lets you alter every built-in behavior and feature, or go all-out and specify your own custom server module.  The CLI option `-p` (or `--port`) lets you change the listening port from the command line.*
+*Personnalisation : Le réglage `server` est un objet permettant soit de modifier tous ces comportements, soit d’indiquer carrément un module serveur personnalisé.  L’option de ligne de commande `-p` (ou `--port`) permet de changer le port d’écoute par défaut.*
 
-## Plugin loading
+## Chargement des plugins
 
-We’ll explore plugins in great detail in the last chapters of this guide.  For now, you just need to know that to use a Brunch plugin, all you have to do is install it with `npm`: **its mere presence in `node_modules` and `package.json` is enough** for it to be detected, loaded and used by Brunch, and it will be automagically used for file types and environments it registered itself for.
+Nous y reviendrons, mais pour utiliser un plugin dans Brunch, il suffit de l'installer avec `npm` : **sa simple présence dans `node_modules` et dans `package.json` suffira** à ce qu'il soit recensé, chargé et initialisé par Brunch, et il sera automatiquement employé pour les fichiers et environnements envers lesquels il se sera enregistré au démarrage.
 
-Most Brunch plugins are designed to be **useful and working without any configuration**.
+La majorité des plugins Brunch sont conçus pour être **opérationnels sans configuration particulière**.
 
-*Customizing: you can choose which plugins to enable/disable through the `plugins.on`, `plugins.off` and `plugins.only` settings.  You can also fine-tune their behavior through settings starting with `plugins.<name>`.*
+*Personnalisation : on peut choisir les plugins à (dés)activer au travers des réglages `plugins.on`, `plugins.off` et `plugins.only`, et affiner la configuration des plugins via les têtes de réglages `plugins.<name>`.*
 
 ----
 
-Aaaaand well done you, you’ve made it through all the “lay of the land” material of this guide.  It’s time to **crank out some code!**.  On to the next chapter, and the concrete side of things.
+Eeeet bravo, vous êtes arrivés jusqu’ici, en ayant lu toute la partie « état des lieux » de ce guide.  C’est l'heure de **pondre du code !**  Le prochain chapitre rentre dans le vif du sujet.
 
-« Previous: [Getting started with Brunch](chapter02-getting-started.md) • Next: [Starting from scratch](chapter04-starting-from-scratch.md) »
+« Précédent : [Démarrer avec Brunch](chapter02-getting-started.md) • Suivant : [Partir de zéro](chapter04-starting-from-scratch.md) »

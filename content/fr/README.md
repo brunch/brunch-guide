@@ -1,4 +1,4 @@
-# The Brunch.io Guide
+# Le Guide de Brunch.io
 
 *[English version here](../../README.md)*
 

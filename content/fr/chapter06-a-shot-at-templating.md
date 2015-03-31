@@ -1,28 +1,28 @@
-# A shot at templating
+# Un petit coup de *templating*
 
-This is part of [The Brunch.io Guide](README.md).
+Ceci fait partie du [Guide de Brunch.io](README.md).
 
-So what we've done in the previous chapter is awesome already, but what if we’d like a little dash of templating?  Surely you guys have a couple more minutes, right?
+Ce qu’on a fait dans les chapitres précédents est déjà super cool, mais je m'en voudrais de ne pas vous faire une petite démo de *templating*, tant qu'à faire.  Z’avez bien deux minutes ?
 
-The idea behind Brunch’s approach to templating is simple:
+Le principe des plugins de *templating* de Brunch est simple :
 
-  * Templates live in **their own files**, cleanly separated from JS or static HTML;
-  * These files get **precompiled** by whatever engine handles the template syntax, to produce a ready-to-use **JS function**: you pass it an object holding whatever dynamic data the template needs (what’s usually called a *presenter* or *view model*), and it spews out HTML;
-  * This function is **wrapped as a module**, as usual: it's the module's default export.
+  * Les templates sont dans **leurs propres fichiers**, bien séparés du JS ;
+  * Ces fichiers sont **précompilés** par lem moteur de *templating* approprié, pour produire une **fonction JS** prête à l'emploi : on lui file les données dynamiques sous forme d'un objet (souvent appelé *presenter* ou *view model*), elle retourne du HTML.
+  * Cette fonction est **enrobée en module**, comme d'hab ; c'est son export par défaut.
 
-This **avoids littering your JS** with template code, as is too often seen with big fat `String` literals, and also **avoids littering your HTML** with hackish `<script type="text/handlebars">` blocks, which always looked godawful to me.  Sure, that leaves JSX, but even there we'll have tricks to clean things up…
+Cette approche nous **évite de pourrir notre JS** avec du code de templates, comme on le voit trop souvent à coup d'énormes `String` littérales, mais aussi **évite de pourrir notre HTML** à coup de templates injectés dans des balises de type `<script type="template/handlebars">`, ce qui m'a toujours semblé un gros hack dégueulasse.  Ça nous laisse JSX, certes, mais même là, y'a une astuce…
 
-From a code editor standpoint, having separate files also means we usually get better syntax highlighting.
+Un des intérêts côté éditeur, c'est qu'on a donc des fichiers dédiés aux templates, avec la bonne extension et la bonne coloration syntaxique.
 
-We're going to use [Jade](http://jade-lang.com/) because, well, Jade is very nice.  If you already do a lot of Ember, you might want to check out [Emblem](http://emblemjs.com/) too, that ties Ember and Jade-style code nicely together.
+On va utiliser [Jade](http://jade-lang.com/), parce que voilà, Jade, c'est sympa comme tout.  Si vous faites plein de Ember à côté, jetez un œil à [Emblem](http://emblemjs.com/), aussi, c'est un peu leur fils caché à tous les deux.
 
-Let's start by installing the plugin:
+Commençons par installer le plugin :
 
 ```sh
 npm install --save-dev jade-brunch
 ```
 
-Now let's tell Brunch to add the resulting modules in our app's JS build, with a new line at the end of our `brunch-config.coffee`file:
+Indiquons ensuite à Brunch d'incorporer les modules résultats dans notre JS concaténé applicatif :
 
 ```coffeescript
 module.exports = config:
@@ -34,7 +34,7 @@ module.exports = config:
     templates: joinTo: 'app.js'
 ```
 
-We can then add our template file, perhaps in `app/views/list.jade`:
+À présent ajoutons notre template, par exemple dans `app/views/list.jade` :
 
 ```jade
 h2 Things to do:
@@ -44,7 +44,7 @@ ul#mainTodo.tasks
     li= item
 ```
 
-All set!  Using it inside our `application.js` is straightforward:
+L’utilisation au sein de notre `application.js` est super simple :
 
 ```javascript
 "use strict";
@@ -62,12 +62,12 @@ var App = {
 module.exports = App;
 ```
 
-Rebuild, open your `public/index.html` file, and then…
+On builde, on ouvre `public/index.html`, et là…
 
-![Our rendered template](../images/brunch-simple-templating.png)
+![Notre template marche bien](../images/brunch-simple-templating.png)
 
-How cool is that?!
+C’est pas un peu la grosse classe à Dallas ça Madame ?
 
 ----
 
-« Previous: [Using third-party module registries](chapter05-using-third-party-registries.md) • Next: [Using Brunch on a legacy codebase](chapter07-using-brunch-on-legacy-code.md) »
+« Précédent : [Utiliser des référentiels de modules tiers](chapter05-using-third-party-registries.md) • Suivant : [Adapter Brunch à un projet existant](chapter07-using-brunch-on-legacy-code.md) »

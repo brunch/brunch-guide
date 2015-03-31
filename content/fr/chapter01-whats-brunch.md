@@ -1,130 +1,130 @@
-# Brunch?!  What’s Brunch?
+# Brunch ?!  C'est quoi, Brunch ?
 
-This is part of [The Brunch.io Guide](README.md).
+Ceci fait partie du [Guide de Brunch.io](README.md).
 
-[Brunch](http://brunch.io/) is a **builder**.  Not a generic task runner, but a **specialized** tool focusing on the production of a small number of deployment-ready files from a large number of heterogenous development files or trees.
+[Brunch](http://brunch.io/) est un **builder**.  Pas un exécuteur de tâches générique, mais un outil **spécialisé** dans la production de fichiers finaux pour la production, à partir de tout un tas de fichiers de développement.
 
-This is an **extremely common need among front-end developers** (or front-end designers, for that matter), who most often have the same set of needs: take a tree of LESS/SASS files to produce a small set of minified CSS files, same for JS, same for sprited images, etc.
+Ce type de besoin est **extrêmement fréquent chez les devs front** et les [designers front](http://www.stpo.fr/blog/je-ne-suis-pas-developpeur/), qui ont souvent besoin de faire un peu les mêmes choses : partir d’une arborescence de fichiers LESS ou SASS pour produire un ou plusieurs CSS minifiés, pareil pour du JS, des images et leurs sprites, etc.
 
-## Brunch vs. others
+## Brunch face aux autres
 
-The vast majority of automation tool users use either [Grunt](http://gruntjs.com/) or [Gulp](http://gulpjs.com/) (much more rarely [Broccoli](https://github.com/broccolijs/broccoli) or [Glou](https://www.npmjs.com/package/glou)).  Although extremely popular, these got on the market later than Brunch did, and are **often inferior for common use-cases**.
+L’immense majorité des personnes qui automatisent ce type de tâches utilisent soit [Grunt](http://gruntjs.com/), soit [Gulp](http://gulpjs.com/) (et parfois [Broccoli](https://github.com/broccolijs/broccoli) ou [Glou](https://www.npmjs.com/package/glou)).  Bien qu’extrêmement populaires, et arrivés sur le marché plus récemment que Brunch, ces solutions lui sont **souvent inférieures dans les scenarii d’utilisation courants**.
 
-I’ve been using Brunch since June 2012 (around version 1.3; it dates back all the way to Spring 2011) and to this day, it’s proved for me to be **vastly superior** to later actors in the field.
+J’utilise Brunch depuis juin 2012 (autour de sa version 1.3 ; il remonte au printemps 2011), et jusqu’à présent, il constitue encore pour moi une alternative **très supérieure** aux autres acteurs apparus depuis.
 
-In order to properly understand what sets Brunch apart from other such tools, this chapter dives into several technical and architectural aspects, that are as many **design choices** that you can categorize this ecosystem with.
+Afin de bien cerner ce qui distingue Brunch des autres solutions du marché, nous allons aborder différents aspects techniques et architecturaux, qui constituent chacun des **choix de conception** autour desquels se répartit l’écosystème.
 
-Once we have a firm grasp of this, we’ll move on to tons of concrete code, demos and tutorials, have no fear :wink:.
+Après quoi, on se tapera tout plein de démos sur du code concret, n'ayez crainte :wink:.
 
-## Task runners vs. builders
+## Exécuteurs de tâches vs. outils de build
 
-The market is dominated by **generic task runners**.  These tools provide a mechanism for describing tasks, and dependencies between tasks.  These tasks can be anything: copy a file, write a file, send an e-mail, compile something, run tests, do a Git commit… absolutely anything you can think of.
+Le marché est dominé par des exécuteurs de **tâches génériques**.  Ces outils fournissent un mécanisme de description de tâches, et de dépendances entre ces tâches.  Il peut s’agir de n’importe quoi : copier un fichier, en produire un, envoyer un e-mail, compiler quelque chose, lancer les tests, faire un commit Git…  absolument ce que vous voulez.
 
-This is a **very old** concept; on of the first well-known generic task runners was the venerable [Make](http://www.gnu.org/software/make/) (and its famous `Makefile`s); in the Java world, we first had [Ant](http://ant.apache.org/), then as if that wasn’t verbose enough already, we now have the friggin' [Maven](http://maven.apache.org/) wooly mammoth; Ruby has [Rake](http://docs.seattlerb.org/rake/), and so on and so forth.
+C’est une notion **très ancienne** ; un des premiers exécuteurs de tâche génériques connus était [Make](http://www.gnu.org/software/make/) (et ses fameux fichiers `Makefile`) ; dans l’univers Java, on a d’abord eu [Ant](http://ant.apache.org/), et comme si ça n’était pas assez verbeux, on a désormais l’énorme mammouth sclérosé qu’est [Maven](http://maven.apache.org/) ; Ruby de son côté a [Rake](http://docs.seattlerb.org/rake/), etc.
 
-Because these runners are generic, they **seldom can automatically optimize** for specific scenarios, or even define useful default conventions.  Any task requires writing **a non-trivial volume of code** and/or configuration, and must be **explicitly invoked** in all the right places.
+Parce que ces exécuteurs sont génériques, il ne leur est que **rarement possible d’optimiser automatiquement** pour des scenarii spécifiques, ou même de mettre en place des conventions par défaut.  Toute tâche nécessite l’écriture d’un **volume non trivial de code** et/ou de configuration, et doit être **invoquée explicitement** aux bons endroits.
 
-Furthermore, any task—and even any background processing, such as watching files to update the build—requires writing a plugin, loading it, configuring it, and so on.
+Qui plus est, toute tâche—et même tout comportement de fond, comme la surveillance des fichiers pour mettre à jour le build—nécessite l’écriture d’un plugin, son chargement, sa configuration, etc.
 
-**Brunch is a build tool.**
+**Brunch est un outil de build.**
 
-Brunch is **fundamentally** specialized and geared towards **building assets**, these files that get used in the end by your runtime platform, usually a web browser.  It thus comes pre-equipped with a number of behaviors and features.  You’ll most notably get:
+Brunch est **fondamentalement** spécialisé dans le **build d’assets**, ces fichiers qui seront utilisés à terme par la plate-forme d’exécution, en général le navigateur.  Il fournit donc d'entrée de jeu un certain nombre de comportements et fonctionnalités.  On y trouve notamment :
 
-  * Categorization of source files: JavaScript, Style sheets, Templates and “miscellanea;”
-  * **Smart concatenation** of these files towards one or more target files;
-  * **Module wrapping** of JavaScript files;
-  * Maintenance of all relevant [source maps](http://blog.teamtreehouse.com/introduction-source-maps);
-  * **Minification** of resulting files if we’re in “production mode;”
-  * **Watching** of source files to update the build on the fly.
+* la catégorisation des fichiers sources : JavaScript, Feuilles de style,  Templates ou « divers » ;
+* la **concaténation intelligente** de ces fichiers vers un ou plusieurs fichiers cibles ;
+* **l’enrobage en modules** des fichiers catégorisés JavaScript ;
+* la production des **[source maps](http://blog.teamtreehouse.com/introduction-source-maps)** associées ;
+* la **minification** des fichiers produits si on est en « mode production » ;
+* la **surveillance** des fichiers sources pour mettre à jour le build à la volée.
 
-All these features are there already because this is a specialized tool, yet they remain **super-easy to use** (most of the time, they’re actually **automatic**) thanks to a nifty set of conventions, that we’ll explore later on.
+Toutes ces fonctionnalités sont rendues possibles grâce à la spécialisation de l’outil, mais restent **très simples d’emploi** (le plus souvent, carrément **automatiques**) grâce à un jeu habile de conventions, que nous verrons tout à l'heure.
 
-## File-based processing vs. pipelines
+## Traitements de fichiers vs. pipelines
 
-**Grunt shares the same key weakness** as Make, Ant or Maven, that inspired it: it relies entirely on **files as units of work**.  Just about any task gets files in and puts files out.
+La **faiblesse principale de Grunt** est la même que pour Make, Ant et Maven, qui l’ont inspiré : il repose entièrement sur la notion de **fichiers**.  Toute tâche qui manipule du contenu part d'un fichier pour aboutir à un autre.
 
-This approach is **severely limiting** for a number of very common workflows, where the change of a unique file impacts **multiple targets**, such as a concatenation, the matching sourcemap, an AppCache manifest, etc.  With Grunt, you spend most of your time dealing with **temporary files** for intermediate processing steps, which is **a horrifying mess**.
+Cette approche est **extrêmement limitative** dès qu'on touche à des *workflows* fréquents, où la modification d'un unique fichier source peut impacter **plusieurs destinations**, par exemple une concaténation, la *source map* associée, un manifeste AppCache…  Dans Grunt, on passe son temps à produire des **fichiers temporaires** pour les étapes intermédiaires de traitement, ce qui est un **foutoir sans nom**.
 
-The other main drawback of this approach is that **[it’s slow as a procrastinating slug](https://www.google.fr/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=why%20is%20grunt%20so%20slow)**: you spend most of your time opening the same source files again, reading them all over again, and this for just a single build pass.
+L'autre inconvénient majeur de cette approche, c'est qu'elle est [**désastreuse en performances**](https://www.google.fr/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=why%20is%20grunt%20so%20slow) : on passe sa vie à fermer et rouvrir les mêmes fichiers, à les relire autant de fois que nécessaire, même pour une seule passe de build.
 
-The alternative is the **pipeline**: you sort of connect files together across a number of processing steps, defining dependencies, and when a file changes, its new content gets read only once and piped down any number of processing avenues, be they sequential or parallel.
+L'alternative, c'est la **pipeline** : on connecte les fichiers entre eux au travers de diverses déclarations de dépendances, et lorsqu'un fichier change, son nouveau contenu n'est lu qu'une fois, pour pouvoir être traité par toute une série d'étapes consommatrices, successives ou parallèles.
 
-This is the fundamental approach of Gulp, Broccoli or Glou, and obviously Brunch.
+C'est l'approche fondamentale de Gulp, également retenue par Broccoli, Glou, et naturellement Brunch.
 
-**Brunch is a pipeline.**
+**Brunch est une *pipeline*.**
 
-But all pipelines are not equal, and their performance varies wildly.  In fact, **Gulp remains atrociously slow** for a comfortable “watcher” use, when Brunch and Glou can be **incredibly fast**.
+Mais toutes les pipelines ne sont pas égales, et leurs performances peuvent différer considérablement.  Ainsi, **Gulp reste beaucoup trop lent** pour une utilisation « watcher » confortable, alors que Brunch et Glou, notamment, peuvent être **extrêmement rapides**.
 
-## Configuration and boilerplate vs. conventions
+## Configuration et boilerplate vs. conventions
 
-As with most tool categories, you’ll get two approaches: the one based on code and configuration on the one hand, and that based on conventions on the other hand.
+Dans la plupart des catégories d'outils informatiques, on va trouver deux approches : celle basée sur le code et la configuration d’une part, et celle basée sur les conventions d'autre part.
 
-The first approach has the advantage of being explicit, devoid of any “magic” for beginners, at the cost of **an often distasteful verbosity that hinders productivity**, and a ton of [boilerplate](http://gruntjs.com/sample-gruntfile): the same segments of code that get copy-pasted on new projects over and over again, drowning the core semantics under thick layers of no-value-added code.
+La première a le mérite d'être explicite, dénuée de toute « magie » pour un débutant, mais au prix d'une **verbosité souvent rebutante et contre-productive**, avec énormément de [boilerplate](http://gruntjs.com/sample-gruntfile) : les mêmes segments de code copiés-collés d'un projet à l'autre jusqu'à plus soif, qui noient le sens de la tâche sous des tartines de code à faible valeur ajoutée.
 
-The convention-based approach **trims down the required code or configuration** to whatever “strays from the established path,” a path crystallized by the tool’s elected conventions.  Follow these, and you’ll have next to nothing to write or customize; get custom, and you’ll have to write code or use settings for your specific needs.
+La seconde **minimise le code ou la configuration nécessaire** à ce qui change du « chemin habituel », lequel est inscrit dans les conventions retenues par l'outil.  Suivez les conventions, et vous n'aurez rien (ou presque) à écrire ou personnaliser ; sortez-en, et là vous devrez écrire du code ou configurer l'outil pour vos besoins propres.
 
-The advantage is clear: **brevity and expressiveness** of your content, that doesn't include anything superfluous.  The drawback: for anyone who hasn't read the docs (and developers *loathe* reading the docs, as they apparently all expect instant knowledge), this feels a bit like “black-box magic.”
+L'avantage est évident : **la concision et l'expressivité** de votre contenu, qui ne dit rien de superflu.  L'inconvénient : pour quiconque n'a pas lu la doc (et les développeurs *détestent* lire la doc, pensant tous avoir la science infuse…), ça donne le sentiment d'être un peu trop « magique ».
 
-**Brunch relies on solid conventions, reducing your configuration needs to the bare minimum.**
+**Brunch repose sur des conventions solides, réduisant la configuration au minimum vital.**
 
-This is a well-established architectural choice known as **Convention Over Configuration** (CoC), and is at the core of such esteemed projects as Ruby on Rails or Ember.js.  And Brunch.
+Ce choix architectural est bien connu sous le nom de **Convention Over Configuration**, ou CoC, et c'est par exemple celui de Ruby on Rails ou d’Ember.js.  C'est aussi celui de Brunch.
 
-## Full builds vs. incremental builds
+## Builds intégraux vs. builds incrémentaux
 
-The majority of task runners or builders operate along two modes: the **one-shot build** and the **watcher**.  In this second mode, the tool creates the initial build, then watches over all relevant source files and trees, looking for changes: these trigger an update of the build.
+La majorité des exécuteurs de tâches et outils de builds proposent deux modes : le **build unique** (*one-shot*) ou le **watcher**.  Dans ce deuxième mode, l'outil réalise le premier build, puis surveille les fichiers et répertoires pertinents pour détecter toute modification ultérieure ; il déclenche alors immédiatement une mise à jour du build.
 
-This update can itself operate along one of two modes: either it **rebuilds everything** from scratch (which requires no particular knowledge of the semantics of the tasks involved), or it **only reruns the necessary build steps** based on the detected changes, which greatly reduces the required work.
+Cette mise à jour peut elle aussi avoir deux approches distinctes : soit elle **reconstruit tout** à partir du début (ce qui ne nécessite aucune connaissance particulière de la sémantique des tâches concernées), soit elle ne relance **que les étapes de construction nécessaires** au vu des modifications constatées, pour minimiser le travail de mise à jour.
 
-This second way is **obviously preferable** in terms of performance, as it can turn a 2-second build into a 0.2-second one, or even a 50-second build into a 0.5-second one.  But to achieve this, you need a fine-grained understanding of task semantics and dependencies, a pipeline, and a caching mechanism for all your processing steps.  This is referred to as an **incremental build** system.
+Cette deuxième voie est **évidemment préférable** en termes de performances, et peut faire la différence entre un build de 2 secondes et un autre de 0,2 secondes, voire entre un de 50s et un de 0,5s.  Mais pour y parvenir, il faut une description fine des dépendances entre les tâches, généralement au moyen d’une pipeline, ainsi qu'un mécanisme de mise en cache des produits intermédiaires.  On parle alors de **build incrémental**.
 
-I only recently realized, astonished, that neither Grunt nor Gulp operate like this; although [plugins](https://github.com/wearefractal/gulp-cached) [exist](https://github.com/ahaurw01/gulp-remember), from everything I read online or heard live, they’re pretty tough to set up properly, and the best results they get are often rather sub-optimal.
+Je n'ai que récemment découvert, abasourdi, que Grunt et Gulp n'opéraient pas selon cette approche ; des [plugins](https://github.com/wearefractal/gulp-cached) [existent](https://github.com/ahaurw01/gulp-remember) apparemment pour Gulp, mais leur configuration appropriée est semble-t-il souvent complexe, pour des résultats sous-optimaux.
 
-**Brunch uses incremental builds.**
+**Brunch fait du build incrémental.**
 
-In my humble opinion, this is the only worthy approach; without it, watcher performance is dismal, far too low to be really useful throughout your day.  It is so obvious to me that it had not even occurred to me that Grunt and Gulp didn't work this way.
+Pour ma part, cette approche est la seule qui vaille le coup ; sans elle, les performances du *watcher* sont minables, trop lentes pour être réellement utiles tout au long de la journée.  C'est à tel point une évidence pour moi qu'il ne m'était même pas venu à l'idée que Grunt et Gulp procédaient différemment.
 
-Brunch has always done so, naturally—as has Glou, for that matter.
+Brunch opère évidemment ainsi depuis toujours, et Glou aussi, d'ailleurs.
 
-## The paramount importance of speed
+## L'importance primordiale de la vitesse
 
-You likely noticed that across all the previous points, speed was a recurring concern.  There's a good reason for this.
+Vous avez remarqué que dans les points précédents, la vitesse revenait toujours comme préoccupation centrale.  Il y a une bonne raison à cela.
 
-To really be useful, to actually provide us with **operational comfort** regardless of the amount, size and type of source files we have (JS, CoffeeScript, TypeScript, ES6 or even ES7, React, LESS, SASS, Stylus, Handlebars, Jade, Dust or what have you…) and still let us see the results of our changes in our browsers **hundreds of times a day**, our watcher must update the build **fast**.
+Pour être vraiment utiles, pour nous procurer réellement le **confort de travailler** sur un nombre quelconque de fichiers sources de tous types (JS, CoffeeScript, TypeScript, ES6 voire ES7, React, LESS, SASS, Stylus, Handlebars, Jade, Dust, et que sais-je encore…) tout en conservant la possibilité de voir nos modifications dans le navigateur **des centaines de fois par jour**, il faut que le *watcher* de l'outil soit à même de mettre à jour le build **vite**.
 
-And by “fast” I mean **under 300ms**, even for super-heavy use cases.  Actually for simple, tutorial-level use cases, this should probably not exceed 20–50ms.
+Vite, ça veut dire **en-dessous de 300ms**, même pour des cas lourds et complexes.  Pour des cas simples, ça devrait être l'affaire de 20 à 50ms, tout au plus.
 
-This might sound excessive, but as soon as you’re slower than that and reach 2, 3 or even 10 seconds, as is far too often the case with Grunt or Gulp, what do you get?  Developers and designers who spend **more time checking their tool’s console** after each file save than looking at the result of their change in the browser.
+Cela peut vous sembler excessif, mais dès qu'on dépasse ça pour atteindre 2, 3 voire 10 secondes, comme c'est trop fréquemment le cas avec Grunt ou Gulp, qu'obtient-on ?  Des développeurs et designers qui passent **plus de temps à regarder la console de leur outil** après chaque sauvegarde de fichier qu'à regarder le résultat de leur modification dans le navigateur.
 
-The wonders of hot-swapping and live injection of CSS or JS in an open browser page **are useless** if you must first wait several seconds for the build to update.  Even a good ol' `Alt+Tab` followed by a keyboard-based Refresh quickly trips over itself if it must first wait a while.  **The feedback loop crumbles**, its transmission belt gets stuck.
+Les merveilles de l'injection à la volée du CSS ou du JS dans la page ouverte **ne servent à rien** si on doit commencer par attendre plusieurs secondes que le build soit mis à jour.  Même un bon vieux Alt+Tab suivi d'un rafraîchissement se prend les pieds dans le tapis s'il doit d'abord attendre plusieurs secondes.  **La boucle de *feedback* s'effondre**, sa courroie grippe trop.
 
-**Brunch is insanely fast.**
+**Brunch est ultra-rapide.**
 
-If you want to see for yourself what an **efficient feedback loop** looks like, check out [this segment](http://youtu.be/2Dl9ES6IC3c?t=26m55s) of my (French-language) screencast “Dev-Avengers for the front-end web.”  I just need to watch the looks on the audience’s eyes when I showcase this stuff to feel how *hungry* front-end devs are for this.
+Si vous voulez voir à quoi ressemble un **feedback efficace**, regardez donc [cet extrait](http://youtu.be/2Dl9ES6IC3c?t=26m55s) de mon screencast « Dev Avengers pour le web front », vous allez voir.  Il me suffit d'observer les yeux de l'auditoire quand je montre ça pour bien sentir à quel point les *fronteux* ont faim de ça.
 
-## Then why do I only ever hear about the others?
+### Mais alors pourquoi entend-on seulement parler des autres ?
 
-In a word?  **Marketing.**
+En un mot ?  **Le marketing**.
 
-**Grunt** was the first to really get noticed (starting in the second semester of 2012), and its popularity soared again when it got selected as the build tool for the Angular ecosystem; it **peaked by late 2013**, at which time Gulp started eating its lunch.
+**Grunt** a été le premier à faire vraiment parler de lui (à partir du 2e semestre 2012), et son développement a continué avec sa sélection comme outil de build par l'écosystème Angular ; il a connu un **pic fin 2013**, époque à laquelle Gulp est venu lui grignoter une part de marché sans cesse croissante.
 
-Broccoli remains on the fringe, even if it occasionally gets some spotlight.  And Glou hasn't started marketing itself in earnest yet, as its developers want to add some more polish to it first.
+Broccoli reste à la marge, même s'il fait de temps en temps parler de lui.  Et Glou n'a pas encore vraiment lancé son marketing, ses développeurs souhaitant lui donner encore un peu plus de *polish* avant de battre le rappel.
 
-And Brunch?  Brunch never made the news much.  It's alive and kickin', has an **extremely loyal user base**, and just about anyone I show it to switches quite quickly to it: after 3+ years of teaching advanced JS and front-end dev or Node.js, this is still the first thing my trainees apply back at work on the next Monday :smile:.  And every time I present on [Dev Avengers](https://www.youtube.com/watch?v=2Dl9ES6IC3c), people ogle…
+Et Brunch ?  Brunch n'a jamais fait beaucoup de bruit.  Il vit sa vie, la communauté de ses utilisateurs est **extrêmement fidèle**, et la grande majorité de ceux à qui on le montre sont vite convaincus : depuis près de 3 ans que je m’en sers dans mes formations JS (JS Guru puis [JS Total](/js-total/) et [Node.js](/node-js/)), c'est le premier truc que les apprenants veulent mettre en œuvre, de retour au boulot le lundi qui suit :-)  Et chaque fois que je présente [Dev Avengers](https://www.youtube.com/watch?v=2Dl9ES6IC3c), les gens ouvrent des yeux comme des ronds de flan…
 
-Still, Brunch remains discreet.  With 4,000 GitHub stars (43% of Grunt's), 270+ forks and 4+ years of active existence, it’s no small project, it’s just… discreet.
+Mais il reste plutôt discret.  Avec environ 4 000 *stars* GitHub (44% de Grunt), 270 forks et 4 ans d'existence active, il est tout sauf faiblard, juste… discret.
 
-That being said, it looks like 2014 was a renaissance year for Brunch, as developer mindshare goes.  [Various](http://alxhill.com/blog/articles/brunch-coffeescript-angular/) [articles](http://blog.jetbrains.com/webstorm/2014/06/the-brunch-build-tool/) got published. 3 years after its birth, people seemed to suddenly realize Brunch was there.  To wit:
+Ceci dit, 2014 a commencé à voir une renaissance de Brunch dans l'esprit des développeurs. [Divers](http://alxhill.com/blog/articles/brunch-coffeescript-angular/) [articles](http://blog.jetbrains.com/webstorm/2014/06/the-brunch-build-tool/) voient le jour.  3 ans après sa naissance, les gens semblent soudain se rendre compte de sa présence.  Par exemple :
 
-<blockquote class="twitter-tweet" lang="fr"><p>Brunch is an ultra-fast HTML5 build tool <a href="http://t.co/jDhHaPPN2J">http://t.co/jDhHaPPN2J</a></p>&mdash; Christian Heilmann (@codepo8) <a href="https://twitter.com/codepo8/status/513779957584371712">September 21, 2014</a></blockquote>
+<blockquote class="twitter-tweet" lang="fr"><p>Brunch is an ultra-fast HTML5 build tool <a href="http://t.co/jDhHaPPN2J">http://t.co/jDhHaPPN2J</a></p>&mdash; Christian Heilmann (@codepo8) <a href="https://twitter.com/codepo8/status/513779957584371712">21 septembre 2014</a></blockquote>
 
-<blockquote class="twitter-tweet" data-conversation="none" data-cards="hidden" data-partner="tweetdeck"><p><a href="https://twitter.com/tomdale">@tomdale</a> skip the task runners and messy config files. plug-in based build tools ftw. <a href="http://t.co/6U0XV1GYMB">http://t.co/6U0XV1GYMB</a></p>&mdash; Josh Habdas (@jhabdas) <a href="https://twitter.com/jhabdas/status/535878760097398784">November 21, 2014</a></blockquote>
+<blockquote class="twitter-tweet" data-conversation="none" data-cards="hidden" data-partner="tweetdeck"><p><a href="https://twitter.com/tomdale">@tomdale</a> skip the task runners and messy config files. plug-in based build tools ftw. <a href="http://t.co/6U0XV1GYMB">http://t.co/6U0XV1GYMB</a></p>&mdash; Josh Habdas (@jhabdas) <a href="https://twitter.com/jhabdas/status/535878760097398784">21 novembre 2014</a></blockquote>
 
-<blockquote class="twitter-tweet" data-conversation="none" data-cards="hidden" data-partner="tweetdeck"><p><a href="https://twitter.com/Ken_Stanley">@Ken_Stanley</a> Just discovered brunch.io today too which makes life even easier.</p>&mdash; Hugh Durkin (@hughdurkin) <a href="https://twitter.com/hughdurkin/status/553993540070830080">January 10, 2015</a></blockquote>
+<blockquote class="twitter-tweet" data-conversation="none" data-cards="hidden" data-partner="tweetdeck"><p><a href="https://twitter.com/Ken_Stanley">@Ken_Stanley</a> Just discovered brunch.io today too which makes life even easier.</p>&mdash; Hugh Durkin (@hughdurkin) <a href="https://twitter.com/hughdurkin/status/553993540070830080">10 janvier 2015</a></blockquote>
 
-So there’s hope!
+Il y a donc de l'espoir !
 
-Personally, I’ve been using Brunch on absolutely every front build I do, from the tiny personal project to the corporate mammoth, ever since 2012.  And **it’s still an absolute joy**.
+Personnellement, je l'utilise pour absolument tous mes builds front, du petit projet au gros mammouth, depuis 2012.  Et **toujours avec le même bonheur**.
 
-With this guide, I’m trying to give you a comprehensive understanding of the power of Brunch; I hope this will tease you into trying it out on your next projects, big or small.  And if you come from a Grunt or Gulp background, especially on complex build needs, prepare to be amazed :smile:.
+Avec cet article, je vais essayer de vous donner une bonne idée de ce qu'il a dans le ventre ; j'espère que ça vous donnera envie de l'essayer sur vos prochains projets, petits et grands.  Si vous venez de Grunt ou Gulp, en particulier sur des besoins riches de build, ça risque de vous faire un choc :smile:
 
-Now let’s move on to chapter 2: [Getting started with Brunch](chapter02-getting-started.md)!
+Passons maintenant au chapitre 2 : [Démarrer avec Brunch](chapter02-getting-started.md) !

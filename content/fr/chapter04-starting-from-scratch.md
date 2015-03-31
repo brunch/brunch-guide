@@ -1,36 +1,36 @@
-# Starting from scratch
+# Partir de zéro
 
-This is part of [The Brunch.io Guide](README.md).
+Ceci fait partie du [Guide de Brunch.io](README.md).
 
-If you’ve carefully read through the previous sections, well done you, I know it can be tempting to skip straight to the code/tutorial.  I'm sure you're glad you read these chapters, though.
+Si vous avez lu attentivement les chapitres précédents, je vous dis bravo, je sais combien il peut être tentant de sauter directement à la partie code/didacticiel.  Je suis toutefois sûr que vous êtes contents d’avoir lu ces chapitres, qui restent très utiles.
 
-## How about a shortcut?
+## Envie de suivre facilement ?
 
-If you'd like to **follow along easily**, I set up a public repository on GitHub that has every step of the way available:
+J’ai préparé un dépôt avec toutes les étapes ci-après faciles à examiner / utiliser :
 
-  * [The GitHub repo](https://github.com/deliciousinsights/brunch-article-demos)
-  * If you don't use Git, grab an archive: [Zip](https://github.com/deliciousinsights/brunch-article-demos/archive/master.zip) or [TGZ](https://github.com/deliciousinsights/brunch-article-demos/archive/master.tar.gz).
+  * [Le dépôt GitHub](https://github.com/deliciousinsights/brunch-article-demos)
+  * Les archives, pour ceux qui n’utilisent pas Git : [Zip](https://github.com/deliciousinsights/brunch-article-demos/archive/master.zip) ou [TGZ](https://github.com/deliciousinsights/brunch-article-demos/archive/master.tar.gz).
 
-## Just a couple files
+## Juste quelques fichiers
 
-Let's start with a first example, that'll stick with Brunch’s conventions, but not start off a skeleton.  We’ll go with simple JS (ES3/ES5), a SASS stylesheet and static HTML.
+Voyons un premier exemple, où nous resterions dans les conventions Brunch, mais sans partir d’un générateur.  On va commencer avec juste du JS (ES3/ES5), des styles via SASS, et un HTML statique.
 
-Our tree looks like this:
+On va donc opter pour l’arborescence de départ suivante :
 
 ```text
 .
 ├── app
-│   ├── application.js
-│   ├── assets
-│   │   └── index.html
-│   └── styles
-│       └── main.scss
+│   ├── application.js
+│   ├── assets
+│   │   └── index.html
+│   └── styles
+│       └── main.scss
 └── package.json
 ```
 
-Here are the files we start with (you’ll find these in `0-starter` in the repo):
+Voici les fichiers de départ (vous les trouverez dans le dossier `0-starter` du dépôt) :
 
-`app/assets/index.html`:
+`app/assets/index.html` :
 
 ```html
 <!doctype html>
@@ -52,7 +52,7 @@ Here are the files we start with (you’ll find these in `0-starter` in the repo
 </html>
 ```
 
-`app/styles/main.scss`:
+`app/styles/main.scss` :
 
 ```scss
 $default-bg: white;
@@ -76,9 +76,9 @@ h1 {
 }
 ```
 
-`app/application.js`:
+`app/application.js` :
 
-```javascript
+```js
 "use strict";
 
 var App = {
@@ -90,7 +90,7 @@ var App = {
 module.exports = App;
 ```
 
-Finally, `package.json`:
+Et pour finir, `package.json` :
 
 ```json
 {
@@ -100,11 +100,11 @@ Finally, `package.json`:
 }
 ```
 
-## Installing a starting set of Brunch modules
+## Installer les plugins Brunch pour démarrer
 
-Now we’ll “install” Brunch and the minimum set of modules we need in this case, locally to the current app:
+On va maintenant « installer » Brunch et le jeu minimum de plugins nécessaires, en local :
 
-```
+```sh
 $ npm install --save-dev brunch javascript-brunch sass-brunch
 …
 
@@ -115,7 +115,7 @@ simple-brunch@0.1.0 …
 └── sass-brunch@1.8.9
 ```
 
-Finally, we need a minimal **Bruch configuration**.  A Brunch configuration file is just a Node module that exports a `config` property; that property has at least a `files` property that describes concatenations.  Here’s our `brunch-config.coffee`:
+Il nous faut à présent une **configuration Brunch** minimale.  Un fichier de configuration Brunch est un module Node qui exporte une propriété `config`, laquelle a, au minimum, besoin de la propriété `files` pour connaître les concaténations à effectuer.  Voici notre `brunch-config.coffee` :
 
 ```coffeescript
 module.exports = config:
@@ -124,28 +124,28 @@ module.exports = config:
     stylesheets: joinTo: 'app.css'
 ```
 
-And yes, **that’s it!** :grin:
+Oui, **c'est tout** ! :grin:
 
-## Our first build
+## Notre premier build
 
-OK, let's go for our first build.  From the app’s roto directory, which `brunch-config.coffee` is (at the same level as `app`, that is) just do:
+Allez, on tente un build.  Depuis le dossier racine du projet, là où se trouve le `brunch-config.coffee` (au même niveau que `app`, donc), faites :
 
-```
-$ node_modules/.bin/brunch build  # Or node_modules\.bin\brunch on Windows
+```sh
+$ node_modules/.bin/brunch build  # Ou node_modules\.bin\brunch sur Win
 25 Feb 17:07:20 - info: compiled 2 files into 2 files, copied index.html in 94ms
 ```
 
-Note how long that one-shot build took: **94 milliseconds**.  And that’ on a live-encrypted disk.
+Remarquez le temps de build pour ce one-shot : **94 millisecondes**.  Et je suis sur un disque crypté à la volée.
 
-If you had installed Brunch globally, you could have used:
+Si vous avez installé Brunch en global, vous pouvez aussi taper :
 
-```
+```sh
 $ brunch build
 ```
 
-(But that'll use the global Brunch, not necessarily the version you installed locally.)
+(Mais attention, ça utilisera le Brunch global, pas forcément la même version que celle en local.)
 
-Here's what Brunch will have put in `public`:
+Voyons ce qui a été généré dans `public` :
 
 ```text
 public/
@@ -156,7 +156,7 @@ public/
 └── index.html
 ```
 
-The files from `assets/` are there alright (hence the `index.html`), and the concatenations too, along with their sourcemaps.  Let's have a look at `app.css`:
+Le contenu de `assets/` est bien là (donc `index.html`), ainsi que les concaténations et leurs *source maps*.  Voyons `app.css` :
 
 ```css
 /* line 4, stdin */
@@ -179,9 +179,10 @@ h1 {
 /*# sourceMappingURL=app.css.map*/
 ```
 
-Not too shabby.  What about `app.js`?  It starts with Brunch’s “bootstrapper,” less than a hundred lines of JS code that provides module management and `require(…)` logic, then we get our modules, properly wrapped.  Here's lines 93 and below, check out the `require.register(…)` plumbing for module registration:
+Pas mal.  Et dans `app.js` ?  Ça commence par le *bootstrapper* de Brunch, qui fournit toute la mécanique de gestion de modules et de `require()` en un peu moins de 100 lignes, puis on trouve nos modules, correctement enrobés.  Voici les lignes 93 et suivantes, remarquez la « plomberie » de modules avec `require.register(…)` :
 
-```javascript
+
+```js
 require.register("application", function(exports, require, module) {
 "use strict";
 
@@ -199,41 +200,41 @@ module.exports = App;
 //# sourceMappingURL=app.js.map
 ```
 
-Because our JS is now modularized, nothing appears in the console when we load the page: we need to **require the module** that serves as our app’s entry point.
+Comme notre JS est désormais modularisé, rien n’apparaît sur la console au chargement de la page : il va falloir **requérir le module** qui sert de point d'entrée à l'application.
 
-By default, **modules are named from their path** inside the watched paths that are subject to module wrapping.  If you only have one such path, it won't prefix module names (this is our case, as just `app` is relevant).  If you have many such paths, their basename will prefix module names.  The file extension is not used, which lets you use whatever script syntax you’d like (e.g. CoffeeScript or TypeScript).
+Par défaut, **les modules sont nommés d'après leur chemin** au sein des chemins surveillés qui sont sujet à modularisation.  Si on n'a qu'un chemin surveillé, celui-ci ne préfixe pas (c'est notre cas, on n'a que `app` de concerné).  Si on en a plusieurs, ils préfixent le nom.  L’extension n'est pas utilisée, afin de laisser toute liberté en termes de langage source (ex. CoffeeScript ou TypeScript).
 
-As we have a `app/application.js` file, the module name, as you can see above, is just `"application"`.  So at the end of our `<body>`, inside `app/assets/index.html`, we just add on line 15:
+Puisque nous avons un `app/application.js`, le nom du module, comme on peut le voir dans le code ci-dessus, est tout simplement `"application"`.  Donc, ajoutons ceci en bas du `<body>` de notre `app/assets/index.html`, ligne 15 :
 
 ```html
 <script>require('application').init();</script>
 ```
 
-Let's run the build again:
+On relance le build (on verra le *watcher* tout à l'heure) :
 
 ```sh
-$ brunch b  # Shortcut for "brunch build"
+$ brunch b # version courte de "build"
 ```
 
-And now, if we refresh this:
+Et à présent, si on rafraîchit :
 
-![Our module runs at page load](../images/brunch-simple-console.png)
+![Le message apparaît bien dans la console](../images/brunch-simple-console.png)
 
-Notice the path you get in the log: `application.js:5` instead of `app.js:98`: this is sourcemaps for you!  If you don't get this mapping, check that sourcemaps are enabled in your developer tool settings, and also open developer tools *before* refreshing the page, otherwise sourcemaps won't get loaded in time.  In doubt, once the console is visible, just refresh the page.
+Remarquez le chemin indiqué dans la pile du log : `application.js:5`, et non `app.js:98` : ce sont les *source maps* en action (si vous les avez activées dans les réglages de vos Dev Tools, ce que vous devriez !).  Si vous avez ouvert la console *après* que le log a eu lieu, les *source maps* n'étaient pas encore chargées : ouvrez la console, puis rafraîchissez.
 
-Sourcemaps work for CSS, too:
+Même chose pour les CSS :
 
-![Sourcemaps work for CSS as well](../images/brunch-simple-styles.png)
+![Les styles aussi tirent parti des source maps](../images/brunch-simple-styles.png)
 
-Notice the `main.scss:2` location for our `body` rule?  And if you click it (or one of its properties), you'll get the original source code, naturally.
+Vous voyez le `main.scss:2` comme attribution de la règle `body` ?  Et si vous cliquez dessus (ou dans les propriétés), vous irez bien sur le code source original.
 
-## Globals; because, reasons.
+## Des globales ; parce que d’abord.
 
-Now let's say we want to use jQuery, or another library.  If we already have code that assumes jQuery is available as a global variable, we’ll either need to migrate our code (which is a must-do in the long run), or leave jQuery as a non-wrapped codebase (which is acceptable as a transition hack).
+Imaginons à présent que nous souhaitions utiliser jQuery, ou une autre bibliothèque.  Si nous avons déjà du code qui suppose que jQuery est global, il nous faudra soit modifier notre code (indispensable à terme), soit ne pas enrober jQuery en module (acceptable en phase de transition).
 
-Let's say our `application.js` needs to wait for the DOM to be loaded before injecting contents at the end of the `<body>`:
+Supposons que notre `application.js` attend en fait le chargement du DOM pour injecter son contenu en fin de `<body>` :
 
-```javascript
+```js
 "use strict";
 
 var App = {
@@ -245,21 +246,21 @@ var App = {
 module.exports = App;
 ```
 
-We’ll first stay with the global-variable approach, as a transition thing.  So we put our `jquery.js` in a new `vendor` folder, in the same place as `app`, and rebuild.  When we refresh, it works, and the message appears at the end of our page:
+On va d'abord employer la seconde approche, celle qui voudrait que jQuery reste disponible globalement, en transition.  On pose donc notre `jquery.js` dans un nouveau dossier `vendor`, et on relance le build.  Au rafraîchissement, ça fonctionne, le message apparaît en fin de document :
 
-![Global jQuery kinda works](../images/brunch-simple-jquery.png)
+![jQuery reste utilisable en global](../images/brunch-simple-jquery.png)
 
-The entire jQuery codebase is actually injected as-is between Brunch’s “bootstrapper” code an our own wrapped modules.  Brunch will inject all the files in `vendor`there, in alphabetical order (unless we specify another order in our configuration).
+Le code complet de jQuery est en fait injecté tel quel entre le *bootstrapper* de Brunch et les codes enrobés en modules.  Brunch va injecter là l'ensemble des fichiers des dossiers `vendor` dans l'ordre alphabétique (sauf à préciser des ajustements dans la configuration).
 
-## Getting modular again
+## Revenir aux modules
 
-Still, that gross global variable isn't so good, that's just sloppy, wouldn't you say?  Especially considering that jQuery has a sort of UMD loader in it, so it can detect CommonJS module wrapping and export itself properly.  So let's try to refactor our code instead.
+Mais tout de même, ce n'est pas terrible terrible, ce gros global dégueulasse qui traîne, là…  D'autant que jQuery incorpore une sorte de chargeur UMD, capable de s'exporter correctement depuis un module CommonJS.  Du coup, tentons plutôt de refactoriser notre code.
 
-Let's just move `jquery.js` from `vendor` to `app`, so it gets wrapped as a module with a simple name `"jquery"`.  Feel free to remove the now-empty `vendor` directory.
+Déplaçons d'abord le `jquery.js` de `vendor` vers `app`, pour qu'il soit bien enrobé en module, et sous le nom simple `jquery`.  Vous pouvez virer votre `vendor` vide si vous le souhaitez.
 
-Next, let's adjust our `application.js` so it explicitly requires `jquery`, using the idiomatic `$` name for it locally (yes, locally: we're in a module, remember?).  See line 3 here:
+Puis, ajustons `application.js` pour requérir explicitement jQuery, tant qu'à faire sous le nom local `$` (oui, local, souvenez-vous : on est dans un module, donc nos déclarations sont privées).  Regardez la ligne 3 :
 
-```javascript
+```js
 "use strict";
 
 var $ = require('jquery');
@@ -273,15 +274,15 @@ var App = {
 module.exports = App;
 ```
 
-We rebuild, refresh, and it still works! :heart:
+On rebuilde, on rafraîchit, et ça marche toujours ! :heart:
 
-## Split targets
+## Cibles multiples
 
-A common recommendation here is to **put your third-party libraries in a separate bundle**, because they'll change **far less often** than your own codebase: so by using two targets, one for third-party and one for your own code, you get two initial loads instead of one, but then only require refreshing your own, **vastly smaller** bundle later on.
+Certains suggèrent de **sortir les bibliothèques tierces du *bundle* principal**, car nous allons les faire évoluer **bien moins souvent** que notre propre code : du coup, en proposant deux cibles, une pour les codes tiers, une pour le nôtre, on exige certes deux chargements au lieu d’un initialement, mais on fait recharger un *bundle* **nettement plus petit** par la suite.
 
-Here's a sample Brunch configuration that achieves this split; because our third-party code is not currently grouped in a special directory, but just slapped casually at the root of our watched path for their module names to stay simple (we'll learn how to set that up in a more flexible way later), we’ll list them explicitly, here through a regex.
+Voici un exemple de configuration Brunch qui permet cela ; comme nos codes tiers ne sont pas ici regroupés dans un même dossier de base, mais juste posés à la racine du dossier surveillé pour que leurs noms de modules soient simples (on pourrait configurer ça autrement, on le verra), on va lister explicitement les modules concernés au moyen d'une *regex*.
 
-This is our updated `brunch-config.coffee`:
+Voici notre `brunch-config.coffee` mis à jour :
 
 ```coffeescript
 module.exports = config:
@@ -292,9 +293,9 @@ module.exports = config:
     stylesheets: joinTo: 'app.css'
 ```
 
-As soon as you have multiple targets, your `joinTo` properties become objects mapping a target name (the property key) with a description of matching sources (the property value).  These descriptions are [anymatch sets](https://github.com/es128/anymatch#anymatch-), which can be specific names, globbings, regexes, predicate functions, or an array mixing any of these.  In short, it's super flexible.
+Dès qu'on a plusieurs cibles, nos `joinTo` deviennent des objets qui mettent en correspondance un nom de cible (les noms de propriétés) avec une description des sources (les valeurs de propriétés).  Ces descriptions sont des [ensembles anymatch](https://github.com/es128/anymatch#anymatch-), à savoir des chemins spécifiques ou à base de *globbing*, des expressions rationnelles, des fonctions de prédicat, ou un tableau de ces composants (qui peuvent être mélangés).  Bref, c'est super flexible.
 
-For this to still work, you'll need to adjust the bottom of your `index.html` file in `assets` to properly load both target scripts:
+Notez que pour que ça marche toujours, il faut ajuster le bas de notre `app/assets/index.html` pour qu’il charge bien les deux scripts cibles :
 
 ```html
 <script src="libraries.js"></script>
@@ -304,6 +305,6 @@ For this to still work, you'll need to adjust the bottom of your `index.html` fi
 
 ----
 
-In the next chapter, we'll learn how to rely on third-party module registries to be able to use versioned dependencies in our own code.
+Dans le chapitre suivant, nous apprendrons à utiliser des référentiels de modules tiers pour utiliser des dépendances versionnées dans notre propre code.
 
-« Previous: [Conventions and defaults](chapter03-conventions-and-defaults.md) • Next: [Using third-party module registries](chapter05-using-third-party-registries.md) »
+« Précédent : [Conventions et valeurs par défaut](chapter03-conventions-and-defaults.md) • Suivant : [Utiliser des référentiels de modules tiers](chapter05-using-third-party-registries.md) »
