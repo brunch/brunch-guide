@@ -24,7 +24,7 @@ This is GitHub, my friends, so let's do it the clean way:
 
 Do *not* touch `CONTRIBUTING.md` (this file): I'll add your name after I merge your PR.
 
-Don't know Git?  Or GitHub?  Afraid to do all this?  Then at the very least [file an issue](issues)!  Try and be as descriptive as possible, and if you have a notion of how to fix that thing, let us know, too!
+Don't know Git?  Or GitHub?  Afraid to do all this?  Then at the very least [file an issue](/deliciousinsights/brunch-guide/issues)!  Try and be as descriptive as possible, and if you have a notion of how to fix that thing, let us know, too!
 
 ## Coding style
 
