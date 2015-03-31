@@ -153,26 +153,24 @@ Finally, [`cloudfront-brunch`](https://www.npmjs.com/package/cloudfront-brunch) 
 
 ## Writing a Brunch plugin
 
-RESUME/FIXME
+So that's quite a few cool plugins, but I'm sure you're already thinking about the shiny new one you'd like to contribute, right?  Fear not, as I'm going to show you how to **write your own Brunch plugin**.
 
-Histoire d’être à peu près complets, voyons maintenant comment faire **nos propres plugins** Brunch…
+Brunch recognizes several plugin categories: compilers, linters, optimizers…  It detects that category based on which predefined methods you implement.  Depending on that category, you'll get called at various moments of the build cycle, and in specific environments, too.
 
-Brunch découpe ses plugins en plusieurs catégories : compilateurs, linters, optimiseurs…  Suivant leur catégoriée détectée, ils sont consultés à divers moments du cycle de build, dans différents environnements, etc.
+The [online API docs](https://github.com/brunch/brunch/blob/stable/docs/plugins.md) is not too bad, and then of course you can browse the source code for existing plugins to see how *they* pull it off.  In order to get your feet wet, we'll make a compiler-type plugin—that'll apply regardless of file extensions, though.
 
-Une doc « API » est [disponible en ligne](https://github.com/brunch/brunch/blob/stable/docs/plugins.md), qui aide pas mal, et puis bien sûr on est libre de consulter le source des plugins existants.  Mais pour vous mettre le pied à l'étrier, on va faire un plugin de type compilateur, qui sera générique quant aux extensions, toutefois.
+Earlier in this chapter I mentioned the `git-digest-brunch` plugin, that scans the resulting files for `?DIGEST` markers and replaces them with your Git HEAD's SHA1: it's trying to invalidate asset URLs for cache-busting purposes.  This plugin is confined to production mode, too (more specifically, it requires the `optimize` setting to be enabled).
 
-Je vous ai parlé tout à l'heure du plugin `git-digest-brunch`, qui injecte dans les fichiers produits le SHA du HEAD à la place du marqueur `?DIGEST` (il vise les URLs des assets).  L’idée est de proposer une sorte de *cache busting*.  Ce plugin n'intervient d'ailleurs qu'en mode production (ou plus exactement que lorsque le réglage `optimize` est actif).
+We'll write a variation on this: a plugin that replaces a free-form marker on the fly, both in one-shot build and watcher modes, regardless of the environment.  Our **functional spec** would read like this:
 
-Nous allons faire une variation de ça : un plugin qui remplace à la volée, au fil des compilations, un marqueur libre.  Notre **spécification fonctionnelle** serait la suivante :
+  * The **marker** defaults to `!GIT-SHA!`, but the part between exclamation marks can be **configured** through `plugins.gitSHA.marker`.
+  * The transformation happens **any time, on the fly** (one-shot builds or watcher, production or not).
+  * All watched files, regardless of their extension, are processed; the only exception is “pure static” files (those under an `assets` directory).
+  * The marker, just like watched file paths, **can contain regex-special characters** without breaking anything.
 
-  * Le **marqueur** est `!GIT-SHA!` par défaut, mais la partie entre les points d'exclamation doit pouvoir être **configurée** via `plugins.gitSHA.marker`.
-  * La transformation se fait **à tout moment, à la volée** (builds one-shot ou *watcher*, production ou non).
-  * Tous les fichiers des répertoires surveillés (quels qu'ils soient) sont concernés, sauf les « purs statiques » (ceux qui sont dans un sous-dossier `assets`).
-  * Le marqueur comme les noms de dossiers surveillés doivent **pouvoir contenir des caractères spéciaux** d'expression rationnelle sans que cela pose problème.
+Now that we have this nailed, where should we start?  A Brunch plugin is first and foremost **a Node module**, so let's begin by creating a `git-sha-plugin` folder and creating the following `package.json` in it:
 
-Sur cette base, comment procéder ?  Un plugin Brunch est avant tout **un module Node**, alors commençons par créer un dossier `git-sha-plugin` et déposons-y un `package.json` approprié :
-
-```json 8-git-sha-plugin/package.json
+```json
 {
   "name": "git-sha-brunch",
   "version": "1.7.0",
@@ -183,84 +181,84 @@ Sur cette base, comment procéder ?  Un plugin Brunch est avant tout **un modul
 }
 ```
 
-La partie `peerDependencies` n'est pas obligatoire (elle est même en phase de dépréciation), mais bon…  En revanche, il est communément admis que les plugins Brunch suivent les numéros de versions majeur et mineur du Brunch à partir duquel ils sont compatibles.  Donc si vous ne testez pas en-dessous de 1.7 par exemple, assurez-vous que votre version à vous démarre bien par 1.7.
+The `peerDependencies` part is optional (it's even on its way to deprecation), but I like it…  On the other hand, it's an informal convention that Brunch plugins should track the major and minor version numbers of the Brunch they're compatible with.  So if you don't try for compatibility below Brunch 1.7, your plugin version should start at 1.7, for instance.
 
-Comme on n'a pas précisé de champ `main`, Node supposera que notre point d'entrée est un fichier `index.js`.  On sait qu'un plugin Brunch est un constructeur dont le `prototype` est doté de certaines propriétés, mentionnées plus haut dans cet article :
+Because we didn't specify a `main` property in our package file, Node will assume that the module's entry point file is `index.js`.  We also know that a Brunch plugin is a constructor with a `prototype` equipped with several specific properties, that we mentioned earlier in this chapter:
 
-  * `brunchPlugin`, qui doit valoir `true` ;
-  * `type`, `extension` ou `pattern` pour pouvoir être consulté au fil de la compilation ;
-  * `compile(…)`, `lint(…)` ou `optimize(…)`, suivant le rôle ;
-  * `onCompile(…)` si on veut n'être notifié qu'en fin de build (même si c'est du *watcher*)
-  * `teardown(…)` si on doit faire du nettoyage lorsque Brunch s'arrête (par exemple arrêter un serveur qu'on aurait lancé dans le constructeur).
+  * `brunchPlugin` must be `true`;
+  * `type`, `extension` or `pattern` can be used to filter down the files that should trigger processing;
+  * `compile(…)`, `lint(…)` or `optimize(…)`, depending on what role your plugin has;
+  * `onCompile(…)` if you want to be notified when the build is complete (even in watcher mode);
+  * `teardown(…)` if you need to clean up when Brunch shuts down (e.g. stop an embedded server started by your constructor).
 
-(En réalité, à part `brunchPlugin`, toutes les autres propriétés peuvent être définies dynamiquement sur l'instance produite par le constructeur, mais c'est rarement le cas, sauf pour `pattern`.)
+(Actually, `brunchPlugin` is the only property that **has to be on `prototype`**: all the other ones are used on the instance, so they could be defined dynamically by the constructor if need be, which in practice mostly happens for `pattern`).
 
-Nous allons donc partir du squelette suivant :
+So here's our skeleton `index.js` file:
 
-```js 8-git-sha-plugin/index.js
+```javascript
 "use strict";
 
-// Marqueur par défaut.  Peut être configuré via `plugins.gitSHA.marker`.
+// Default marker.  Can be configured via `plugins.gitSHA.marker`.
 var DEFAULT_MARKER = 'GIT-SHA';
 
 function GitShaPlugin(config) {
-  // 1. Construire le `pattern` en fonction de la config
+  // 1. Build `pattern` from config
 
-  // 2. Définir la regexp du marqueur en fonction de la config
+  // 2. Precompile the marker regexp from config
 }
 
-// Indique à Brunch qu’on est bien un plugin
+// Tell Brunch we are indeed a plugin for it
 GitShaPlugin.prototype.brunchPlugin = true;
 
-// Callback de compilation à la volée (fichier par fichier) ; suppose
-// que Brunch a fait la correspondance avec notre `type`, `extension` ou
+// On-the-fly compilation callback (file by file); assumes Brunch already
+// cleared that file for our plugin by checking `type`, `extension` and
 // `pattern`.
 GitShaPlugin.prototype.compile = function processMarkers(params, callback) {
-  // Zéro transfo pour le moment
+  // No transformation for now
   callback(null, params);
 };
 
-// Utilitaire : échappe tout caractère spécial de regex
+// Helper: escapes any regex-special character
 function escapeRegex(str) {
   return String(str).replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
 }
 
-// Le plugin est l’export par défaut du module
+// The plugin has to be the module's default export
 module.exports = GitShaPlugin;
 ```
 
-OK, commençons par le constructeur.  On n'est pas spécialisés sur un type de fichier (scripts, styles ou templates), donc pas de propriété `type` sur notre prototype.  Et on n'est pas limités à une extension, donc pas de propriété `extension` non plus.  Il va nous falloir un `pattern`, qui est une [expression rationnelle](/2012/08/13/enfin-maitriser-les-expressions-rationnelles/).
+Alright!  Let's start with the constructor.  We don't mandate a specific file type (scripts, styles or templates), so we don't define a `type` property on our prototype, not a specific `extension` value.  That leaves us with `pattern`, which is a [regular expression](http://regexone.com/).
 
-Comme celui-ci dépend des chemins, pas des extensions, il a besoin de la configuration, et sera créé dynamiquement à partir de ça.  Le code sera celui-ci, au début du constructeur :
+Because we are dependent on paths, not extensions, we need access to the configuration, so we can dynamically build our filters from it.  That makes for the following code at the beginning of the constructor:
 
-```js linenos:false
+```javascript
 var pattern = config.paths.watched.map(escapeRegex).join('|');
 pattern = '^(?:' + pattern + ')/(?!assets/).+';
 this.pattern = new RegExp(pattern, 'i');
 ```
 
-Ainsi, les chemins par défaut (`['app', 'vendor', 'test']`) donneront l'expression suivante : `/^(?:app|vendor|test)\/(?!assets\/).+/i`.
+This way, the default watched paths (`['app', 'vendor', 'test']`) yield the following pattern: `/^(?:app|vendor|test)\/(?!assets\/).+/i`.
 
-À présent le marqueur.  Le code sera un poil plus simple :
+Now on to the marker.  The code to get it is a bit simpler:
 
-```js linenos:false
+```javascript
 var marker = (config.plugins.gitSHA || {}).marker || DEFAULT_MARKER;
 this.marker = new RegExp('!' + escapeRegex(marker) + '!', 'g');
 ```
 
-On est sûrs que `config.plugins` existe, même s’il est un objet vide.  Du coup sa propriété `gitSHA` pourrait être `undefined` d'où le `|| {}` pour obtenir un objet vide dans ce cas.  On y choppe `marker`, là aussi potentiellement `undefined`, ce qui nous amènerait de toutes façons à `DEFAULT_MARKER`.  Mais si la clé de configuration est là, on prend.
+We're certain that `config.plugins` exist, even if it's an empty object.  So its `gitSHA` property might be `undefined`, hence the `|| {}` to guarantee an object, even if empty.  We grab `marker` from it, again possibly `undefined`, which would result in `DEFAULT_MARKER`.  But if the settings's defined, we get that.
 
-Et on construit une bonne fois pour toutes la regexp correspondante.
+Then we compile the regex once and for all.
 
-À présent, chaque fois que `compile(…)` sera appelée (ce qui sous-entend qu'on est bien sur un fichier qui nous concerne, d'après notre `pattern`), il nous va falloir récupérer le SHA du HEAD Git en vigueur, et procéder au remplacement dans le contenu en mémoire pour le fichier.
+Now, eery time `compile(…)` is called (which means the file we get matched our `pattern`), we'll need to get the current Git HEAD's SHA1, and proceed to replacing it through the file's in-memory contents.
 
-On ne récupère pas le SHA une seule fois au démarrage, car il est fréquent qu'on committe au fil du dev, sans arrêter le *watcher* Brunch pour autant, et du coup la valeur deviendrait obsolète au fil du temps.
+We don't get this SHA just once at construction time, because committing along througout the dev phase is a common scenario (without stopping Brunch's watcher, that is), so our value would quickly become obsolete.
 
-Cette récupération se fait en exécutant un `git rev-parse --short HEAD` en ligne de commande, ce qui, pour être propre et fidèle à l’esprit Node, est fait en asynchrone.  On utilisera donc une fonction de rappel, en prenant soin de transmettre l'erreur éventuelle (genre, tu n'es pas dans un dépôt Git).
+We get this information by running a `git rev-parse --short HEAD` as a command line, which we'll do the Node way: asynchronously.  Therefore, we need the caller to supply a callback we'll call in due time, possibly with an error (like, you're not even in a Git repo, pal!).
 
-Voici notre petite fonction utilitaire :
+Here's our small helper function:
 
-```js linenos:false
+```javascript
 function getSHA(callback) {
   exec('git rev-parse --short HEAD', function(err, stdout) {
     callback(err, err ? null : stdout.trim());
@@ -268,9 +266,9 @@ function getSHA(callback) {
 }
 ```
 
-Et maintenant, à nous la transformation à proprement parler :
+Finally, we write the processing proper:
 
-```js linenos:false
+```javascript
 GitShaPlugin.prototype.compile = function processMarkers(params, callback) {
   var self = this;
   getSHA(function(err, sha) {
@@ -282,24 +280,24 @@ GitShaPlugin.prototype.compile = function processMarkers(params, callback) {
 };
 ```
 
-Et hop !
+And *voilà!*
 
-Pour **tester notre plugin sans pourrir npm**, nous allons faire ce qu'on appelle un `npm link` : l'installation en local d'un module en cours de développement.
+To **test our plugin without littering the npm registry**, we'll do what's called an `npm link`: the local installation of a module that is still under development.
 
-Si vous avez récupéré le [dépôt d'exemple](https://github.com/deliciousinsights/brunch-article-demos), vous avez parmi les dossiers :
+If you grabbed the [sample repo](https://github.com/deliciousinsights/brunch-article-demos), we'll use two of its directories:
 
-  * `6-templates`, le dernier où on ne jouait pas avec un serveur custom, et
-  * `8-git-sha-plugin`, qui contient le code ci-dessus, dûment commenté.
+  * `6-templates`, the last phase where we didn't have a custom server, and
+  * `8-git-sha-plugin`, that contains this demo plugin's code, all nicely commented.
 
-Voici comment faire :
+Here's how to perform the link:
 
-  1. Allez dans `8-git-sha-plugin` depuis la ligne de commande ;
-  2. Faites un `npm link` : ça va enregistrer le dossier courant comme source des futurs `npm link git-sha-plugin` ;
-  3. Allez dans `6-templates` depuis la ligne de commande ;
-  4. Faites un `npm link git-sha-plugin` : ça va vous l’installer (si on veut) en se basant sur le dossier source ;
-  5. Ajoutez tout de même (`npm link` ne le fait pas) votre nouveau module local dans le `package.json`, sans oublier la virgule à la fin de la ligne précédente :
+  1. Get inside `8-git-sha-plugin` from the command line;
+  2. Run an `npm link`:  this will register the current folder as source for future `npm link git-sha-plugin` commands;
+  3. Get inside `6-templates` from the command line;
+  4. Run an `npm link git-sha-plugin`: this will sort of install it locally, linking to your source folder;
+  5. Do add your new local module to `package.json` (`npm link` won't), and make sure you don't forget the extra comma this will require on the previous line, so you don't break the JSON:
 
-```json mark:10 6-templates/package.json
+```json
 {
   "name": "simple-brunch",
   "version": "0.1.0",
@@ -314,21 +312,20 @@ Voici comment faire :
 }
 ```
 
-Sans ça, Brunch ne le verra pas (il itère sur `package.json`, par sur le contenu de `node_modules`).
+If you don't list it in `package.json`, Brunch won't see it (it loops through `package.json`, not just the contents of `node_modules`).
 
-Si vous n'avez pas récupéré le dépôt par un `git clone`, vous n'êtes pas dans un dépôt Git.  Si vous avez Git d'installé, voici comment obtenir un HEAD vite fait :
+If you hadn't grabbed this repo through a `git clone`, you're probably not in a Git repo just now.  If you do have Git available in your command line, here's how to get a HEAD quickly:
 
-```sh linenos:false
+```sh
 $ git init
 Initialized empty Git repository in …/6-templates/.git/
 $ git commit --allow-empty -m "Initial commit"
 [master (root-commit) 8dfa8d9] Initial commit
 ```
 
-(Bien évidemment, vous n'aurez pas le même SHA.)
+(You'll get a different SHA, of course.)
 
-Une fois prêts, ouvrez par exemple, dans ce même dossier, `app/application.js`, et rajoutez à un ou deux endroits un commentaire du style `// Version: !GIT-SHA!`.  Sauvez.  Lancez le build.  Puis regardez le contenu du module en bas de `public/app.js` : le SHA a remplacé le marqueur.  Vous pouvez essayez pendant que le *watcher* tourne, aussi : ça marche ! ᕙ(⇀‸↼‶)ᕗ
-
+OK, we're all set to try this out.  Here's a simple test scenario: open `app/application.js` (from this same tree) in your editor, and add a comment alone the lines of `// Version: !GIT-SHA!` in a couple spots.  Save.  Run the build.  Then check the contents of `public/app.js`: the SHA replaced the marker.  You can also try it as the watcher is running: this works too! ᕙ(⇀‸↼‶)ᕗ
 
 ----
 
