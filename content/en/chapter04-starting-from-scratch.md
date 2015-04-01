@@ -291,7 +291,7 @@ module.exports = config:
     stylesheets: joinTo: 'app.css'
 ```
 
-As soon as you have multiple targets, your `joinTo` properties become objects mapping a target name (the property key) with a description of matching sources (the property value).  These descriptions are [anymatch sets](https://github.com/es128/anymatch#anymatch-), which can be specific names, globbings, regexes, predicate functions, or an array mixing any of these.  In short, it’s super flexible.
+As soon as you have multiple targets, your `joinTo` properties become objects mapping a target name (the property key) with a description of matching sources (the property value).  These descriptions are [anymatch sets](https://github.com/es128/anymatch#anymatch--), which can be specific names, globbings, regexes, predicate functions, or an array mixing any of these.  In short, it’s super flexible.
 
 For this to still work, you’ll need to adjust the bottom of your `index.html` file in `assets` to properly load both target scripts:
 

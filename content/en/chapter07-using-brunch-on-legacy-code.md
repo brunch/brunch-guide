@@ -24,7 +24,7 @@ Item 4 is reflected in the structure of your `files` setting, that has up to thr
   * `stylesheets`: everything that ends up being CSS;
   * `templates`: every pre-compiled template (again, templates pre-compile to single functions that take a *presenter*—or *view model*—object as argument and return HTML).  Most often, the target is the same as the core JS target.
 
-Each of these sections has at minimum a `joinTo` property that can range from super-simple to quite advanced.  If the value is a single `String`, it’s a unique file that merges all concatenations for that scope.  If it’s an object, keys are the target files, and values define the sources for a specific target.  These values are [anymatch sets](https://github.com/es128/anymatch#anymatch-), which means they can be:
+Each of these sections has at minimum a `joinTo` property that can range from super-simple to quite advanced.  If the value is a single `String`, it’s a unique file that merges all concatenations for that scope.  If it’s an object, keys are the target files, and values define the sources for a specific target.  These values are [anymatch sets](https://github.com/es128/anymatch#anymatch--), which means they can be:
 
   * A simple **`String`**, which will have to match the exact file path that Brunch sees (more on that in a bit);
   * A **regular expression** that will have to match the file path; very useful for path prefixes, such as `/^app\//` or `/^vendor\//`;

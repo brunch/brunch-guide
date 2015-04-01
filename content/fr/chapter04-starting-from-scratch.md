@@ -292,7 +292,7 @@ module.exports = config:
     stylesheets: joinTo: 'app.css'
 ```
 
-Dès qu'on a plusieurs cibles, nos `joinTo` deviennent des objets qui mettent en correspondance un nom de cible (les noms de propriétés) avec une description des sources (les valeurs de propriétés).  Ces descriptions sont des [ensembles anymatch](https://github.com/es128/anymatch#anymatch-), à savoir des chemins spécifiques ou à base de *globbing*, des expressions rationnelles, des fonctions de prédicat, ou un tableau de ces composants (qui peuvent être mélangés).  Bref, c'est super flexible.
+Dès qu'on a plusieurs cibles, nos `joinTo` deviennent des objets qui mettent en correspondance un nom de cible (les noms de propriétés) avec une description des sources (les valeurs de propriétés).  Ces descriptions sont des [ensembles anymatch](https://github.com/es128/anymatch#anymatch--), à savoir des chemins spécifiques ou à base de *globbing*, des expressions rationnelles, des fonctions de prédicat, ou un tableau de ces composants (qui peuvent être mélangés).  Bref, c'est super flexible.
 
 Notez que pour que ça marche toujours, il faut ajuster le bas de notre `app/assets/index.html` pour qu’il charge bien les deux scripts cibles :
 

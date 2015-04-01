@@ -26,7 +26,7 @@ Le point 4 gouverne la structure du réglage `files`, avec jusqu'à trois sous-s
   * `stylesheets` : tout ce qui produit du CSS à terme ;
   * `templates` : tout ce qui concerne la précompilation de templates pour produire à chaque fois une fonction de *rendering* (avec un argument contenant le *presenter*, ou *view model*, et le HTML en valeur de retour synchrone).  Souvent, la cible sera la même que pour la partie noyau de `javascripts`.
 
-Chacune de ces sections a au minimum une propriété `joinTo` qui peut être très simple ou très avancée.  Si on fournit juste un chemin de fichier (une `String`) comme valeur, tous les fichiers candidats iront vers cette unique concaténation.  Si on fournit plutôt un objet, les clés sont les chemins cibles, et les valeurs, qui déterminent quelle portion de la codebase source va vers la cible, sont des *ensembles [anymatch](https://github.com/es128/anymatch#anymatch-)*, c'est-à-dire qu’il peut s’agir de :
+Chacune de ces sections a au minimum une propriété `joinTo` qui peut être très simple ou très avancée.  Si on fournit juste un chemin de fichier (une `String`) comme valeur, tous les fichiers candidats iront vers cette unique concaténation.  Si on fournit plutôt un objet, les clés sont les chemins cibles, et les valeurs, qui déterminent quelle portion de la codebase source va vers la cible, sont des *ensembles [anymatch](https://github.com/es128/anymatch#anymatch--)*, c'est-à-dire qu’il peut s’agir de :
 
   * Une simple **`String`**, qui devra correspondre au chemin exact du fichier, tel que perçu par Brunch (on y reviendra dans un instant) ;
   * Une **expression rationnelle**, qui devra correspondre au chemin du fichier ; très utile pour des préfixes, genre `/^app\//` ou `/^vendor\//` ;
