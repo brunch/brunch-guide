@@ -130,19 +130,11 @@ Oui, **c'est tout** ! :grin:
 Allez, on tente un build.  Depuis le dossier racine du projet, là où se trouve le `brunch-config.coffee` (au même niveau que `app`, donc), faites :
 
 ```sh
-$ node_modules/.bin/brunch build  # Ou node_modules\.bin\brunch sur Win
+$ brunch build
 25 Feb 17:07:20 - info: compiled 2 files into 2 files, copied index.html in 94ms
 ```
 
 Remarquez le temps de build pour ce one-shot : **94 millisecondes**.  Et je suis sur un disque crypté à la volée.
-
-Si vous avez installé Brunch en global, vous pouvez aussi taper :
-
-```sh
-$ brunch build
-```
-
-(Mais attention, ça utilisera le Brunch global, pas forcément la même version que celle en local.)
 
 Voyons ce qui a été généré dans `public` :
 

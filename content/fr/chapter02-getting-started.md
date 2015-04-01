@@ -7,10 +7,10 @@ Voyons tout ce que vous besoin de savoir pour utiliser agréablement Brunch dans
 Comme tous les outils cités plus haut, et comme une térachiée d'outils aujourd'hui, Brunch est **basé sur Node.js et s'installe via `npm`**.  Vous pouvez choisir de l'installer en global, pour pouvoir utiliser la commande `brunch` depuis n'importe où :
 
 ```sh
-npm install -g brunch   # Mais préférez une installation locale…
+npm install -g brunch
 ```
 
-…mais **je vous recommanderais plutôt de l'installer localement** à votre projet courant, qui aura de toutes façons besoin d'un `package.json` pour fonctionner (au même titre que les autres outils évoqués dans cet article).  Ainsi, vous pouvez utiliser plusieurs versions distinctes d'un projet à l'autre, **sans conflits**.  On verra ça dans les sections ultérieures.
+…mais **je vous recommanderais plutôt de l'installer localement aussi** à votre projet courant, qui aura de toutes façons besoin d'un `package.json` pour fonctionner (au même titre que les autres outils évoqués dans cet article).  Ainsi, vous pouvez utiliser plusieurs versions distinctes d'un projet à l'autre, **sans conflits**.  Ce qui est bien, c’est que la commande `brunch` installée en global utilisera intelligemment la version locale à votre projet en interne, on a donc le meilleur des deux mondes !
 
 ### Faut-il partir d'un squelette ?
 

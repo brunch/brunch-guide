@@ -130,19 +130,11 @@ And yes, **that’s it!** :grin:
 OK, let’s go for our first build.  From the app’s root directory, where `brunch-config.coffee` is (at the same level as `app`) just do:
 
 ```
-$ node_modules/.bin/brunch build  # Or node_modules\.bin\brunch on Windows
+$ brunch build
 25 Feb 17:07:20 - info: compiled 2 files into 2 files, copied index.html in 94ms
 ```
 
 Note how long that one-shot build took: **94 milliseconds**.  And that’ on a live-encrypted disk.
-
-If you had installed Brunch globally, you could have used:
-
-```
-$ brunch build
-```
-
-(But that’ll use the global Brunch, not necessarily the version you installed locally.)
 
 Here’s what Brunch will have put in `public`:
 
