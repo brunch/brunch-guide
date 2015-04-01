@@ -2,7 +2,7 @@
 
 This is part of [The Brunch.io Guide](../../README.md).
 
-So what we’ve done in the previous chapter is awesome already, but what if we’d like a little dash of templating?  Surely you guys have a couple more minutes, right?
+So what we’ve done in the previous chapter is awesome already, but what if we’d like a little dash of templating?  Surely you have a couple more minutes, right?
 
 The idea behind Brunch’s approach to templating is simple:
 
