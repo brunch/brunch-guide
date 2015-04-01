@@ -27,14 +27,12 @@ Brunch va rechercher son fichier de configuration parmi les noms suivants, dans 
 
   * **`brunch-config.coffee`**
   * `brunch-config.js`
-  * `config.coffee`
-  * `config.js`
 
-On note une préférence pour CoffeeScript (Brunch est écrit en CoffeeScript, et transpilé en JS à chaque release) ; historiquement, il cherchait uniquement les `config.*`, mais c'est vite devenu un peu trop générique, donc il préfère désormais le nom plus spécifique.
+On note une préférence pour CoffeeScript (Brunch est écrit en CoffeeScript, et transpilé en JS à chaque release) ; historiquement, il cherchait des fichiers `config.*`, mais c'est vite devenu un peu trop générique, donc il préfère désormais le nom spécifique.
 
 Si vous ne connaissez pas CoffeeScript, **ne paniquez pas** : la quasi-totalité du temps, vous n'aurez qu'un gros objet (type JSON) à y mettre, et CoffeeScript vous épargnera « juste » le bruit des accolades, virgules et guillemets.  On dirait du YAML, c'est tout propre et concis :-)
 
-*Personnalisation : passez le chemin de votre configuration avec l'option `-c` ou `--config` en ligne de commande.*
+*Personnalisation : une option de ligne de commande vous permettait d’indiquer le fichier de configuration, mais elle a été dépréciée au profit d’un fichier unique avec des ajustements par environnement, une technique que nous illustrerons dans un chapitre ultérieur.*
 
 ## Dossiers
 
