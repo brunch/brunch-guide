@@ -278,8 +278,8 @@ This is our updated `brunch-config.coffee`:
 module.exports = config:
   files:
     javascripts: joinTo:
-      'libraries.js': /^app\/jquery\.js/
-      'app.js': /^(?!app\/jquery\.js)/
+      'libraries.js': /^app[\\\/]jquery\.js/
+      'app.js': /^(?!app[\\\/]jquery\.js)/
     stylesheets: joinTo: 'app.css'
 ```
 
