@@ -183,7 +183,7 @@ Sur cette base, comment procéder ?  Un plugin Brunch est avant tout **un modul
 }
 ```
 
-La partie `peerDependencies` n'est pas obligatoire (elle est même en phase de dépréciation), mais bon…  En revanche, il est communément admis que les plugins Brunch suivent les numéros de versions majeur et mineur du Brunch à partir duquel ils sont compatibles.  Donc si vous ne testez pas en-dessous de 1.7 par exemple, assurez-vous que votre version à vous démarre bien par 1.7.
+La partie `peerDependencies` n'est pas obligatoire (elle est même en phase de dépréciation), mais bon…  En revanche, il est communément admis que les plugins Brunch suivent les numéros de versions majeur et mineur du Brunch à partir duquel ils sont compatibles.  Donc si vous ne testez pas en-dessous de 1.7 par exemple, assurez-vous que votre version à vous démarre bien par 1.7.  Remarquez que ça entre en conflit direct avec le *semantic versioning* ([semver](http://semver.org/lang/fr/)), du coup l’équipe de Brunch est en train de réfléchir à une meilleure manière d’exprimer la compatibilité entre le noyau et les plugins.
 
 Comme on n'a pas précisé de champ `main`, Node supposera que notre point d'entrée est un fichier `index.js`.  On sait qu'un plugin Brunch est un constructeur dont le `prototype` est doté de certaines propriétés, mentionnées plus haut dans cet article :
 

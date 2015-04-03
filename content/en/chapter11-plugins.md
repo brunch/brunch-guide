@@ -181,7 +181,7 @@ Now that we have this nailed, where should we start?  A Brunch plugin is first a
 }
 ```
 
-The `peerDependencies` part is optional (it’s even on its way to deprecation), but I like it…  On the other hand, it’s an informal convention that Brunch plugins should track the major and minor version numbers of the Brunch they’re compatible with.  So if you don’t try for compatibility below Brunch 1.7, your plugin version should start at 1.7, for instance.
+The `peerDependencies` part is optional (it’s even on its way to deprecation), but I like it…  On the other hand, it’s been an informal convention that Brunch plugins should track the major and minor version numbers of the Brunch they’re compatible with.  So if you don’t try for compatibility below Brunch 1.7, your plugin version should start at 1.7, for instance.  Note that this conflicts with [semver](http://semver.org/), so the team is trying to figure out a better way to express plugin/core compatibility.
 
 Because we didn’t specify a `main` property in our package file, Node will assume that the module’s entry point file is `index.js`.  We also know that a Brunch plugin is a constructor with a `prototype` equipped with several specific properties, that we mentioned earlier in this chapter:
 
