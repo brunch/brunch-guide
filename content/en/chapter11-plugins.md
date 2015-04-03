@@ -284,7 +284,7 @@ And *voilà!*
 
 To **test our plugin without littering the npm registry**, we’ll do what’s called an `npm link`: the local installation of a module that is still under development.
 
-If you grabbed the [sample repo](https://github.com/deliciousinsights/brunch-article-demos), we’ll use two of its directories:
+If you grabbed the [sample repo](https://github.com/brunch/brunch-guide-demos), we’ll use two of its directories:
 
   * `6-templates`, the last phase where we didn’t have a custom server, and
   * `8-git-sha-plugin`, that contains this demo plugin’s code, all nicely commented.

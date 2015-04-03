@@ -286,7 +286,7 @@ Et hop !
 
 Pour **tester notre plugin sans pourrir npm**, nous allons faire ce qu'on appelle un `npm link` : l'installation en local d'un module en cours de développement.
 
-Si vous avez récupéré le [dépôt d'exemple](https://github.com/deliciousinsights/brunch-article-demos), vous avez parmi les dossiers :
+Si vous avez récupéré le [dépôt d'exemple](https://github.com/brunch/brunch-guide-demos), vous avez parmi les dossiers :
 
   * `6-templates`, le dernier où on ne jouait pas avec un serveur custom, et
   * `8-git-sha-plugin`, qui contient le code ci-dessus, dûment commenté.

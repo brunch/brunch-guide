@@ -8,8 +8,8 @@ If you’ve carefully read through the previous sections, well done you :clap:, 
 
 If you’d like to **follow along easily**, I set up a public repository on GitHub that has every step of the way available:
 
-  * [The GitHub repo](https://github.com/deliciousinsights/brunch-article-demos)
-  * If you don’t use Git, grab an archive: [Zip](https://github.com/deliciousinsights/brunch-article-demos/archive/master.zip) or [TGZ](https://github.com/deliciousinsights/brunch-article-demos/archive/master.tar.gz).
+  * [The GitHub repo](https://github.com/brunch/brunch-guide-demos)
+  * If you don’t use Git, grab an archive: [Zip](https://github.com/brunch/brunch-guide-demos/archive/master.zip) or [TGZ](https://github.com/brunch/brunch-guide-demos/archive/master.tar.gz).
 
 ## Just a couple files
 

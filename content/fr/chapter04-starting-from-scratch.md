@@ -8,8 +8,8 @@ Si vous avez lu attentivement les chapitres précédents, je vous dis bravo :cla
 
 J’ai préparé un dépôt avec toutes les étapes ci-après faciles à examiner / utiliser :
 
-  * [Le dépôt GitHub](https://github.com/deliciousinsights/brunch-article-demos)
-  * Les archives, pour ceux qui n’utilisent pas Git : [Zip](https://github.com/deliciousinsights/brunch-article-demos/archive/master.zip) ou [TGZ](https://github.com/deliciousinsights/brunch-article-demos/archive/master.tar.gz).
+  * [Le dépôt GitHub](https://github.com/brunch/brunch-guide-demos)
+  * Les archives, pour ceux qui n’utilisent pas Git : [Zip](https://github.com/brunch/brunch-guide-demos/archive/master.zip) ou [TGZ](https://github.com/brunch/brunch-guide-demos/archive/master.tar.gz).
 
 ## Juste quelques fichiers
 
