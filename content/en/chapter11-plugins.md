@@ -2,7 +2,7 @@
 
 This is part of [The Brunch.io Guide](../../README.md).
 
-With Brunch, features don’t get provided through the same architectural split as you’d fine in Grunt, Gulp, etc.  A ton of features and behaviors are **built-in** (build pipeline, incremental watcher, sourcemaps, etc.) but everything else remains in **plugins**, including the handling of every **source language**.
+With Brunch, features don’t get provided through the same architectural split as you’d find in Grunt, Gulp, etc.  A ton of features and behaviors are **built-in** (build pipeline, incremental watcher, sourcemaps, etc.) but everything else remains in **plugins**, including the handling of every **source language**.
 
 You will generally use at least one plugin for scripts, one for styles, and a minifier for each.
 
@@ -12,11 +12,11 @@ The official website [has a decent list](http://brunch.io/plugins.html), based o
 
 ## Enabling a plugin
 
-For a plugin to be enabled and used, **you just need to install it**, which means it is both in `package.json` and `node_modules`.  The easiest way to do that for the first time is with `npm install --save-dev`, and the easiest way from an existing `package.json` is through a simple `npm install`.
+For a plugin to be enabled and used, **you just need to install it**, which means it is both in `package.json` and `node_modules`.  The easiest way to do that for the first time is with `npm install --save-dev <pluginName>`, and the easiest way from an existing `package.json` is through a simple `npm install`.
 
-Brunch will then inspect all modules that satisfy both these requirements, looking for any module whose name contains “brunch” (usually at the end, after a hyphen, but it can really be anywhere), and verifies that the module exports a constructor featuring a `brunchPlugin` property set to `true` on its `prototype` property.  Otherwise, the module is ignored.
+Brunch will then inspect all modules that satisfy both these requirements, looking for any module whose default export is a constructor featuring a `brunchPlugin` property set to `true` on its `prototype` property.  Otherwise, the module is ignored.
 
-If it conforms to this, it gets automatically instantiated, with the global configuration passed as argument, and gets registered based on its scope declaration (file type, extensions, pattern…  we’ll dive into this later).
+Any module that passes this filter has its constructor automatically instantiated, with the global configuration passed as argument, and gets registered based on its scope declaration (file type, extensions, pattern…  we’ll dive into this later).
 
 In short, forget about crazy splatters of redundant `loadNpmTasks` here.  Brunch keeps it short and sweet.
 

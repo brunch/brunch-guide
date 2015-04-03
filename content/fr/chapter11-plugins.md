@@ -14,7 +14,7 @@ Le site officiel en [recense pas mal](http://brunch.io/plugins.html), selon les 
 
 Pour qu’un plugin soit actif et utilisé, **il suffit qu’il soit installé**, donc qu'il figure au `package.json` et soit présent dans `node_modules` également.  La manière la plus simple d'aboutir à ça pour une première installation est `npm install --save-dev`, et la plus simple si `package.json` connaît déjà le module est tout bêtement `npm install`.
 
-Brunch inspecte en fait les modules ainsi installés à la recherche de tous ceux dont le nom contient « brunch » (généralement à la fin, après un tiret, mais ça peut être n'importe où), et qui exportent un constructeur dont le prototype a une propriété `brunchPlugin` à `true`.
+Brunch inspecte en fait les modules ainsi installés à la recherche de tous ceux dont l’export par défaut est un constructeur dont le prototype a une propriété `brunchPlugin` à `true`.
 
 Il instancie alors automatiquement le plugin avec la configuration générale en argument, et l’enregistre en fonction de son type de fichier pris en charge, s’il en indique un (via ses propriétés `type` et `extension`).
 
