@@ -39,6 +39,8 @@ Ceci est une tentative de fournir un guide raisonnablement complet pour [Brunch]
 8. [Builds de développement et de production](chapter08-production-builds.md)
 9. [*Watcher*](chapter09-watcher.md)
 10. [Serveur web, intégré ou personnalisé](chapter10-web-server.md)
+  * [Écrire notre propre serveur](chapter10-web-server.md#écrire-notre-propre-serveur)
+  * [Et on n’est pas obligés de le faire en Node…](chapter10-web-server.md#et-on-nest-pas-obligés-de-le-faire-en-node)
 11. [Des plugins pour tous les besoins de build](chapter11-plugins.md)
   * [Activation d’un plugin](chapter11-plugins.md#activation-dun-plugin)
   * [Affinage éventuel par configuration](chapter11-plugins.md#affinage-éventuel-par-configuration)

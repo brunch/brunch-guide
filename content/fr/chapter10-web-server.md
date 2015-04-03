@@ -150,6 +150,15 @@ Le *watcher* récupère notre mise à jour, et si nous rafraîchissons la page e
 
 Tout roule ! (づ￣ ³￣)づ
 
+## Et on n’est pas obligés de le faire en Node…
+
+Un dernier réglage serveur qui mérite d’être mentionné : `server.command`, qui remplace en fait tous les autres réglages de `server`.  Il vous permet de spécifier une ligne de commande qui lancera votre serveur personnalisé, lequel peut donc utiliser une autre technique que Node, telle que PHP, Ruby ou Python…  Vous pourriez par exemple utiliser un truc de ce genre :
+
+```coffeescript
+server:
+  command: "php -S 0.0.0.0:3000 -t public"
+```
+
 ----
 
 « Précédent : [*Watcher*](chapter09-watcher.md) • Suivant : [Des plugins pour tous les besoins de build](chapter11-plugins.md) »

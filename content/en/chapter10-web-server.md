@@ -149,6 +149,15 @@ The watcher picks our update right up, and if we refresh the page and look at th
 
 All good! (づ￣ ³￣)づ
 
+## And not just Node, either…
+
+A final setting you can use is `server.command`, which basically replaces all the other `server` settings: it lets you define a custom server-running command line, in case you want to write your own server using another tech, such as PHP, Ruby or Python…  You could go something like this:
+
+```coffeescript
+server:
+  command: "php -S 0.0.0.0:3000 -t public"
+```
+
 ----
 
 « Previous: [Watcher](chapter09-watcher.md) • Next: [Plugins for all your build needs](chapter11-plugins.md) »
