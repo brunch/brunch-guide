@@ -96,7 +96,7 @@ There are many tools to help us get there, but having to manually install, setup
 
 A **fast feedback loop** is a must-have when doing web front dev, that lets us see the result of our CSS or JS tweaks nearly instantly in our open browser(s).  There are a few plugins for this, all designed to run in watcher mode:
 
-  * [`auto-reload-brunch`](https://www.npmjs.com/package/auto-reload-brunch) uses a fairly heavy-handed approach: it auto-reloads the whole page as soon as something changes.  This can be a tad overkill;  plus this relies on native Web Sockets, so IE10+.
+  * [`auto-reload-brunch`](https://www.npmjs.com/package/auto-reload-brunch) reacts to any change by live-injecting CSS changes if that’s all there is; it reloads the whole page if JS is involved.  This relies on native Web Sockets, so IE10+.
   * [`browser-sync-brunch`](https://www.npmjs.com/package/browser-sync-brunch) embeds the excellent [BrowserSync](http://www.browsersync.io/), that lets you live inject CSS (no page reload), remote debug pages (embeds Weinre), sync a lot of interactions across open browsers (form filling, scrolling, clicking, etc.).  Super handy to test responsive stuff  *(full disclaimer: I’m one of the maintainers of the plugin).*
   * [`fb-flo-brunch`](https://github.com/deliciousinsights/fb-flo-brunch), by yours truly, transparently embeds the awesome [fb-flo](https://facebook.github.io/fb-flo/), check it out *now*!
 

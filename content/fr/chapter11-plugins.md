@@ -98,7 +98,7 @@ Les **linters** d'abord :
 
 Une **boucle de feedback rapide** est indispensable quand on fait du front, avec la capacité notamment à voir tout de suite le résultat de nos travaux CSS et JS dans le navigateur, voire les navigateurs, ouvert(s).  On trouve quelques plugins pour ça, tous conçus pour fonctionner en mode *watcher* :
 
-  * [`auto-reload-brunch`](https://www.npmjs.com/package/auto-reload-brunch) utilise une approche assez lourde : il recharge automatiquement la page dès qu'un changement a eu lieu.  Ça peut être un peu bourrin ; en plus, ça utilise les Web Sockets uniquement, donc pour IE, il faut au moins la version 10.
+  * [`auto-reload-brunch`](https://www.npmjs.com/package/auto-reload-brunch) réagit à tout changement en injectant les CSS à la volée si c’est là tout ce qui a bougé ; si du JS est impliqué, il recharge carrément la page.  Ça utilise les Web Sockets uniquement, donc pour IE, il faut au moins la version 10.
   * [`browser-sync-brunch`](https://www.npmjs.com/package/browser-sync-brunch) enrobe l'excellent [BrowserSync](http://www.browsersync.io/), qui permet d'injecter la CSS en direct (sans rechargement), mais aussi de synchroniser tout un tas de manips entre divers navigateurs ouverts sur la page : remplissage de formulaire, défilement, clics, etc.  Très pratique pour tester du *responsive* simplement.  *(full disclaimer : je fais partie des mainteneurs du plugin).*
   * [`fb-flo-brunch`](https://github.com/deliciousinsights/fb-flo-brunch), par votre serviteur, fournit une intégration de premier plan pour le génial [fb-flo](https://facebook.github.io/fb-flo/), jetez-vous dessus !
 
