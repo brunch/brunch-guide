@@ -76,9 +76,32 @@ Remarquez toutefois que cette surveillance n'est pas toujours parfaitement fiabl
 
 Cette surveillance a lieu en utilisant la commande `brunch watch` plutôt que le simple `brunch build`.
 
-Au passage, il est également possible d'être **notifié** (par Growl (OSX/Windows) ou votre centre de notifications système OSX / Ubuntu) lors d'une erreur (par défaut) ou d'autres niveaux (avertissement, info), pour ne même pas avoir à regarder le terminal.
+Au passage, il est également possible d'être **notifié** lors d'une erreur (par défaut) ou d'autres niveaux (avertissement, info), pour ne même pas avoir à regarder le terminal.  Cela nécessitera toutefois quelques installations qui varient suivant votre système.
 
-*Personnalisation : le réglage `fileListInterval` indique le temps minimum entre deux détections.  Le réglage `watcher.usePolling` change le substrat technique de la détection de changement vers un mode technique très légèrement plus lent, mais parfois plus fiable.  Le réglage `notifications` permet de désactiver les notifications, ou de choisir les niveaux signalés.*
+Sur OSX, vous devrez installer `terminal-notifier`, qui est distrbué sous forme d’une gemme Ruby.  Tapez simplement la commande suivante dans votre terminal :
+
+```sh
+$ sudo gem install terminal-notifier
+```
+
+Sur Ubuntu, vous aurez besoin d’installer la commande `notify-send`, qui est distribuée dans le paquet `libnotify-bin`, donc la commande serait la suivante :
+
+```sh
+$ sudo apt-get install libnotify-bin
+```
+
+Sur Windows, vous devrez installer [Growl for Windows](http://www.growlforwindows.com/gfw/default.aspx), puis télécharger [`growlnotify`](http://www.growlforwindows.com/gfw/help/growlnotify.aspx) et mettre son fichier exécutable quelque part dans votre PATH.
+
+Dans tous les cas, vous pourrez vérifier que tout fonctionne en installant le module npm `growl` et en exécutant un petit bout de code :
+
+```sh
+$ npm install growl
+$ node -e "require('growl')('Oh le joli test')"
+```
+
+Ces instructions sont à jour début avril 2015, mais si elles échouent, vérifiez la documentation du [module npm growl](https://www.npmjs.com/package/growl), utilisé en interne pour fournir les notifications.
+
+*Personnalisation : le réglage `fileListInterval` indique le temps minimum entre deux détections.  Le réglage `watcher.usePolling` change le substrat technique de la détection de changement vers un mode technique très légèrement plus lent, mais parfois plus fiable.  Le réglage `notifications` permet de désactiver les notifications, ou de choisir les niveaux signalés ; consultez [cette page](https://github.com/paulmillr/loggy) pour tous les détails.*
 
 ## Serveur web intégré
 
