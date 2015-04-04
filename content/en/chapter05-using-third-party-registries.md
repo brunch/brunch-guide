@@ -28,6 +28,8 @@ $ bower install --save jquery#1.*
 jquery#1.11.2 bower_components/jquery
 ```
 
+This command looks up the Bower registry for the latest jQuery version in the 1.x range, installs it in the proper local directory, and updates `bower.json` to reflect the newly installed component.
+
 We then can strip `jquery.js` from our `app`.  In order to retain the split targets we had in the previous chapter, we need to adjust our `brunch-config.coffee` so regexes match the new file layout:
 
 ```coffeescript

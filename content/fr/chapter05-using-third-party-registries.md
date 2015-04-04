@@ -28,6 +28,8 @@ $ bower install --save jquery#1.*
 jquery#1.11.2 bower_components/jquery
 ```
 
+Cette commande interroge le référentiel de Bower pour obtenir la version la plus récente de jQuery dans la tranche 1.x, l’installe dans le bon dossier local, et met à jour `bower.json` pour refléter le composant fraîchement installé.
+
 On peut désormais retirer le `jquery.js` de notre `app`.  On va ajuster `brunch-config.coffee` pour qu'il colle toujours nos éléments dans deux cibles distinctes, sachant que les *regexes* de tout à l'heure ne sont plus adaptées :
 
 ```coffeescript
