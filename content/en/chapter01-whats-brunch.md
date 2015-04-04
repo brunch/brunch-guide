@@ -8,7 +8,7 @@ This is an **extremely common need among front-end developers** (or front-end de
 
 ## Brunch vs. others
 
-The vast majority of automation tool users use either [Grunt](http://gruntjs.com/) or [Gulp](http://gulpjs.com/) (much more rarely [Broccoli](https://github.com/broccolijs/broccoli) or [Glou](https://www.npmjs.com/package/glou)).  Although extremely popular, these got on the market later than Brunch did, and are **often inferior for common use-cases**.
+The vast majority of automation tool users use either [Grunt](http://gruntjs.com/) or [Gulp](http://gulpjs.com/) (much more rarely [Broccoli](https://github.com/broccolijs/broccoli)).  Although extremely popular, these got on the market later than Brunch did, and are **often inferior for common use-cases**.
 
 I’ve been using Brunch since June 2012 (around version 1.3; it dates back all the way to Spring 2011) and to this day, it’s proved—for me—to be **vastly superior** to later actors in the field.
 
@@ -49,11 +49,11 @@ The other main drawback of this approach is that **[it’s slow as a procrastina
 
 The alternative is the **pipeline**: you sort of connect files together across a number of processing steps, defining dependencies, and when a file changes, its new content gets read only once and piped down any number of processing avenues, be they sequential or parallel.
 
-This is the fundamental approach of Gulp, Broccoli or Glou, and obviously Brunch.
+This is the fundamental approach of Gulp, Broccoli, and obviously Brunch.
 
 **Brunch is a pipeline.**
 
-But all pipelines are not equal, and their performance varies wildly.  In fact, **Gulp remains atrociously slow** for a comfortable “watcher” use, when Brunch and Glou can be **incredibly fast**.
+But all pipelines are not equal, and their performance varies wildly.  In fact, **Gulp remains atrociously slow** for a comfortable “watcher” use, when Brunch can be **incredibly fast**.
 
 ## Configuration and boilerplate vs. conventions
 
@@ -83,7 +83,7 @@ I only recently realized, flabbergasted, that neither Grunt nor Gulp operate lik
 
 In my humble opinion, this is the only worthy approach; without it, watcher performance is dismal, far too low to be really useful throughout your day.  It is so obvious to me that it had not even occurred to me that Grunt and Gulp didn’t work this way.
 
-Brunch has always done so, naturally—as has Glou, for that matter.
+Brunch has always done so, naturally.
 
 ## The paramount importance of speed
 
@@ -107,7 +107,7 @@ In a word?  **Marketing.**  *(OK, and perhaps docs too, to some extent.)*
 
 **Grunt** was the first to really get noticed (starting in the second semester of 2012), and its popularity soared again when it got selected as the build tool for the Angular ecosystem; it **peaked by late 2013**, at which time Gulp started eating its lunch.
 
-Broccoli remains on the fridge, even if it occasionally gets some spotlight.  And Glou hasn’t started marketing itself in earnest yet, as its developers want to add some more polish to it first.
+Broccoli remains on the fringe, even if it occasionally gets some spotlight.
 
 And Brunch?  Brunch never made the news much.  It’s alive and kickin’, has an **extremely loyal user base**, and just about anyone I show it to switches quite quickly to it: after 3+ years of teaching advanced JS and front-end dev or Node.js, this is still the first thing my trainees apply back at work on the next Monday :smile:.  And every time I present on [Dev Avengers](https://www.youtube.com/watch?v=2Dl9ES6IC3c), people ogle…
 

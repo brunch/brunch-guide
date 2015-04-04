@@ -8,7 +8,7 @@ Ce type de besoin est **extrêmement fréquent chez les devs front** et les [des
 
 ## Brunch face aux autres
 
-L’immense majorité des personnes qui automatisent ce type de tâches utilisent soit [Grunt](http://gruntjs.com/), soit [Gulp](http://gulpjs.com/) (et parfois [Broccoli](https://github.com/broccolijs/broccoli) ou [Glou](https://www.npmjs.com/package/glou)).  Bien qu’extrêmement populaires, et arrivés sur le marché plus récemment que Brunch, ces solutions lui sont **souvent inférieures dans les scenarii d’utilisation courants**.
+L’immense majorité des personnes qui automatisent ce type de tâches utilisent soit [Grunt](http://gruntjs.com/), soit [Gulp](http://gulpjs.com/) (et parfois [Broccoli](https://github.com/broccolijs/broccoli)).  Bien qu’extrêmement populaires, et arrivés sur le marché plus récemment que Brunch, ces solutions lui sont **souvent inférieures dans les scenarii d’utilisation courants**.
 
 J’utilise Brunch depuis juin 2012 (autour de sa version 1.3 ; il remonte au printemps 2011), et jusqu’à présent, il constitue encore pour moi une alternative **très supérieure** aux autres acteurs apparus depuis.
 
@@ -49,11 +49,11 @@ L'autre inconvénient majeur de cette approche, c'est qu'elle est [**désastreus
 
 L'alternative, c'est la **pipeline** : on connecte les fichiers entre eux au travers de diverses déclarations de dépendances, et lorsqu'un fichier change, son nouveau contenu n'est lu qu'une fois, pour pouvoir être traité par toute une série d'étapes consommatrices, successives ou parallèles.
 
-C'est l'approche fondamentale de Gulp, également retenue par Broccoli, Glou, et naturellement Brunch.
+C'est l'approche fondamentale de Gulp, également retenue par Broccoli, et naturellement Brunch.
 
 **Brunch est une *pipeline*.**
 
-Mais toutes les pipelines ne sont pas égales, et leurs performances peuvent différer considérablement.  Ainsi, **Gulp reste beaucoup trop lent** pour une utilisation « watcher » confortable, alors que Brunch et Glou, notamment, peuvent être **extrêmement rapides**.
+Mais toutes les pipelines ne sont pas égales, et leurs performances peuvent différer considérablement.  Ainsi, **Gulp reste beaucoup trop lent** pour une utilisation « watcher » confortable, alors que Brunch peut être **extrêmement rapide**.
 
 ## Configuration et boilerplate vs. conventions
 
@@ -83,7 +83,7 @@ Je n'ai que récemment découvert, abasourdi, que Grunt et Gulp n'opéraient pas
 
 Pour ma part, cette approche est la seule qui vaille le coup ; sans elle, les performances du *watcher* sont minables, trop lentes pour être réellement utiles tout au long de la journée.  C'est à tel point une évidence pour moi qu'il ne m'était même pas venu à l'idée que Grunt et Gulp procédaient différemment.
 
-Brunch opère évidemment ainsi depuis toujours, et Glou aussi, d'ailleurs.
+Brunch opère évidemment ainsi depuis toujours.
 
 ## L'importance primordiale de la vitesse
 
@@ -107,7 +107,7 @@ En un mot ?  **Le marketing**.
 
 **Grunt** a été le premier à faire vraiment parler de lui (à partir du 2e semestre 2012), et son développement a continué avec sa sélection comme outil de build par l'écosystème Angular ; il a connu un **pic fin 2013**, époque à laquelle Gulp est venu lui grignoter une part de marché sans cesse croissante.
 
-Broccoli reste à la marge, même s'il fait de temps en temps parler de lui.  Et Glou n'a pas encore vraiment lancé son marketing, ses développeurs souhaitant lui donner encore un peu plus de *polish* avant de battre le rappel.
+Broccoli reste à la marge, même s'il fait de temps en temps parler de lui.
 
 Et Brunch ?  Brunch n'a jamais fait beaucoup de bruit.  Il vit sa vie, la communauté de ses utilisateurs est **extrêmement fidèle**, et la grande majorité de ceux à qui on le montre sont vite convaincus : depuis près de 3 ans que je m’en sers dans mes formations JS (JS Guru puis [JS Total](http://www.js-attitude.fr/js-total/) et [Node.js](http://www.js-attitude.fr/node-js/)), c'est le premier truc que les apprenants veulent mettre en œuvre, de retour au boulot le lundi qui suit :-)  Et chaque fois que je présente [Dev Avengers](https://www.youtube.com/watch?v=2Dl9ES6IC3c), les gens ouvrent des yeux comme des ronds de flan…
 
