@@ -6,7 +6,7 @@ By default, Brunch runs in a **development** environment, or mode.  This mostly 
 
 You specify what environment to run in through the `-e` or `--env` CLI option, followed by the environment’s name.  You can have any environments you want, with a special case for `production`, that is predefined with `optimize` set to `true`, and has its own CLI shortcut `-P` (or `--production`).
 
-More importantly, you can **alter settings based on the environment**, through the root settings key `overrides`.  In it, you can have one key per environment, each with replacements (overrides…) for any general settings you may have.  The official docs use an example that actually reflects the default production settings:
+More importantly, you can **alter settings based on the environment**, through the root settings key `overrides`.  In it, you can have one key per environment, each with replacements (overrides…) for any general settings you may have.  The official docs use an example that actually reflects the **default production settings**:
 
 ```coffeescript
 overrides:
