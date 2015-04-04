@@ -20,6 +20,8 @@ Any module that passes this filter has its constructor automatically instantiate
 
 In short, forget about crazy splatters of redundant `loadNpmTasks` here.  Brunch keeps it short and sweet.
 
+It’s worth noting that **plugin order matters** (as in, the order in which they’re listed in `package.json`): when plugins operate on the same files (usually target files), their order can impact their ability to work.  For instance, [`groundskeeper-brunch`](https://www.npmjs.com/package/groundskeeper-brunch) requires running *before* any minifiers, as these will obfuscate some code constructs the former relies on to detect trimmable code.
+
 ## Fine-tuning through optional configuration
 
 Every plugin is usually designed to be **operational and useful without any configuration**; that being said, it’s often possible to tweak their behavior through specific configuration.  These settings are defined inside `brunch-config.coffee`, under the `plugins` key and a subkey named after the plugin.

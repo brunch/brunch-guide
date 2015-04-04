@@ -20,6 +20,8 @@ Il instancie alors automatiquement le plugin avec la configuration générale en
 
 Bref, oubliez les `loadNpmTasks` et autres blagues du genre.  Brunch la joue simple.
 
+Il faut toutefois remarquer que **l’ordre des plugins est important** (l’ordre dans lequel ils sont listés à l’intérieur de `package.json`) : quand des plugins opèrent sur les mêmes fichiers (souvent les fichiers cibles), leur ordre impacte leur capacité à fonctionner.  Par exemple, [`groundskeeper-brunch`](https://www.npmjs.com/package/groundskeeper-brunch) exige de tourner *avant* les minifieurs, car ceux-ci vont compacter le code en perdant trace des motifs de code que le premier utilise pour détecter les morceaux de code qu’il peut retirer.
+
 ## Affinage éventuel par configuration
 
 Chaque plugin est normalement conçu pour être **opérationnel et utile sans configuration spécifique** ; mais il reste possible d’affiner leur comportement via une configuration dédiée.  Celle-ci est dans le `brunch-config.coffee`, sous la clé `plugins` et la sous-clé définie par le plugin.
