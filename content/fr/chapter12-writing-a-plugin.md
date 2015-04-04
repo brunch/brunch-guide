@@ -176,4 +176,4 @@ Une fois prêts, ouvrez par exemple, dans ce même dossier, `app/application.js`
 
 ----
 
-« Précédent : [Des plugins pour tous les besoins de build](chapter11-plugins.md) • Suivant : [Conclusion](chapter11-conclusion.md) »
+« Précédent : [Des plugins pour tous les besoins de build](chapter11-plugins.md) • Suivant : [Conclusion](chapter13-conclusion.md) »

@@ -333,4 +333,4 @@ Une fois prêts, ouvrez par exemple, dans ce même dossier, `app/application.js`
 
 ----
 
-« Précédent : [Serveur web, intégré ou personnalisé](chapter10-web-server.md) • Suivant : [Conclusion](chapter12-conclusion.md) »
+« Précédent : [Serveur web, intégré ou personnalisé](chapter10-web-server.md) • Suivant : [Réaliser un plugin Brunch](chapter12-writing-a-plugin.md) »
