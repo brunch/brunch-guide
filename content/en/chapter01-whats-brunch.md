@@ -107,7 +107,7 @@ In a word?  **Marketing.**  *(OK, and perhaps docs too, to some extent.)*
 
 **Grunt** was the first to really get noticed (starting in the second semester of 2012), and its popularity soared again when it got selected as the build tool for the Angular ecosystem; it **peaked by late 2013**, at which time Gulp started eating its lunch.
 
-Broccoli remains on the fringe, even if it occasionally gets some spotlight.  And Glou hasn’t started marketing itself in earnest yet, as its developers want to add some more polish to it first.
+Broccoli remains on the fridge, even if it occasionally gets some spotlight.  And Glou hasn’t started marketing itself in earnest yet, as its developers want to add some more polish to it first.
 
 And Brunch?  Brunch never made the news much.  It’s alive and kickin’, has an **extremely loyal user base**, and just about anyone I show it to switches quite quickly to it: after 3+ years of teaching advanced JS and front-end dev or Node.js, this is still the first thing my trainees apply back at work on the next Monday :smile:.  And every time I present on [Dev Avengers](https://www.youtube.com/watch?v=2Dl9ES6IC3c), people ogle…
 
