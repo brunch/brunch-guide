@@ -4,7 +4,7 @@ This is part of [The Brunch.io Guide](../../README.md).
 
 Let’s start exploring everything you need to know to happily use Brunch in your own projects, be they new ones or legacy codebases.
 
-Just like other tools in this space (and like a truckload of other tools these days), Brunch is **based on Node and gets installed through `npm`**.  You can install it globally, so as to be able to use the `brunch` command from anywhere:
+Just like other tools in this space (and like a truckload of other tools these days), Brunch is **based on [Node.js](https://nodejs.org/) and gets installed through [npm](https://www.npmjs.com/)**.  You can install it globally, so as to be able to use the `brunch` command from anywhere:
 
 ```sh
 npm install -g brunch
