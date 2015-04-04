@@ -164,7 +164,7 @@ $ brunch watch
 … 16:55:03 - info: copied index.html in 67ms
 ```
 
-So yeah, for JS and CSS builds, we went “overboard” to an average 200ms, but that’s mostly because we embed heavy JS libs (jQuery 1.11, etc.) and heavy CSS (all of Bootstrap 3), so even with an incremental build, we write “fat” files:
+So yeah, for JS and CSS builds, we went “overboard” to an average 200ms, but that’s mostly because we embed many Jade templates and heavy CSS (all of Bootstrap 3), and some of these transpilers are a mite slow.  The resulting files are not so small anymore, too:
 
 ```sh
 $ ls -lah public/*.{js,css}

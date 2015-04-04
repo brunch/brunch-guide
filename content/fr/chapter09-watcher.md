@@ -165,7 +165,7 @@ $ brunch watch
 … 16:55:03 - info: copied index.html in 67ms
 ```
 
-Alors oui, pour les builds JS et CSS, on est passés à « carrément » 200ms en moyenne, mais c'est surtout parce qu’on a une tonne de bibliothèques JS lourdes (jQuery 1.11, etc.), et du CSS lourd (tout Bootstrap 3), ce qui fait que même en incrémental, on écrit nettement plus gros sur le disque :
+Alors oui, pour les builds JS et CSS, on est passés à « carrément » 200ms en moyenne, mais c'est surtout parce qu’on a plein de templates Jade et du CSS lourd (tout Bootstrap 3), et certains *transpilers* sont un poil lents, voire synchrones…  On remarque au passage que les fichiers résultats ne sont plus si petits que ça, forcément :
 
 ```sh
 $ ls -lah public/*.{js,css}
