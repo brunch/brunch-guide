@@ -91,7 +91,7 @@ Vous avez remarqué que dans les points précédents, la vitesse revenait toujou
 
 Pour être vraiment utiles, pour nous procurer réellement le **confort de travailler** sur un nombre quelconque de fichiers sources de tous types (JS, CoffeeScript, TypeScript, ES6 voire ES7, React, LESS, SASS, Stylus, Handlebars, Jade, Dust, et que sais-je encore…) tout en conservant la possibilité de voir nos modifications dans le navigateur **des centaines de fois par jour**, il faut que le *watcher* de l'outil soit à même de mettre à jour le build **vite**.
 
-Vite, ça veut dire **en-dessous de 300ms**, même pour des cas lourds et complexes.  Pour des cas simples, ça devrait être l'affaire de 20 à 50ms, tout au plus.
+Vite, ça veut dire **en-dessous de 300ms**, même pour des cas lourds et complexes.  Pour des cas simples, ça devrait être l'affaire de 20 à 100ms (le délai minimum d’une modification visuelle dans les préceptes usuels d’Interface Utilisateur).
 
 Cela peut vous sembler excessif, mais dès qu'on dépasse ça pour atteindre 2, 3 voire 10 secondes, comme c'est trop fréquemment le cas avec Grunt ou Gulp, qu'obtient-on ?  Des développeurs et designers qui passent **plus de temps à regarder la console de leur outil** après chaque sauvegarde de fichier qu'à regarder le résultat de leur modification dans le navigateur.
 

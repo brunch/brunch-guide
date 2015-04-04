@@ -91,7 +91,7 @@ You likely noticed that across all the previous points, speed was a recurring co
 
 To really be useful, to actually provide us with **operational comfort** regardless of the amount, size and type of source files we have (JS, CoffeeScript, TypeScript, ES6 or even ES7, React, LESS, SASS, Stylus, Handlebars, Jade, Dust or what have you…) and still let us see the results of our changes in our browsers **hundreds of times a day**, our watcher must update the build **fast**.
 
-And by “fast” I mean **under 300ms**, even for super-heavy use cases.  Actually for simple, tutorial-level use cases, this should probably not exceed 100ms (minumum standard User Interface Design time for visual changes).
+And by “fast” I mean **under 300ms**, even for super-heavy use cases.  Actually for simple, tutorial-level use cases, this should probably not exceed 100ms (minimum standard User Interface Design time for visual changes).
 
 This might sound excessive, but as soon as you’re slower than that and reach 2, 3 or even 10 seconds, as is far too often the case with Grunt or Gulp, what do you get?  Developers and designers who spend **more time checking their tool’s console** after each file save than looking at the result of their change in the browser.
 
