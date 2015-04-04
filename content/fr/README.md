@@ -49,8 +49,8 @@ Ceci est une tentative de fournir un guide raisonnablement complet pour [Brunch]
   * [Brunch et les templates](chapter11-plugins.md#brunch-et-les-templates)
   * [Brunch et le workflow de développement](chapter11-plugins.md#brunch-et-le-workflow-de-développement)
   * [Brunch et la performance web](chapter11-plugins.md#brunch-et-la-performance-web)
-  * [Réaliser un plugin Brunch](chapter11-plugins.md#réaliser-un-plugin-brunch)
-12. [Conclusion](chapter12-conclusion.md)
+12. [Réaliser un plugin Brunch](chapter12-writing-a-plugin.md)
+13. [Conclusion](chapter13-conclusion.md)
 
 ## Version de Brunch
 

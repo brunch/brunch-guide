@@ -331,4 +331,4 @@ OK, we’re all set to try this out.  Here’s a simple test scenario: open `app
 
 ----
 
-« Previous: [Web server: built-in or custom](chapter10-web-server.md) • Next: [Conclusion](chapter12-conclusion.md) »
+« Previous: [Web server: built-in or custom](chapter10-web-server.md) • Next: [Writing a Brunch plugin](chapter12-writing-a-plugin.md) »

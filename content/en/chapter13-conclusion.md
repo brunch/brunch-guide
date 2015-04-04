@@ -14,4 +14,4 @@ Cheers!
 
 ----
 
-« Previous: [Plugins for all your build needs](chapter11-plugins.md)
+« Previous: [Writing a Brunch plugin](chapter12-writing-a-plugin.md)

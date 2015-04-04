@@ -12,4 +12,4 @@ Bon dev à tous !
 
 ----
 
-« Précédent : [Plugins for all your build needs](chapter11-plugins.md)
+« Précédent : [Réaliser un plugin Brunch](chapter12-writing-a-plugin.md)

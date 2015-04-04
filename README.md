@@ -49,8 +49,8 @@ Is your English reading not so good? Check out our [translations](#translations)
   * [Brunch and templates](content/en/chapter11-plugins.md#brunch-and-templates)
   * [Brunch and development workflows](content/en/chapter11-plugins.md#brunch-and-development-workflows)
   * [Brunch and web performance](content/en/chapter11-plugins.md#brunch-and-web-performance)
-  * [Writing a Brunch plugin](content/en/chapter11-plugins.md#writing-a-brunch-plugin)
-12. [Conclusion](content/en/chapter12-conclusion.md)
+12. [Writing a Brunch plugin](content/en/chapter12-writing-a-plugin.md)
+13. [Conclusion](content/en/chapter13-conclusion.md)
 
 ## Translations
 
