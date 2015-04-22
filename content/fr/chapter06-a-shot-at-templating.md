@@ -7,7 +7,7 @@ Ce qu’on a fait dans les chapitres précédents est déjà super cool, mais je
 Le principe des plugins de *templating* de Brunch est simple :
 
   * Les templates sont dans **leurs propres fichiers**, bien séparés du JS ;
-  * Ces fichiers sont **précompilés** par lem moteur de *templating* approprié, pour produire une **fonction JS** prête à l'emploi : on lui file les données dynamiques sous forme d'un objet (souvent appelé *presenter* ou *view model*), elle retourne du HTML.
+  * Ces fichiers sont **précompilés** par le moteur de *templating* approprié, pour produire une **fonction JS** prête à l'emploi : on lui file les données dynamiques sous forme d'un objet (souvent appelé *presenter* ou *view model*), elle retourne du HTML.
   * Cette fonction est **enrobée en module**, comme d'hab ; c'est son export par défaut.
 
 Cette approche nous **évite de pourrir notre JS** avec du code de templates, comme on le voit trop souvent à coup d'énormes `String` littérales, mais aussi **évite de pourrir notre HTML** à coup de templates injectés dans des balises de type `<script type="template/handlebars">`, ce qui m'a toujours semblé un gros hack dégueulasse.  Ça nous laisse JSX, certes, mais même là, y'a une astuce…
