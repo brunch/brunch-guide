@@ -24,6 +24,14 @@ overrides:
     sourceMaps: true
 ```
 
+Notez que vous n’avez pas besoin d’utiliser `overrides` pour surcharger les réglages du mode **développement**.  Dans la mesure où il s’agit du mode par défaut de Brunch, il n’y a rien à surcharger : définissez simplement vos réglages au niveau racine de la configuration.  Pour reprendre l’exemple ci-dessus et activer le réglage `optimize` en développement :
+
+```coffeescript
+module.exports = config:
+  optimize: true
+  …
+```
+
 ----
 
 « Précédent : [Adapter Brunch à un projet existant](chapter07-using-brunch-on-legacy-code.md) • Suivant : [*Watcher*](chapter09-watcher.md) »
