@@ -72,7 +72,7 @@ Indispensable pour un débogage sain.
 
 Brunch est, de base, capable de surveiller vos fichiers et dossiers sources pour, en cas de modification, **mettre automatiquement à jour les fichiers produits**.  Cette mise à jour est **incrémentale et très performante**.  Brunch affiche un message détaillé sur les fichiers sources détectés, les fichiers finaux mis à jour, et le temps que ça a pris.
 
-Remarquez toutefois que cette surveillance n'est pas toujours parfaitement fiable sur Windows, et plus rarement Linux ou OSX (en tout cas jusqu'en 1.7.20 ; la prochaine version devrait avoir amélioré les choses).  Certains réglages permettent de réduire ces faux-pas éventuels à presque rien, nous y reviendrons.
+Remarquez toutefois que cette surveillance n'est pas toujours parfaitement fiable sur Windows, et plus rarement Linux ou OSX (en tout cas jusqu'en 1.7.20 ; les 1.8+ devraient avoir amélioré les choses).  Certains réglages permettent de réduire ces faux-pas éventuels à presque rien, nous y reviendrons.
 
 Cette surveillance a lieu en utilisant la commande `brunch watch` plutôt que le simple `brunch build`.
 

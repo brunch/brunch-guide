@@ -20,15 +20,15 @@ Now that we have this nailed, where should we start?  A Brunch plugin is first a
 ```json
 {
   "name": "git-sha-brunch",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "private": true,
   "peerDependencies": {
-    "brunch": "~1.7"
+    "brunch": "~1.8"
   }
 }
 ```
 
-The `peerDependencies` part is optional (it’s even on its way to deprecation), but I like it…  On the other hand, it’s been an informal convention that Brunch plugins should track the major and minor version numbers of the Brunch they’re compatible with.  So if you don’t try for compatibility below Brunch 1.7, your plugin version should start at 1.7, for instance.  Note that this conflicts with [semver](http://semver.org/), so the team is trying to figure out a better way to express plugin/core compatibility.
+The `peerDependencies` part is optional (it’s even on its way to deprecation), but I like it…  On the other hand, it’s been an informal convention that Brunch plugins should track the major and minor version numbers of the Brunch they’re compatible with.  So if you don’t try for compatibility below Brunch 1.8, your plugin version should start at 1.8, for instance.  Note that this conflicts with [semver](http://semver.org/), so the team is trying to figure out a better way to express plugin/core compatibility.
 
 Because we didn’t specify a `main` property in our package file, Node will assume that the module’s entry point file is `index.js`.  We also know that a Brunch plugin is a constructor with a `prototype` equipped with several specific properties, that we mentioned earlier in this chapter:
 
@@ -150,11 +150,11 @@ Here’s how to perform the link:
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "brunch": "^1.7.20",
+    "brunch": "^1.8.3",
     "jade-brunch": "^1.8.1",
     "javascript-brunch": "^1.7.1",
     "sass-brunch": "^1.8.9",
-    "git-sha-brunch": "^1.7.0"
+    "git-sha-brunch": "^1.8.0"
   }
 }
 ```

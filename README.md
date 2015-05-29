@@ -62,7 +62,7 @@ To contribute translations, check out our [guidelines](CONTRIBUTING.md).
 
 ## Brunch version
 
-This guide was written against Brunch 1.7.20.  Most of it likely works in earlier 1.7.x versions, but may need updates when the upcoming 1.8 or 2.0 gets out (especially WRT npm / `node_modules` integration).
+This guide was written against Brunch 1.8.3.  Most of it works in earlier 1.7.x versions, though; still, you should upgrade!
 
 ## License
 

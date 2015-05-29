@@ -109,7 +109,7 @@ $ npm install --save-dev brunch javascript-brunch sass-brunch
 
 $ npm ls -depth=0
 simple-brunch@0.1.0 …
-├── brunch@1.7.20
+├── brunch@1.8.3
 ├── javascript-brunch@1.7.1
 └── sass-brunch@1.8.9
 ```
