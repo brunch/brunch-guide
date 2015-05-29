@@ -104,8 +104,7 @@ Tentez un *watcher* :
 
 ```sh
 $ brunch w
-02 Mar 12:45:04 - info: starting custom server
-02 Mar 12:45:04 - info: custom server started, initializing watcher
+02 Mar 12:45:04 - info: application started on http://localhost:3333/
 02 Mar 12:45:04 - info: compiled 3 files into 3 files, copied index.html in 269ms
 ```
 

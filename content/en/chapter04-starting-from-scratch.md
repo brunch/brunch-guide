@@ -111,7 +111,7 @@ $ npm ls -depth=0
 simple-brunch@0.1.0 …
 ├── brunch@1.8.3
 ├── javascript-brunch@1.7.1
-└── sass-brunch@1.8.9
+└── sass-brunch@1.8.10
 ```
 
 Finally, we need a minimal **Brunch configuration**.  A Brunch configuration file is just a Node module that exports a `config` property; that property has at least a `files` property that describes concatenations.  Here’s our `brunch-config.coffee`:

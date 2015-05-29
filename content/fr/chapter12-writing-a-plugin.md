@@ -154,7 +154,7 @@ Voici comment faire :
     "brunch": "^1.8.3",
     "jade-brunch": "^1.8.1",
     "javascript-brunch": "^1.7.1",
-    "sass-brunch": "^1.8.9",
+    "sass-brunch": "^1.8.10",
     "git-sha-brunch": "^1.8.0"
   }
 }
