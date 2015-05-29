@@ -34,6 +34,7 @@ Comme on n'a pas précisé de champ `main`, Node supposera que notre point d'ent
 
   * `brunchPlugin`, qui doit valoir `true` ;
   * `type`, `extension` ou `pattern` pour pouvoir être consulté au fil de la compilation ;
+  * `preCompile(…)` si on veut exécuter un traitement avant le début de la compilation proprement dite ;
   * `compile(…)`, `lint(…)` ou `optimize(…)`, suivant le rôle ;
   * `onCompile(…)` si on veut n'être notifié qu'en fin de build (même si c'est du *watcher*)
   * `teardown(…)` si on doit faire du nettoyage lorsque Brunch s'arrête (par exemple arrêter un serveur qu'on aurait lancé dans le constructeur).

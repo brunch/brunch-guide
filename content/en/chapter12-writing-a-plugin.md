@@ -34,6 +34,7 @@ Because we didn’t specify a `main` property in our package file, Node will ass
 
   * `brunchPlugin` must be `true`;
   * `type`, `extension` or `pattern` can be used to filter down the files that should trigger processing;
+  * `preCompile(…)` if you want to get something done before compilation proper starts;
   * `compile(…)`, `lint(…)` or `optimize(…)`, depending on what role your plugin has;
   * `onCompile(…)` if you want to be notified when the build is complete (even in watcher mode);
   * `teardown(…)` if you need to clean up when Brunch shuts down (e.g. stop an embedded server started by your constructor).
