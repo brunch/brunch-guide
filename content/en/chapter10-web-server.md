@@ -29,15 +29,19 @@ This is great already, but sometimes you’ll need **a few more features**, if o
 
 We’ll keep it simple and use good ol’ [Express](http://expressjs.com/), with the minimum set of modules we need to achieve this.
 
-You let Brunch know about your custom server through the `server.path` setting, that will contain the path of your **module**.  This module must **export a `startServer(…)` function** with the following signature:
+By default, Brunch will look for a `brunch-server.coffee` or `brunch-server.js` file for your custom server module, but you can use a different path with the `server.path` setting.
+
+This module must **directly export a function** (default export, using `module.exports = `) with the following signature:
 
 ```javascript
-startServer(port, path, callback)
+yourFunction(port, path, callback)
 ```
+
+Before Brunch 1.8, you had to export a `startServer` method on your exported object.  This still works, but you should go the simpler way now and export your function directly as the module’s default export.
 
 When your server is up and ready ([to serve](http://www.thanatosrealms.com/war2/sounds/humans/peasant/ready.wav), ha ha), it calls `callback()` so **Brunch can resume its work**.  The server is **automatically stopped** when Brunch’s watcher terminates.
 
-Here’s our example server.  I could have written it in CoffeeScript, but in order to remain readable by everyone, I went with vanilla JS.  I put this in a `custom-server.js` file.
+Here’s our example server.  I could have written it in CoffeeScript, but in order to remain readable by everyone, I went with vanilla JS.  I put this in the expected `brunch-server.js` file.
 
 ```javascript
 'use strict';
@@ -49,7 +53,7 @@ var logger     = require('morgan');
 var Path       = require('path');
 
 // Our server start function
-exports.startServer = function startServer(port, path, callback) {
+module.exports = function startServer(port, path, callback) {
   var app = express();
   var server = http.createServer(app);
 
@@ -92,7 +96,6 @@ Then we’ll let our `brunch-config.coffee` know about it, and make the server a
 
 ```coffeescript
 server:
-  path: 'custom-server.js'
   run: yes
 ```
 
@@ -100,8 +103,7 @@ Let’s try watching:
 
 ```sh
 $ brunch w
-02 Mar 12:45:04 - info: starting custom server
-02 Mar 12:45:04 - info: custom server started, initializing watcher
+02 Mar 12:45:04 - info: application started on http://localhost:3333/
 02 Mar 12:45:04 - info: compiled 3 files into 3 files, copied index.html in 269ms
 ```
 

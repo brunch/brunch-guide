@@ -20,20 +20,21 @@ Sur cette base, comment procéder ?  Un plugin Brunch est avant tout **un modul
 ```json
 {
   "name": "git-sha-brunch",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "private": true,
   "peerDependencies": {
-    "brunch": "~1.7"
+    "brunch": "~1.8"
   }
 }
 ```
 
-La partie `peerDependencies` n'est pas obligatoire (elle est même en phase de dépréciation), mais bon…  En revanche, il est communément admis que les plugins Brunch suivent les numéros de versions majeur et mineur du Brunch à partir duquel ils sont compatibles.  Donc si vous ne testez pas en-dessous de 1.7 par exemple, assurez-vous que votre version à vous démarre bien par 1.7.  Remarquez que ça entre en conflit direct avec le *semantic versioning* ([semver](http://semver.org/lang/fr/)), du coup l’équipe de Brunch est en train de réfléchir à une meilleure manière d’exprimer la compatibilité entre le noyau et les plugins.
+La partie `peerDependencies` n'est pas obligatoire (elle est même en phase de dépréciation), mais bon…  En revanche, il est communément admis que les plugins Brunch suivent les numéros de versions majeur et mineur du Brunch à partir duquel ils sont compatibles.  Donc si vous ne testez pas en-dessous de 1.8 par exemple, assurez-vous que votre version à vous démarre bien par 1.8.  Remarquez que ça entre en conflit direct avec le *semantic versioning* ([semver](http://semver.org/lang/fr/)), du coup l’équipe de Brunch est en train de réfléchir à une meilleure manière d’exprimer la compatibilité entre le noyau et les plugins.
 
 Comme on n'a pas précisé de champ `main`, Node supposera que notre point d'entrée est un fichier `index.js`.  On sait qu'un plugin Brunch est un constructeur dont le `prototype` est doté de certaines propriétés, mentionnées plus haut dans cet article :
 
   * `brunchPlugin`, qui doit valoir `true` ;
   * `type`, `extension` ou `pattern` pour pouvoir être consulté au fil de la compilation ;
+  * `preCompile(…)` si on veut exécuter un traitement avant le début de la compilation proprement dite ;
   * `compile(…)`, `lint(…)` ou `optimize(…)`, suivant le rôle ;
   * `onCompile(…)` si on veut n'être notifié qu'en fin de build (même si c'est du *watcher*)
   * `teardown(…)` si on doit faire du nettoyage lorsque Brunch s'arrête (par exemple arrêter un serveur qu'on aurait lancé dans le constructeur).
@@ -150,11 +151,11 @@ Voici comment faire :
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "brunch": "^1.7.20",
+    "brunch": "^1.8.3",
     "jade-brunch": "^1.8.1",
     "javascript-brunch": "^1.7.1",
-    "sass-brunch": "^1.8.9",
-    "git-sha-brunch": "^1.7.0"
+    "sass-brunch": "^1.8.10",
+    "git-sha-brunch": "^1.8.0"
   }
 }
 ```

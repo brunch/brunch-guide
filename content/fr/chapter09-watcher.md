@@ -14,7 +14,7 @@ $ brunch watch    # Ou brunch w, pour les flemmasses
 26 Feb 16:47:14 - info: compiled main.scss into app.css in 71ms
 ```
 
-Brunch a modifié vers sa version 1.7.0 sa couche de surveillance interne, `chokidar`, et utilise désormais un **intervalle de vérification minimal** pour réduire la charge, et cet intervalle est par défaut à **65ms**.  Si je voulais la jouer agressif et réglais `fileListInterval` à `20`, par exemple, ça donnerait ça :
+Brunch a modifié vers sa version 1.7.0, et à nouveau dans sa 1.8.0, la couche de surveillance interne : `chokidar`.  Elle utilise désormais un **intervalle de vérification minimal** pour réduire la charge, et cet intervalle est par défaut à **65ms**.  Si je voulais la jouer agressif et réglais `fileListInterval` à `20`, par exemple, ça donnerait ça :
 
 ```sh
 $ brunch watch
@@ -185,7 +185,7 @@ $ ls -lah public/*.{js,css}
 
 Aaaah, *[much better](https://www.youtube.com/watch?v=mvwd13F_1Gs)*.
 
-Attention, il arrive hélas fréquemment sur Windows (notamment depuis cette mise à jour de `chokidar`, que j'ai évoquée plus haut) que les nouveaux fichiers soient mal détectés, voire que certaines modifs passent à la trappe.  Plus rarement, je l'ai vu arriver sur Linux voire OSX.  Il semble qu'activer le réglage `watcher.usePolling` (à `true`, donc) résolve la majorité de ces problèmes (mais pas tous…).  Ça devrait s'améliorer considérablement avec la 1.8 à venir…
+Attention, il arrive hélas fréquemment sur Windows (notamment depuis cette mise à jour de `chokidar` en 1.7.0, que j'ai évoquée plus haut) que les nouveaux fichiers soient mal détectés, voire que certaines modifs passent à la trappe.  Plus rarement, je l'ai vu arriver sur Linux voire OSX.  Il semble qu'activer le réglage `watcher.usePolling` (à `true`, donc) résolve la majorité de ces problèmes (mais pas tous…).  La 1.8.0 devrait avoir considérablement amélioré ça…
 
 ----
 

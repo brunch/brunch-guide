@@ -29,11 +29,15 @@ Il n’empêche, parfois votre micro-serveur a besoin de **fonctionnalités en p
 
 Nous allons rester simples et utiliser ce bon vieux [Express](http://expressjs.com/), avec le minimum de modules pour fournir notre service.
 
-On fournit un serveur personnalisé à Brunch en renseignant le réglage `server.path`, qui indique un **module** à vous.  Ce module doit **exporter une fonction `startServer(…)`** avec la signature suivante :
+Par défaut, Brunch va détecter un fichier `brunch-server.coffee` ou `brunch-server.js` pour votre **module** de serveur personnalisé.  Vous pouvez toutefois préciser un autre chemin avec le réglage `server.path`.
+
+Ce module doit **exporter une fonction directement** (export par défaut, avec `module.exports = `) dont la signature sera la suivante :
 
 ```js
-startServer(port, path, callback)
+yourFunction(port, path, callback)
 ```
+
+Avant Brunch 1.8, vous deviez exporter une méthode `startServer` sur l’objet d’export.  Ça marche toujours, mais vous devriez adopter la nouvelle approche et exporter la fonction directement comme export par défaut du module.
 
 Lorsque votre serveur a fini de démarrer, il appelle `callback()` pour que **Brunch reprenne la main**.  Le serveur est **automatiquement arrêté** quand le *watcher* de Brunch s’arrête.
 
@@ -49,7 +53,7 @@ var logger     = require('morgan');
 var Path       = require('path');
 
 // Notre fonction de démarrage serveur
-exports.startServer = function startServer(port, path, callback) {
+module.exports = function startServer(port, path, callback) {
   var app = express();
   var server = http.createServer(app);
 
@@ -93,7 +97,6 @@ Puis on modifie notre configuration, en rendant le serveur automatique tant qu�
 
 ```coffeescript
 server:
-  path: 'custom-server.js'
   run: yes
 ```
 
@@ -101,8 +104,7 @@ Tentez un *watcher* :
 
 ```sh
 $ brunch w
-02 Mar 12:45:04 - info: starting custom server
-02 Mar 12:45:04 - info: custom server started, initializing watcher
+02 Mar 12:45:04 - info: application started on http://localhost:3333/
 02 Mar 12:45:04 - info: compiled 3 files into 3 files, copied index.html in 269ms
 ```
 

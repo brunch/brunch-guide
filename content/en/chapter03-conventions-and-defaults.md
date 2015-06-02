@@ -72,7 +72,7 @@ This is a must-have for sane debugging.
 
 Brunch can, out of the box, watch your files and trees in order to **automagically update the build** when changes are detected.  This update is **incremental and super-fast**.  Brunch will log a detailed message telling you what source files changed, what target files got updated, and how long this all took.
 
-Do note that watching is not always 100% reliable, though, usually on Windows, more rarely on Linux or OSX (this is true as of 1.7.20; the next release should have improved things in this regard).  A couple settings can help reduce what rare faux-pas you could see, we’ll explore these later.
+Do note that watching is not always 100% reliable, though, usually on Windows, more rarely on Linux or OSX (this was true as of 1.7.20; 1.8+ should have improved things in this regard).  A couple settings can help reduce what rare faux-pas you could see, we’ll explore these later.
 
 This watching happens when you use the `brunch watch` command instead of the one-shot `brunch build`.
 

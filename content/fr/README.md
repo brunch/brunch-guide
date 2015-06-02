@@ -54,7 +54,7 @@ Ceci est une tentative de fournir un guide raisonnablement complet pour [Brunch]
 
 ## Version de Brunch
 
-Ce guide a été écrit pour Brunch 1.7.20.  Il devrait très bien fonctionner sur toute version 1.7.x, mais aura peut-être besoin d'ajustements pour les versions 1.8 ou 2.0 à venir (en particulier concernant l'intégration avec npm / `node_modules`).
+Ce guide a été écrit pour Brunch 1.8.3.  La majorité du contenu devrait fonctionner dans les versions 1.7.x précédentes, ceci dit ; quoi qu’il en soit, vous devriez mettre à jour !
 
 ## Licence
 

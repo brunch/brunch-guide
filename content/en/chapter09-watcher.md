@@ -14,7 +14,7 @@ $ brunch watch    # Or brunch w, for the lazy…
 26 Feb 16:47:14 - info: compiled main.scss into app.css in 71ms
 ```
 
-Brunch has made significant changes in 1.7.0 to its internal watcher engine, `chokidar`, and now uses a **minimal check interval** to lighten the load even more.  By default, this interval is **65ms**.  If I wanted to be aggressive about it, I could set `fileListInterval` to `20`, for instance, and get this:
+Brunch has made significant changes in 1.7.0 and then again in 1.8.0 to its internal watcher engine, `chokidar`, and now uses a **minimal check interval** to lighten the load even more.  By default, this interval is **65ms**.  If I wanted to be aggressive about it, I could set `fileListInterval` to `20`, for instance, and get this:
 
 ```sh
 26 Feb 16:49:31 - info: compiled 3 files into 3 files, copied index.html in 266ms
@@ -184,7 +184,7 @@ $ ls -lah public/*.{js,css}
 
 Aaaah, [much better](https://www.youtube.com/watch?v=mvwd13F_1Gs).
 
-Be careful though, the current `chokidar` (in Brunch 1.7.x) seems to sometimes have trouble on Windows with detecting new files, occasionally even changes to known files.  I’ve also seen it happen a couple times on Linux or even OSX.  This should go away with upcoming 1.8, but in the meantime, I find switching `watcher.usePolling` to `true` alleviates most of this issue.
+Be careful though, `chokidar` (in Brunch 1.7.x) seemed to sometimes have trouble on Windows with detecting new files, occasionally even changes to known files.  I’ve also seen it happen a couple times on Linux or even OSX.  This should go away starting with 1.8.0, but in the meantime, I find switching `watcher.usePolling` to `true` alleviates most of this issue.
 
 ----
 

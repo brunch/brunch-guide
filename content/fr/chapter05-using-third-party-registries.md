@@ -25,7 +25,7 @@ On installerait alors comme ceci :
 $ bower install --save jquery#1.*
 …
 
-jquery#1.11.2 bower_components/jquery
+jquery#1.11.3 bower_components/jquery
 ```
 
 Cette commande interroge le référentiel de Bower pour obtenir la version la plus récente de jQuery dans la tranche 1.x, l’installe dans le bon dossier local, et met à jour `bower.json` pour refléter le composant fraîchement installé.
