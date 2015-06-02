@@ -134,7 +134,7 @@ $ brunch build
 25 Feb 17:07:20 - info: compiled 2 files into 2 files, copied index.html in 94ms
 ```
 
-Remarquez le temps de build pour ce one-shot : **94 millisecondes**.  Et je suis sur un disque crypté à la volée.
+Remarquez le temps de build pour ce one-shot : **94 millisecondes**.  Et je suis sur un disque chiffré à la volée.
 
 Voyons ce qui a été généré dans `public` :
 
