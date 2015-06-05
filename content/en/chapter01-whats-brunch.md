@@ -131,4 +131,4 @@ With this guide, I’m trying to give you a comprehensive understanding of the p
 
 Now let’s move on to chapter 2!
 
-« • Next: [Getting started with Brunch](chapter02-getting-started.md) »
+« Previous: [Table of contents](https://github.com/brunch/brunch-guide/blob/master/README.md) • Next: [Getting started with Brunch](chapter02-getting-started.md) »
