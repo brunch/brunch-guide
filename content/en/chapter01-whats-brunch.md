@@ -2,6 +2,8 @@
 
 This is part of [The Brunch.io Guide](../../README.md).
 
+![](http://brunch.io/svg/png/brunch-logo-napkin.png)
+
 [Brunch](http://brunch.io/) is a **builder**.  Not a generic task runner, but a **specialized** tool focusing on the production of a small number of deployment-ready files from a large number of heterogenous development files or trees.
 
 This is an **extremely common need among front-end developers** (or front-end designers, for that matter), who most often have the same set of needs: take a tree of LESS/SASS files to produce a small set of minified CSS files, same for JS, same for sprited images, etc.
