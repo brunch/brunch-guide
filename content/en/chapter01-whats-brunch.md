@@ -2,7 +2,7 @@
 
 This is part of [The Brunch.io Guide](../../README.md).
 
-![](http://brunch.io/svg/png/brunch-logo-napkin.png)
+![](http://brunch.io/images/svg/png/brunch-logo-napkin.png)
 
 [Brunch](http://brunch.io/) is a **builder**.  Not a generic task runner, but a **specialized** tool focusing on the production of a small number of deployment-ready files from a large number of heterogenous development files or trees.
 
