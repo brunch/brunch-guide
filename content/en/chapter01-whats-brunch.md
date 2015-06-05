@@ -1,6 +1,6 @@
 # Brunch?!  What’s Brunch?
 
-This is part of [The Brunch.io Guide](../../README.md).
+This is part of [The Brunch.io Guide](../../README.md). Replace gulp / grunt and increase your dev speed.
 
 ![](http://brunch.io/images/svg/png/brunch-logo-napkin.png)
 
