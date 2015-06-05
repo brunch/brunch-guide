@@ -125,7 +125,7 @@ That being said, it looks like 2014 was a renaissance year for Brunch, as develo
 
 So there’s hope!
 
-Personally, I’ve been using Brunch on absolutely every front build I do, from the tiny personal project to the corporate mammoth, ever since 2012.  And **it’s still an absolute joy**.
+Personally, I’ve been using Brunch on absolutely every front build I do, from the tiny personal project to the corporate mammoth, ever since 2012. And **it’s still an absolute joy**.
 
 With this guide, I’m trying to give you a comprehensive understanding of the power of Brunch; I hope this will tease you into trying it out on your next projects, big or small.  And if you come from a Grunt or Gulp background, especially on complex build needs, prepare to be amazed :smile:.
 
