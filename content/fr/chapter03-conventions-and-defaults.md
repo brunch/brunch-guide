@@ -2,11 +2,11 @@
 
 Ceci fait partie du [Guide de Brunch.io](README.md).
 
-Les [docs officielles](https://github.com/brunch/brunch/tree/stable/docs) expliquent bien les bases et conventions pré-établies.  La quasi-totalité peut être modifiée en configuration, pour s'adapter à vos besoins spécifiques d'architecture.
+Les [docs officielles](https://github.com/brunch/brunch/tree/master/docs) expliquent bien les bases et conventions pré-établies.  La quasi-totalité peut être modifiée en configuration, pour s'adapter à vos besoins spécifiques d'architecture.
 
 Gardez donc à l'esprit que ce que je décris dans cette section constitue le fonctionnement **par défaut**, mais pas une obligation.  Ceci dit, plus vous suivrez ces conventions, moins vous aurez de code/configuration à créer et maintenir pour bénéficier des services de Brunch.
 
-Je vous préciserai à chaque fois, de façon succincte, les éléments de ligne de commande ou de configuration qui permettent de quitter ces conventions ; pour tous les détails, [cette page est votre amie](https://github.com/brunch/brunch/blob/stable/docs/config.md).
+Je vous préciserai à chaque fois, de façon succincte, les éléments de ligne de commande ou de configuration qui permettent de quitter ces conventions ; pour tous les détails, [cette page est votre amie](https://github.com/brunch/brunch/blob/master/docs/config.md).
 
 ## Traitements prédéfinis
 

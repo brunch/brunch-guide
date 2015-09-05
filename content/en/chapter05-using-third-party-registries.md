@@ -8,7 +8,7 @@ The big benefit of formal dependency management is that you get to express **fle
 
 At the time of this writing, the Brunch team is hard at work to provide first-class integration with npm, which will greatly ease isomorphic JS and will let us use our `node_modules`-installed code transparently inside our front-end application code, as modules still.  Until then, we’ll need to hack around with the [Browserify plugin for Brunch](https://www.npmjs.com/package/browserify-brunch) plugin.
 
-In the meantime, Bower integration [is already here](https://github.com/brunch/brunch/blob/stable/docs/faq.md#how-to-use-bower).  We could have used that for jQuery, for instance.  If we use the following `bower.json` to describe our project:
+In the meantime, Bower integration [is already here](https://github.com/brunch/brunch/blob/master/docs/faq.md#how-to-use-bower).  We could have used that for jQuery, for instance.  If we use the following `bower.json` to describe our project:
 
 ```json
 {
