@@ -4,7 +4,7 @@ Tous les plugins présentés dans le chapitre précédent sont bien sympa, mais 
 
 Brunch découpe ses plugins en plusieurs catégories : compilateurs, linters, optimiseurs…  Suivant leur catégoriée détectée, ils sont consultés à divers moments du cycle de build, dans différents environnements, etc.
 
-Une doc « API » est [disponible en ligne](https://github.com/brunch/brunch/blob/stable/docs/plugins.md), qui aide pas mal, et puis bien sûr on est libre de consulter le source des plugins existants.  Mais pour vous mettre le pied à l'étrier, on va faire un plugin de type compilateur, qui sera générique quant aux extensions, toutefois.
+Une doc « API » est [disponible en ligne](https://github.com/brunch/brunch/blob/master/docs/plugins.md), qui aide pas mal, et puis bien sûr on est libre de consulter le source des plugins existants.  Mais pour vous mettre le pied à l'étrier, on va faire un plugin de type compilateur, qui sera générique quant aux extensions, toutefois.
 
 Je vous ai parlé tout à l'heure du plugin `git-digest-brunch`, qui injecte dans les fichiers produits le SHA du HEAD à la place du marqueur `?DIGEST` (il vise les URLs des assets).  L’idée est de proposer une sorte de *cache busting*.  Ce plugin n'intervient d'ailleurs qu'en mode production (ou plus exactement que lorsque le réglage `optimize` est actif).
 

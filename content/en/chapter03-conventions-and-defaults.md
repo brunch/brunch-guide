@@ -2,11 +2,11 @@
 
 This is part of [The Brunch.io Guide](../../README.md).
 
-The [official docs](https://github.com/brunch/brunch/tree/stable/docs) do a good job of explaining Brunch’s conventions.  Pretty much all of them can be overridden through configuration, to better fit your specific needs.
+The [official docs](https://github.com/brunch/brunch/tree/master/docs) do a good job of explaining Brunch’s conventions.  Pretty much all of them can be overridden through configuration, to better fit your specific needs.
 
 Do keep in mind that what we’ll be seeing here describes **the default behavior**, nothing is absolutely mandatory.  That being said, the more you follow these conventions, the less code/configuration you’ll have to create and maintain in order to enjoy Brunch’s benefits.
 
-For every section, I will succinctly list the command line options and configuration settings you can use to choose another way; for full details, [this page is your friend](https://github.com/brunch/brunch/blob/stable/docs/config.md).
+For every section, I will succinctly list the command line options and configuration settings you can use to choose another way; for full details, [this page is your friend](https://github.com/brunch/brunch/blob/master/docs/config.md).
 
 ## Built-in processing
 

@@ -8,7 +8,7 @@ Tout l'intérêt d'une gestion de dépendances formelle, c'est qu'on peut exprim
 
 Brunch est en train de bosser dur pour nous fournir une intégration de tout premier ordre avec npm, ce qui facilitera le JS isomorphique et nous permettra d'exploiter nos installations `node_modules` de façon transparente dans notre code applicatif front.  Pour le moment, en revanche, on est contraints de jouer avec le [plugin pour Browserify](https://www.npmjs.com/package/browserify-brunch).
 
-En attendant, l'intégration Bower [est déjà là](https://github.com/brunch/brunch/blob/stable/docs/faq.md#how-to-use-bower).  On aurait pu s'en servir pour jQuery, par exemple.  Si nous utilisons le `bower.json` suivant pour décrire notre projet :
+En attendant, l'intégration Bower [est déjà là](https://github.com/brunch/brunch/blob/master/docs/faq.md#how-to-use-bower).  On aurait pu s'en servir pour jQuery, par exemple.  Si nous utilisons le `bower.json` suivant pour décrire notre projet :
 
 ```json
 {
