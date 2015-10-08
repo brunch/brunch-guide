@@ -62,8 +62,9 @@ If you want to link to another demo repo, this is fine.  Please name it `brunch-
 
 ## Contributors
 
-This section lists all contributors to this repository.
+This section lists contributors to this repository.
 
 * [Christophe Porteneuve](https://github.com/tdd) (original guide, EN and FR)
-* [Elan Shanker](https://github.com/ês128) (review & fine-tuning, official merge)
+* [Elan Shanker](https://github.com/es128) (review & fine-tuning, official merge)
 * [Paul Miller](https://github.com/paulmillr) (review & fine-tuning, official merge)
+* [List of All Contributors](https://github.com/brunch/brunch-guide/graphs/contributors)
