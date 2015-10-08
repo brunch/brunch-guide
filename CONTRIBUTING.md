@@ -28,7 +28,7 @@ Don't know Git?  Or GitHub?  Afraid to do all this?  Then at the very least [fil
 
 ## Coding style
 
-Open source means "you house, your rules" when it comes to code.  In your fixes **and translations**, please follow the same coding standards as the original code.  It's pretty much in sync with the community's dominant style, which mostly boils down to:
+Open source means "your house, your rules" when it comes to code.  In your fixes **and translations**, please follow the same coding standards as the original code.  It's pretty much in sync with the community's dominant style, which mostly boils down to:
 
   * Two-space indent
   * Comma last
