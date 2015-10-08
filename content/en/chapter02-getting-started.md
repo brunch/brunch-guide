@@ -14,7 +14,7 @@ npm install -g brunch
 
 ## Should I use a skeleton?
 
-Brunch emphasizes the concept of **skeleton**.  Unlike generators such as those based on Yeoman, these are just **Git repos suggesting a default infrastructure** for a front-end app using Brunch in development.  There are [a number of existing skeletons](http://brunch.io/skeletons.html), and their main usefuleness lies in providing a **kickstarter** by creating a few folders, pre-requiring dependencies in `package.json` and providing a default Brunch configuration.
+Brunch emphasizes the concept of **skeleton**.  Unlike generators such as those based on Yeoman, these are just **Git repos suggesting a default infrastructure** for a front-end app using Brunch in development.  There are [a number of existing skeletons](http://brunch.io/skeletons.html), and their main usefulness lies in providing a **kickstarter** by creating a few folders, pre-requiring dependencies in `package.json` and providing a default Brunch configuration.
 
 Brunch has a `brunch new` command that you pass a GitHub repo to (or any Git repo URL, for that matter), and an optional clone path.  This is really just a `git clone` followed by an `npm install`…
 
