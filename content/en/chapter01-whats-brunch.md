@@ -97,7 +97,7 @@ And by “fast” I mean **under 300ms**, even for super-heavy use cases.  Actua
 
 This might sound excessive, but as soon as you’re slower than that and reach 2, 3 or even 10 seconds, as is far too often the case with Grunt or Gulp, what do you get?  Developers and designers who spend **more time checking their tool’s console** after each file save than looking at the result of their change in the browser.
 
-The wonders of hot-swapping and live injection of CSS or JS in an open browser page **are useless** if you must first wait several seconds for the build to update.  Even a good ol’ `Alt+Tab` followed by a keyboard-based Refresh quickly trips over itself if it must first wait a while.  **The feedback loop crumbles**, its transmission belt gets stuck.
+The wonders of hot-swapping and live injection of CSS or JS in an open browser page **are useless** if you must first wait several seconds for the build to update.  Even a good ol’ `Alt+Tab` followed by a keyboard-based Refresh quickly trips over itself if it must first wait a while.  **The feedback loop crumbles**; its transmission belt gets stuck.
 
 **Brunch is insanely fast.**
 
