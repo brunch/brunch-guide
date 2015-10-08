@@ -240,7 +240,7 @@ We’ll first stay with the global-variable approach, as a transition thing.  So
 
 ![Global jQuery kinda works](../images/brunch-simple-jquery.png)
 
-The entire jQuery codebase is actually injected as-is between Brunch’s “bootstrapper” code an our own wrapped modules.  Brunch will inject all the files in `vendor`there, in alphabetical order (unless we specify another order in our configuration).
+The entire jQuery codebase is actually injected as-is between Brunch’s “bootstrapper” code and our own wrapped modules.  Brunch will inject all the files in `vendor`there, in alphabetical order (unless we specify another order in our configuration).
 
 ## Getting modular again
 
