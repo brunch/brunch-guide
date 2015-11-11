@@ -93,8 +93,8 @@ There are many tools to help us get there, but having to manually install, setup
   * [`jshint-brunch`](https://www.npmjs.com/package/jshint-brunch) of course, that will run [JSHint](http://jshint.com/) with current settings (e.g. coming from `.jshintrc`) on all our applicative codebase (by default, `app`).  This can operate either in warning mode (log but don’t break the build) or error (stop the build).  Runs in watcher mode as well.
   * [`coffeelint-brunch`](https://www.npmjs.com/package/coffeelint-brunch) for [CoffeeLint](http://www.coffeelint.org/), if you’re going with CoffeeScript.
   * [`jsxhint-brunch`](https://www.npmjs.com/package/jsxhint-brunch) for [JSXHint](https://github.com/STRML/JSXHint/), which can run JSHint over JSX without tripping over markup literals.
-  * Unfortunately no integration (yet!) for [ESLint](http://eslint.org/docs/integrations/), but **why not contribute it** yourself?
-  * No integration either for JSLint, but I sure won’t whine about *that*…
+  * [`eslint-brunch`](https://www.npmjs.com/package/eslint-brunch) for [ESLint](http://eslint.org/), is also available.
+  * No integration for JSLint, but I sure won’t whine about *that*…
 
 A **fast feedback loop** is a must-have when doing web front dev, that lets us see the result of our CSS or JS tweaks nearly instantly in our open browser(s).  There are a few plugins for this, all designed to run in watcher mode:
 
