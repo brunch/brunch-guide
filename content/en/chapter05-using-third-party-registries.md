@@ -55,7 +55,6 @@ Then, edit `brunch-config.coffee` to enable the integration:
 module.exports = config:
   npm:
     enabled: true
-    packages: ['jquery']
 
   files:
     javascripts: joinTo:
@@ -64,17 +63,18 @@ module.exports = config:
     stylesheets: joinTo: 'app.css'
 ```
 
-(Note that at the time being, you have to manually list the packages that should be included into the build.  Other options are being explored, such as automatically figuring this out based on application code.)
+Then, you can simply `require` jQuery in your application code, and Brunch will automatically know to bundle it:
 
-This would expose jQuery as a module so the `require` call still can stay there.
+```javascript
+var $ = require('jquery');
+```
 
-However, it can be a case that you absolutely **must** expose a certain package globally.  To do so, you would add a `globals` definition into the config.  For example, if we wanted to expose jQuery globally as `$`, we would modify the config to look like this:
+However, it can be a case that you absolutely **must** expose a certain package via a global variable.  To do so, you would add a `globals` definition into the config.  For example, if we wanted to expose jQuery globally as `$`, we would modify the config to look like this:
 
 ```coffeescript
 module.exports = config:
   npm:
     enabled: true
-    packages: ['jquery']
     globals:
       $: 'jquery'
 
@@ -91,7 +91,6 @@ Additionally, some packages ship with stylesheets.  To instruct Brunch to add th
 module.exports = config:
   npm:
     enabled: true
-    packages: ['jquery', 'pikaday']
     styles:
       pikaday: ['css/pikaday.css']
 
