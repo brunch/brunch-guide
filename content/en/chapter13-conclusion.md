@@ -1,5 +1,7 @@
 # Conclusion
 
+This is part of [The Brunch.io Guide](../../README.md).
+
 And to think this whole guide was originally supposed to be a reasonably short article (say, 5–6 hours of writing)…  :joy:  But then I kept thinking “Oh dang, I’ve got to mention this and that too!”
 
 I hope you **enjoyed this guide**, and more importantly that it **tentalized you to try out Brunch** instead of your usual build tool, because in the vast majority of situations, it’ll be **simpler, faster, and overall nicer!**
