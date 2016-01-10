@@ -1,5 +1,7 @@
 # Writing a Brunch plugin
 
+This is part of [The Brunch.io Guide](../../README.md).
+
 So the previous chapter listed quite a few cool plugins, but I’m sure you’re already thinking about the shiny new one you’d like to contribute, right?  Fear not, as I’m going to show you how to **write your own Brunch plugin**.
 
 Brunch recognizes several plugin categories: compilers, linters, optimizers…  It detects that category based on which predefined methods you implement.  Depending on that category, you’ll get called at various moments of the build cycle, and in specific environments, too.
