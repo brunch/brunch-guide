@@ -111,7 +111,7 @@ Brunch comes with a built-in **HTTP server** that can serve your target files st
   * Automatic serving of `index.html` on folder URLs or unknown paths (so you can use `pushState` on the client side, mostly).
   * [CORS](http://en.wikipedia.org/wiki/Cross-origin_resource_sharing) headers.
 
-*Customizing: the `server` setting is an obejct that lets you alter every built-in behavior and feature, or go all-out and specify your own custom server module.  The CLI option `-p` (or `--port`) lets you change the listening port from the command line.*
+*Customizing: the `server` setting is an object that lets you alter every built-in behavior and feature, or go all-out and specify your own custom server module.  The CLI option `-p` (or `--port`) lets you change the listening port from the command line.*
 
 ## Plugin loading
 
