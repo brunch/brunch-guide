@@ -28,10 +28,13 @@ Now let’s tell Brunch to add the resulting modules in our app’s JS build, wi
 module.exports = config:
   files:
     javascripts: joinTo:
-      'libraries.js': /^bower_components/
+      'libraries.js': /^node_modules/
       'app.js': /^app/
     stylesheets: joinTo: 'app.css'
     templates: joinTo: 'app.js'
+  npm:
+    globals:
+      jade: 'jade/runtime'
 ```
 
 We can then add our template file, perhaps in `app/views/list.jade`:
