@@ -35,6 +35,7 @@ Brunch is **fundamentally** specialized and geared towards **building assets**, 
   * Categorization of source files: JavaScript, Style sheets, Templates and “miscellanea;”
   * **Smart concatenation** of these files towards one or more target files;
   * **Module wrapping** of JavaScript files;
+  * Handling of front-end devendencies with NPM;
   * Maintenance of all relevant [source maps](http://blog.teamtreehouse.com/introduction-source-maps);
   * **Minification** of resulting files if we’re in “production mode;”
   * **Watching** of source files to update the build on the fly.
