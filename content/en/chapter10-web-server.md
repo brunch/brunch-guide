@@ -7,15 +7,14 @@ Earlier in this guide, I mentioned that the watcher also lets you run a **web se
 There are two ways to run this server:
 
   * **Explicitly** through the command line: `brunch watch --server`, `brunch watch -s` or even `brunch w -s` (for that arcane feel);
-  * **Through the `server` settings** in `brunch-config.coffee`.
+  * **Through the `server` settings** in `brunch-config.js`.
 
 The built-in server is provided through an npm module named `pushserve`, and is therefore a bit more than a bare-bones static file server: it offers CORS headers, systematic routing of unknown paths to `index.html` to make `pushState` easier, and more.
 
 If you want that server to **always run** when the watcher starts, you just need to add this to your configuration:
 
-```coffeescript
-server:
-  run: yes
+```javascript
+server: {run: true}
 ```
 
 If you want a **different port** than 3333, you can use the `-p` or `--port` CLI option, or the `server.port` setting.
@@ -29,7 +28,7 @@ This is great already, but sometimes you’ll need **a few more features**, if o
 
 We’ll keep it simple and use good ol’ [Express](http://expressjs.com/), with the minimum set of modules we need to achieve this.
 
-By default, Brunch will look for a `brunch-server.coffee` or `brunch-server.js` file for your custom server module, but you can use a different path with the `server.path` setting.
+By default, Brunch will look for a `brunch-server.js` or `brunch-server.coffee` file for your custom server module, but you can use a different path with the `server.path` setting.
 
 This module must **directly export a function** (default export, using `module.exports = `) with the following signature:
 
@@ -41,7 +40,7 @@ Before Brunch 1.8, you had to export a `startServer` method on your exported obj
 
 When your server is up and ready ([to serve](http://www.thanatosrealms.com/war2/sounds/humans/peasant/ready.wav), ha ha), it calls `callback()` so **Brunch can resume its work**.  The server is **automatically stopped** when Brunch’s watcher terminates.
 
-Here’s our example server.  I could have written it in CoffeeScript, but in order to remain readable by everyone, I went with vanilla JS.  I put this in the expected `brunch-server.js` file.
+Here’s our example server.  I put this in the expected `brunch-server.js` file.
 
 ```javascript
 'use strict';
@@ -92,11 +91,10 @@ For this to work, you must first add the necessary modules in your `package.json
 $ npm install --save-dev express body-parser morgan
 ```
 
-Then we’ll let our `brunch-config.coffee` know about it, and make the server auto-run in watch mode, too:
+Then we’ll let our `brunch-config.js` know about it, and make the server auto-run in watch mode, too:
 
-```coffeescript
-server:
-  run: yes
+```javascript
+server: {run: true}
 ```
 
 Let’s try watching:
@@ -155,9 +153,8 @@ All good! (づ￣ ³￣)づ
 
 A final setting you can use is `server.command`, which basically replaces all the other `server` settings: it lets you define a custom server-running command line, in case you want to write your own server using another tech, such as PHP, Ruby or Python…  You could go something like this:
 
-```coffeescript
-server:
-  command: "php -S 0.0.0.0:3000 -t public"
+```javascript
+server: {command: "php -S 0.0.0.0:3000 -t public"}
 ```
 
 ----

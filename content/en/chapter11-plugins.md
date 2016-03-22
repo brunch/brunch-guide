@@ -24,7 +24,7 @@ It’s worth noting that **plugin order matters** (as in, the order in which the
 
 ## Fine-tuning through optional configuration
 
-Every plugin is usually designed to be **operational and useful without any configuration**; that being said, it’s often possible to tweak their behavior through specific configuration.  These settings are defined inside `brunch-config.coffee`, under the `plugins` key and a subkey named after the plugin.
+Every plugin is usually designed to be **operational and useful without any configuration**; that being said, it’s often possible to tweak their behavior through specific configuration.  These settings are defined inside `brunch-config.js`, under the `plugins` key and a subkey named after the plugin.
 
 For instance, the [`appcache-brunch`](https://www.npmjs.com/package/appcache-brunch) plugin looks for `plugins.appcache`.  Most often, key names are trivial to infer, but they can stray from an exact match, or opt for camel case…  Just like [`browser-sync-brunch`](https://www.npmjs.com/package/browser-sync-brunch) that looks for `plugins.browserSync`.  Check out the plugin’s documentation to be sure!
 

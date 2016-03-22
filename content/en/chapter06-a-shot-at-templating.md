@@ -22,19 +22,24 @@ Let’s start by installing the plugin:
 npm install --save-dev jade-brunch
 ```
 
-Now let’s tell Brunch to add the resulting modules in our app’s JS build, with a new line at the end of our `brunch-config.coffee`file:
+Now let’s tell Brunch to add the resulting modules in our app’s JS build, with a new line at the end of our `brunch-config.js`file:
 
-```coffeescript
-module.exports = config:
-  files:
-    javascripts: joinTo:
-      'libraries.js': /^node_modules/
-      'app.js': /^app/
-    stylesheets: joinTo: 'app.css'
-    templates: joinTo: 'app.js'
-  npm:
-    globals:
+```javascript
+module.exports = {
+  files: {
+    javascripts: {joinTo:
+      'app.js': /^app/,
+      'libraries.js': /^(?!app)/
+    },
+    stylesheets: {joinTo: 'app.css'},
+    templates: {joinTo: 'app.js'}
+  },
+  npm: {
+    globals: {
       jade: 'jade/runtime'
+    }
+  }
+}
 ```
 
 We can then add our template file, perhaps in `app/views/list.jade`:
@@ -55,7 +60,7 @@ All set!  Using it inside our `application.js` is straightforward:
 var App = {
   items: ['Learn Brunch', 'Apply to my projects', '…', 'Profit!'],
 
-  init: function init() {
+  init: function() {
     var tmpl = require('views/list');
     var html = tmpl({ items: App.items });
     $('body').append(html);

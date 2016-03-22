@@ -64,7 +64,7 @@ To contribute translations, check out our [guidelines](CONTRIBUTING.md).
 
 ## Brunch version
 
-This guide was written against Brunch 2.4.x/2.3.x.  Most of it works in earlier versions, though; still, you should upgrade!
+This guide was written against Brunch 2.5.  Most of it works in earlier versions, though; still, you should upgrade!
 
 ## License
 

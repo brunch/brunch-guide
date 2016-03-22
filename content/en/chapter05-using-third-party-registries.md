@@ -16,15 +16,18 @@ $ npm install --save jquery
 
 This command looks up the NPM registry for the latest jQuery version, installs it in the proper local directory, and updates `package.json` to reflect the newly installed component.
 
-We then can strip `jquery.js` from our `app`.  In order to retain the split targets we had in the previous chapter, we need to adjust our `brunch-config.coffee` so regexes match the new file layout:
+We then can strip `jquery.js` from our `app`.  In order to retain the split targets we had in the previous chapter, we need to adjust our `brunch-config.js` so regexes match the new file layout:
 
-```coffeescript
-module.exports = config:
-  files:
-    javascripts: joinTo:
-      'libraries.js': /^(?!app\/)/
+```javascript
+module.exports = {
+  files: {
+    javascripts: {joinTo:
+      'libraries.js': /^(?!app\/)/,
       'app.js': /^app\//
-    stylesheets: joinTo: 'app.css'
+    },
+    stylesheets: {joinTo: 'app.css'}
+  }
+}
 ```
 
 Then, you can simply `require` jQuery in your application code, and Brunch will automatically know to bundle it:
@@ -39,32 +42,38 @@ Rebuild, refresh: it works!
 
 It can be a case that you absolutely **must** expose a certain package via a global variable.  To do so, you would add a `globals` definition into the config.  For example, if we wanted to expose jQuery globally as `$`, we would modify the config to look like this:
 
-```coffeescript
-module.exports = config:
-  npm:
-    globals:
-      $: 'jquery'
+```javascript
+module.exports = {
+  npm: {globals: {
+    $: 'jquery'
+  }},
 
-  files:
-    javascripts: joinTo:
-      'libraries.js': /^(?!app\/)/
+  files: {
+    javascripts: {joinTo:
+      'libraries.js': /^(?!app\/)/,
       'app.js': /^app\//
-    stylesheets: joinTo: 'app.css'
+    },
+    stylesheets: {joinTo: 'app.css'}
+  }
+}
 ```
 
 Additionally, some packages ship with stylesheets.  To instruct Brunch to add these into the build, use the `styles` property in the npm config.  For example, if we installed the Pikaday package and wanted to include its styles, we'd adjust the config like this:
 
-```coffeescript
-module.exports = config:
-  npm:
-    styles:
-      pikaday: ['css/pikaday.css']
+```javascript
+module.exports = {
+  npm: {styles: {
+    pikaday: ['css/pikaday.css']
+  }},
 
-  files:
-    javascripts: joinTo:
-      'libraries.js': /^(?!app\/)/
+  files: {
+    javascripts: {joinTo:
+      'libraries.js': /^(?!app\/)/,
       'app.js': /^app\//
-    stylesheets: joinTo: 'app.css'
+    },
+    stylesheets: {joinTo: 'app.css'}
+  }
+}
 ```
 
 Unlike with bower, npm packages don't normally point to the css files that should be included so you do have to manually specify these.

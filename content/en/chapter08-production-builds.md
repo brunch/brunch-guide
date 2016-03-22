@@ -8,28 +8,33 @@ You specify what environment to run in through the `-e` or `--env` CLI option, f
 
 More importantly, you can **alter settings based on the environment**, through the root settings key `overrides`.  In it, you can have one key per environment, each with replacements (overrides…) for any general settings you may have.  The official docs use an example that actually reflects the **default production settings**:
 
-```coffeescript
-overrides:
-  production:
-    optimize: true
-    sourceMaps: false
-    plugins: autoReload: enabled: false
+```javascript
+overrides: {
+  production: {
+    optimize: true,
+    sourceMaps: false,
+    plugins: {autoReload: {enabled: false}},
+  }
+}
 ```
 
 Personally I like my sourcemaps no matter what, so I would override defaults like so:
 
-```coffeescript
-overrides:
-  production:
+```javascript
+overrides: {
+  production: {
     sourceMaps: true
+  }
+}
 ```
 
 Please note that you don't have to use `overrides` to tweak your settings in **development** mode. This is Brunch's default mode, so there is nothing to override. You can just add your setting to the top level of your config file. To pick up the example from above and enable the `optimize` setting for development builds:
 
-```coffeescript
-module.exports = config:
+```javascript
+module.exports = {
   optimize: true
   ...
+}
 ```
 
 ----
