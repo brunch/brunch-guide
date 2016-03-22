@@ -25,12 +25,10 @@ The exact nature of the concatenated files depends on the **installed plugins**,
 
 Brunch will look for its configuration in the first of the following files it finds in the current directory:
 
-* **`brunch-config.coffee`**
-* `brunch-config.js`
+* **`brunch-config.js`**
+* `brunch-config.coffee`
 
-Note how CoffeeScript is favored (Brunch is written in CoffeeScript, then transpiled to JS on each release); historically, Brunch looked for `config.*` files, but that quickly proved to be too generic a name, so it now favors the more explicit ones.
-
-If you don’t know any CoffeeScript, **don’t panic**: the vast majority of the time, this will be nothing but a big object (JSON style), so CoffeeScript will “just” spare you the noise of curlies, commas and quotes.  It looks pretty much like YAML, all clean and concise :grin:.
+Historically, Brunch looked for `config.*` files, but that quickly proved to be too generic a name, so it now favors the more explicit ones.
 
 *Customizing: a CLI option used to let you specify a config file, but that is deprecated in favor of a single file with per-environment overrides, something we'll illustrate in a later chapter.*
 
