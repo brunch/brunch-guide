@@ -114,20 +114,22 @@ simple-brunch@0.1.0 …
 └── sass-brunch@1.8.10
 ```
 
-Finally, we need a minimal **Brunch configuration**.  A Brunch configuration file is just a Node module that exports a `config` property; that property has at least a `files` property that describes concatenations.  Here’s our `brunch-config.coffee`:
+Finally, we need a minimal **Brunch configuration**.  A Brunch configuration file is just a Node module that exports at least a `files` property that describes concatenations.  Here’s our `brunch-config.js`:
 
-```coffeescript
-module.exports = config:
-  files:
-    javascripts: joinTo: 'app.js'
-    stylesheets: joinTo: 'app.css'
+```javascript
+module.exports = {
+  files: {
+    javascripts: {joinTo: 'app.js'},
+    stylesheets: {joinTo: 'app.css'}
+  }
+}
 ```
 
 And yes, **that’s it!** :grin:
 
 ## Our first build
 
-OK, let’s go for our first build.  From the app’s root directory, where `brunch-config.coffee` is (at the same level as `app`) just do:
+OK, let’s go for our first build.  From the app’s root directory, where `brunch-config.js` is (at the same level as `app`) just do:
 
 ```
 $ brunch build
@@ -272,15 +274,18 @@ A common recommendation here is to **put your third-party libraries in a separat
 
 Here’s a sample Brunch configuration that achieves this split; because our third-party code is not currently grouped in a special directory, but just slapped casually at the root of our watched path for their module names to stay simple (we’ll learn how to set that up in a more flexible way later), we’ll list them explicitly, here through a regex.
 
-This is our updated `brunch-config.coffee`:
+This is our updated `brunch-config.js`:
 
-```coffeescript
-module.exports = config:
-  files:
-    javascripts: joinTo:
-      'libraries.js': /^app[\\\/]jquery\.js/
+```javascript
+module.exports = {
+  files: {
+    javascripts: {joinTo:
+      'libraries.js': /^app[\\\/]jquery\.js/,
       'app.js': /^(?!app[\\\/]jquery\.js)/
-    stylesheets: joinTo: 'app.css'
+    },
+    stylesheets: {joinTo: 'app.css'}
+  }
+}
 ```
 
 As soon as you have multiple targets, your `joinTo` properties become objects mapping a target name (the property key) with a description of matching sources (the property value).  These descriptions are [anymatch sets](https://github.com/es128/anymatch#anymatch--), which can be specific names, globbings, regexes, predicate functions, or an array mixing any of these.  In short, it’s super flexible.
@@ -290,7 +295,7 @@ For this to still work, you’ll need to adjust the bottom of your `index.html` 
 ```html
 <script src="libraries.js"></script>
 <script src="app.js"></script>
-<script>require('application').init();</script>
+<script>require("application").init();</script>
 ```
 
 ----
