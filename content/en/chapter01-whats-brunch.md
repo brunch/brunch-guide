@@ -32,12 +32,12 @@ Furthermore, any task—and even any background processing, such as watching fil
 
 Brunch is **fundamentally** specialized and geared towards **building assets**, these files that get used in the end by your runtime platform, usually a web browser.  It thus comes pre-equipped with a number of behaviors and features.  You’ll most notably get:
 
-  * Categorization of source files: JavaScript, Style sheets, Templates and “miscellanea;”
+  * Categorization of source files: JavaScript, Style sheets, Templates and “miscellanea”;
   * **Smart concatenation** of these files towards one or more target files;
   * **Module wrapping** of JavaScript files;
   * Handling of front-end dependencies with NPM;
   * Maintenance of all relevant [source maps](http://blog.teamtreehouse.com/introduction-source-maps);
-  * **Minification** of resulting files if we’re in “production mode;”
+  * **Minification** of resulting files if we’re in “production mode”;
   * **Watching** of source files to update the build on the fly.
 
 All these features are here already because this is a specialized tool, yet they remain **super-easy to use** (most of the time, they’re actually automatic) thanks to a nifty set of conventions, that we’ll explore later on.
@@ -114,7 +114,7 @@ Broccoli remains on the fringe, even if it occasionally gets some spotlight.
 
 And Brunch?  Brunch never made the news much.  It’s alive and kickin’, has an **extremely loyal user base**, and just about anyone I show it to switches quite quickly to it: after 3+ years of teaching advanced JS and front-end dev or Node.js, this is still the first thing my trainees apply back at work on the next Monday :smile:.  And every time I present on [Dev Avengers](https://www.youtube.com/watch?v=2Dl9ES6IC3c), people ogle…
 
-Still, Brunch remains discreet.  With 4,000 GitHub stars (43% of Grunt’s), 270+ forks and 4+ years of active existence, it’s no small project, it’s just… discreet.
+Still, Brunch remains discreet.  With 5,100 GitHub stars (48% of Grunt’s), 360+ forks and 5+ years of active existence, it’s no small project, it’s just… discreet.
 
 That being said, it looks like 2014 was a renaissance year for Brunch, as developer mindshare goes.  [Various](http://alxhill.com/blog/articles/brunch-coffeescript-angular/) [articles](http://blog.jetbrains.com/webstorm/2014/06/the-brunch-build-tool/) got published. 3 years after its birth, people seemed to suddenly realize Brunch was there.  To wit:
 
