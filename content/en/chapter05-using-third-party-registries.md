@@ -21,9 +21,11 @@ We then can strip `jquery.js` from our `app`.  In order to retain the split targ
 ```javascript
 module.exports = {
   files: {
-    javascripts: {joinTo:
-      'libraries.js': /^(?!app\/)/,
-      'app.js': /^app\//
+    javascripts: {
+      joinTo: {
+        'libraries.js': /^(?!app\/)/,
+        'app.js': /^app\//
+      }
     },
     stylesheets: {joinTo: 'app.css'}
   }
@@ -49,9 +51,11 @@ module.exports = {
   }},
 
   files: {
-    javascripts: {joinTo:
-      'libraries.js': /^(?!app\/)/,
-      'app.js': /^app\//
+    javascripts: {
+      joinTo: {
+        'libraries.js': /^(?!app\/)/,
+        'app.js': /^app\//
+      }
     },
     stylesheets: {joinTo: 'app.css'}
   }
@@ -67,9 +71,11 @@ module.exports = {
   }},
 
   files: {
-    javascripts: {joinTo:
-      'libraries.js': /^(?!app\/)/,
-      'app.js': /^app\//
+    javascripts: {
+      joinTo: {
+        'libraries.js': /^(?!app\/)/,
+        'app.js': /^app\//
+      }
     },
     stylesheets: {joinTo: 'app.css'}
   }

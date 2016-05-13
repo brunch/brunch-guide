@@ -279,9 +279,11 @@ This is our updated `brunch-config.js`:
 ```javascript
 module.exports = {
   files: {
-    javascripts: {joinTo:
-      'libraries.js': /^app[\\\/]jquery\.js/,
-      'app.js': /^(?!app[\\\/]jquery\.js)/
+    javascripts: {
+      joinTo: {
+        'libraries.js': /^app[\\\/]jquery\.js/,
+        'app.js': /^(?!app[\\\/]jquery\.js)/
+        }
     },
     stylesheets: {joinTo: 'app.css'}
   }
