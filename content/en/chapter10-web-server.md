@@ -17,7 +17,7 @@ If you want that server to **always run** when the watcher starts, you just need
 server: {run: true}
 ```
 
-If you want a **different port** than 3333, you can use the `-p` or `--port` CLI option, or the `server.port` setting.
+If you want a **different port** than 3333, you can use the `-P` or `--port` CLI option, or the `server.port` setting.
 
 ## Writing your custom server
 
