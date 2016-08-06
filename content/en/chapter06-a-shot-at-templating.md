@@ -26,19 +26,21 @@ Now let’s tell Brunch to add the resulting modules in our app’s JS build, wi
 
 ```javascript
 module.exports = {
-  files: {
-    javascripts: {joinTo:
-      'app.js': /^app/,
-      'libraries.js': /^(?!app)/
-    },
-    stylesheets: {joinTo: 'app.css'},
-    templates: {joinTo: 'app.js'}
-  },
-  npm: {
-    globals: {
-      jade: 'jade/runtime'
+    files: {
+        javascripts: {
+            joinTo: {
+                'app.js': '/^app/',
+                'libraries.js': '/^(?!app)/'
+            },
+            stylesheets: { joinTo: 'app.css' },
+            templates: { joinTo: 'app.js' }
+        },
+        npm: {
+            globals: {
+                jade: 'jade/runtime'
+            }
+        }
     }
-  }
 }
 ```
 
