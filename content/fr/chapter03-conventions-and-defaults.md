@@ -6,7 +6,7 @@ Les [docs officielles](https://github.com/brunch/brunch/tree/master/docs) expliq
 
 Gardez donc à l'esprit que ce que je décris dans cette section constitue le fonctionnement **par défaut**, mais pas une obligation.  Ceci dit, plus vous suivrez ces conventions, moins vous aurez de code/configuration à créer et maintenir pour bénéficier des services de Brunch.
 
-Je vous préciserai à chaque fois, de façon succincte, les éléments de ligne de commande ou de configuration qui permettent de quitter ces conventions ; pour tous les détails, [cette page est votre amie](https://github.com/brunch/brunch/blob/master/docs/config.md).
+Je vous préciserai à chaque fois, de façon succincte, les éléments de ligne de commande ou de configuration qui permettent de quitter ces conventions ; pour tous les détails, [cette page est votre amie](http://brunch.io/docs/config).
 
 ## Traitements prédéfinis
 
