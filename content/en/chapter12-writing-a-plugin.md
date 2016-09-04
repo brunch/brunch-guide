@@ -66,9 +66,9 @@ class GitShaPlugin {
   // On-the-fly compilation callback (file by file); assumes Brunch already
   // accepted that file for our plugin by checking `type`, `extension` and
   // `pattern`.
-  compile(params, callback) {
+  compile(file) {
     // No transformation for now
-    callback(null, params);
+    return Promise.resolve(file);
   }
 }
 
