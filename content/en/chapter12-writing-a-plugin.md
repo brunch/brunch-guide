@@ -6,7 +6,7 @@ So the previous chapter listed quite a few cool plugins, but I’m sure you’re
 
 Brunch recognizes several plugin categories: compilers, linters, optimizers…  It detects that category based on which predefined methods you implement.  Depending on that category, you’ll get called at various moments of the build cycle, and in specific environments, too.
 
-The [online API docs](https://github.com/brunch/brunch/blob/master/docs/plugins.md) are not too bad, and then of course you can browse the source code for existing plugins to see how *they* pull it off.  In order to get your feet wet, we’ll make a compiler-type plugin—that’ll apply regardless of file extensions, though.
+The [online API docs](http://brunch.io/docs/plugins) are not too bad, and then of course you can browse the source code for existing plugins to see how *they* pull it off.  In order to get your feet wet, we’ll make a compiler-type plugin—that’ll apply regardless of file extensions, though.
 
 Earlier in this chapter I mentioned the `git-digest-brunch` plugin, that scans the resulting files for `?DIGEST` markers and replaces them with your Git HEAD’s SHA1: it’s trying to invalidate asset URLs for cache-busting purposes.  This plugin is confined to production mode, too (more specifically, it requires the `optimize` setting to be enabled).
 
