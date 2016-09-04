@@ -111,7 +111,7 @@ We get this information by running a `git rev-parse --short HEAD` as a command l
 Here’s our small helper function:
 
 ```javascript
-const exec = require('child_process').exec;
+const {exec} = require('child_process');
 
 function getSHA(callback) {
   exec('git rev-parse --short HEAD', function(err, stdout) {
