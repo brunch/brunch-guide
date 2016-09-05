@@ -49,29 +49,31 @@ So here’s our skeleton `index.js` file:
 "use strict";
 
 // Default marker.  Can be configured via `plugins.gitSHA.marker`.
-var DEFAULT_MARKER = 'GIT-SHA';
-
-function GitShaPlugin(config) {
-  // 1. Build `pattern` from config
-
-  // 2. Precompile the marker regexp from config
-}
-
-// Tell Brunch we are indeed a plugin for it
-GitShaPlugin.prototype.brunchPlugin = true;
-
-// On-the-fly compilation callback (file by file); assumes Brunch already
-// accepted that file for our plugin by checking `type`, `extension` and
-// `pattern`.
-GitShaPlugin.prototype.compile = function processMarkers(params, callback) {
-  // No transformation for now
-  callback(null, params);
-};
+const DEFAULT_MARKER = 'GIT-SHA';
 
 // Helper: escapes any regex-special character
 function escapeRegex(str) {
   return String(str).replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
 }
+
+class GitShaPlugin {
+  constructor(config) {
+    // 1. Build `pattern` from config
+
+    // 2. Precompile the marker regexp from config
+  }
+
+  // On-the-fly compilation callback (file by file); assumes Brunch already
+  // accepted that file for our plugin by checking `type`, `extension` and
+  // `pattern`.
+  compile(file) {
+    // No transformation for now
+    return Promise.resolve(file);
+  }
+}
+
+// Tell Brunch we are indeed a plugin for it
+GitShaPlugin.prototype.brunchPlugin = true;
 
 // The plugin has to be the module’s default export
 module.exports = GitShaPlugin;
@@ -82,8 +84,8 @@ Alright!  Let’s start with the constructor.  We don’t mandate a specific fil
 Because we are dependent on paths, not extensions, we need access to the configuration, so we can dynamically build our filters from it.  That makes for the following code at the beginning of the constructor:
 
 ```javascript
-var pattern = config.paths.watched.map(escapeRegex).join('|');
-pattern = '^(?:' + pattern + ')/(?!assets/).+';
+let pattern = config.paths.watched.map(escapeRegex).join('|');
+pattern = `^(?:${pattern})/(?!assets/).+`;
 this.pattern = new RegExp(pattern, 'i');
 ```
 
@@ -92,8 +94,8 @@ This way, the default watched paths (`['app', 'vendor', 'test']`) yield the foll
 Now on to the marker.  The code to get it is a bit simpler:
 
 ```javascript
-var marker = (config.plugins.gitSHA || {}).marker || DEFAULT_MARKER;
-this.marker = new RegExp('!' + escapeRegex(marker) + '!', 'g');
+let marker = (config.plugins.gitSHA || {}).marker || DEFAULT_MARKER;
+this.marker = new RegExp(`!${escapeRegex(marker)}!`, 'g');
 ```
 
 We’re certain that `config.plugins` exists, even if it’s an empty object.  So its `gitSHA` property might be `undefined`, hence the `|| {}` to guarantee an object, even if empty.  We grab `marker` from it, again possibly `undefined`, which would result in `DEFAULT_MARKER`.  But if the setting’s defined, we get it.
@@ -109,6 +111,8 @@ We get this information by running a `git rev-parse --short HEAD` as a command l
 Here’s our small helper function:
 
 ```javascript
+const {exec} = require('child_process');
+
 function getSHA(callback) {
   exec('git rev-parse --short HEAD', function(err, stdout) {
     callback(err, err ? null : stdout.trim());
@@ -119,15 +123,14 @@ function getSHA(callback) {
 Finally, we write the processing proper:
 
 ```javascript
-GitShaPlugin.prototype.compile = function processMarkers(params, callback) {
-  var self = this;
-  getSHA(function(err, sha) {
+compile(params, callback) {
+  getSHA((err, sha) => {
     if (!err) {
-      params.data = params.data.replace(self.marker, sha);
+      params.data = params.data.replace(this.marker, sha);
     }
     callback(err, params);
   });
-};
+}
 ```
 
 And *voilà!*
