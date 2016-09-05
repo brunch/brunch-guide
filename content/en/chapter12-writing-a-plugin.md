@@ -123,12 +123,13 @@ function getSHA(callback) {
 Finally, we write the processing proper:
 
 ```javascript
-compile(params, callback) {
-  getSHA((err, sha) => {
-    if (!err) {
-      params.data = params.data.replace(this.marker, sha);
-    }
-    callback(err, params);
+compile(file) {
+  return new Promise((resolve, reject) => {
+    getSHA((err, sha) => {
+      if (err) return reject(err);
+      file.data = file.data.replace(this.marker, sha);
+      resolve(file);
+    });
   });
 }
 ```
