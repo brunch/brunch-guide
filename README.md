@@ -6,7 +6,7 @@ This is an attempt at a comprehensive guide to [Brunch](http://brunch.io/), an e
 
 Is your English reading not so good? Check out our [translations](#translations).
 
-For a short 8-minute version that allows to learn 90% of Brunch features take a look at Brunches [official micro guide](https://github.com/brunch/brunch/blob/master/docs/README.md).
+For a short 8-minute version that allows to learn 90% of Brunch features take a look at Brunches [official micro guide](http://brunch.io/docs/getting-started).
 
 ## Table of Contents
 
