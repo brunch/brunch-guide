@@ -14,7 +14,7 @@ This **avoids littering your JS** with template code, as is too often seen with 
 
 From a code editor standpoint, having separate files also means we usually get better syntax highlighting.
 
-We’re going to use [Jade](http://jade-lang.com/) because, well, Jade is very nice.  If you already do a lot of Ember, you might want to check out [Emblem](http://emblemjs.com/) too, that ties Ember and Jade-style code nicely together.
+We’re going to use [Pug](https://pugjs.org/api/getting-started.html) because, well, Jade is very nice.  If you already do a lot of Ember, you might want to check out [Emblem](http://emblemjs.com/) too, that ties Ember and Jade-style code nicely together.
 
 Let’s start by installing the plugin:
 
