@@ -12,7 +12,7 @@ So far we’ve started from scratch, which allowed us to lay out our codebase in
 
 Item 1 determines how you’ll set `paths.watched`, to describe the base path(s) you’ll be building from and watching.  The default value is `['app', 'test', 'vendor']`, but you’ll likely want to change that.  Another setting is `conventions.assets`, that defines what folders get copy-pasted as-is, and `conventions.vendor`, that specifies what directories contain JS not to be wrapped in modules, if any (be careful if you go with Bower: the components it installs are never wrapped).
 
-Item 2 impacts which **Brunch plugins** you’ll need to use.  It’s absolutely possible to mix-and-match multiple options for a given type of source; for instance, when I use Bootstrap, I like to go with its SASS source, to make it easier for me to tweak and theme it, usually through `_variables.scss`.  But for my own styling, I favor Stylus, so I often have both `sass-brunch` and `stylus-brunch` installed.
+Item 2 impacts which **Brunch plugins** you’ll need to use.  It’s absolutely possible to mix-and-match multiple options for a given type of source; for instance, when I use [Bootstrap](http://getbootstrap.com/), I like to go with [its SASS source](http://getbootstrap.com/css/#sass), to make it easier for me to tweak and theme it, usually through `_variables.scss`.  But for my own styling, I favor [Stylus](http://stylus-lang.com/), so I often have both `sass-brunch` and `stylus-brunch` installed.
 
 If my app uses client-side MVC, I’ll always try to keep my templates apart in their own files, so I’ll go with `jade-brunch` or `dust-linkedin-brunch` to transparently turn these into modules exporting a unique rendering function resulting from template precompilation.
 
