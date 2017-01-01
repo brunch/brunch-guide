@@ -37,7 +37,7 @@ module.exports = {
         },
         npm: {
             globals: {
-                jade: 'jade/runtime'
+                $: 'jquery'
             }
         }
     }
