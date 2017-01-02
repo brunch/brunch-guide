@@ -14,9 +14,9 @@ This **avoids littering your JS** with template code, as is too often seen with 
 
 From a code editor standpoint, having separate files also means we usually get better syntax highlighting.
 
-We’re going to use [Jade](http://jade-lang.com/) because, well, Jade is very nice.  If you already do a lot of Ember, you might want to check out [Emblem](http://emblemjs.com/) too, that ties Ember and Jade-style code nicely together.
+We’re going to use [Pug](https://pugjs.org/api/getting-started.html) ([formerly known as Jade](https://github.com/pugjs/pug/issues/2184)) because, well, it is very nice.  If you already do a lot of Ember, you might want to check out [Emblem](http://emblemjs.com/) too, that ties Ember and Pug-style code nicely together.
 
-Let’s start by installing the plugin:
+Let’s start by installing the plugin for Pug ([that hasn't been renamed from jade-brunch yet](https://github.com/pugjs/pug/issues/2184)):
 
 ```sh
 npm install --save-dev jade-brunch
@@ -37,7 +37,7 @@ module.exports = {
         },
         npm: {
             globals: {
-                jade: 'jade/runtime'
+                $: 'jquery'
             }
         }
     }
