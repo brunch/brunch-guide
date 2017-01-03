@@ -34,7 +34,7 @@ CSS-related plugins feature a `type` of `"stylesheet"` on their prototype, and u
 
   * [`css-brunch`](https://www.npmjs.com/package/css-brunch), for vanilla (W3C) CSS files;
   * [`cssnext-brunch`](https://www.npmjs.com/package/cssnext-brunch), targeting upcoming evolutions (CSS4+, etc.) thanks to [cssnext](https://cssnext.github.io/);
-  * [`less-brunch`](https://www.npmjs.com/package/less-brunch) and [`sass-brunch`](https://www.npmjs.com/package/sass-brunch), obviously, along with [`compass-brunch`](https://www.npmjs.com/package/compass-brunch) that delegates to Compass for aficionados of stuff that is… er… heavyweight?!
+  * [`less-brunch`](https://www.npmjs.com/package/less-brunch) and [`sass-brunch`](https://www.npmjs.com/package/sass-brunch) for [Less](http://lesscss.org/) and [Sass](http://sass-lang.com/). `sass-brunch` also comes with [Compass](http://compass-style.org/) support.
   * [`stylus-brunch`](https://www.npmjs.com/package/stylus-brunch) for [Stylus](http://learnboost.github.com/stylus/), my personal favorite;
   * There are various Swiss-army knives for CSS; they get plugins, such as [`rework-brunch`](https://github.com/bolasblack/rework-brunch) for [rework](https://github.com/reworkcss/rework), [`pleeease-brunch`](https://www.npmjs.com/package/pleeease-brunch) for [pleeease](http://pleeease.io/) or [`postcss-brunch`](https://www.npmjs.com/package/postcss-brunch) for [PostCSS](https://github.com/postcss/postcss).
   * [`autoprefixer-brunch`](https://www.npmjs.com/package/autoprefixer-brunch) focuses on auto-prefixing rules using the aptly-named [autoprefixer](https://github.com/postcss/autoprefixer), which is part of PostCSS, by the way.
