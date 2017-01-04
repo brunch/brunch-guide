@@ -33,11 +33,9 @@ For instance, the [`appcache-brunch`](https://www.npmjs.com/package/appcache-bru
 CSS-related plugins feature a `type` of `"stylesheet"` on their prototype, and usually provide a specific value for their `extension` property.  These are mostly *transpilers*, what Brunch generically refers to as *compilers*.  At the time of this writing, the main ones are:
 
   * [`css-brunch`](https://www.npmjs.com/package/css-brunch), for vanilla (W3C) CSS files;
-  * [`cssnext-brunch`](https://www.npmjs.com/package/cssnext-brunch), targeting upcoming evolutions (CSS4+, etc.) thanks to [cssnext](https://cssnext.github.io/);
   * [`less-brunch`](https://www.npmjs.com/package/less-brunch) and [`sass-brunch`](https://www.npmjs.com/package/sass-brunch) for [Less](http://lesscss.org/) and [Sass](http://sass-lang.com/). `sass-brunch` also comes with [Compass](http://compass-style.org/) support.
   * [`stylus-brunch`](https://www.npmjs.com/package/stylus-brunch) for [Stylus](http://learnboost.github.com/stylus/), my personal favorite;
   * There are various Swiss-army knives for CSS; they get plugins, such as [`rework-brunch`](https://github.com/bolasblack/rework-brunch) for [rework](https://github.com/reworkcss/rework), [`pleeease-brunch`](https://www.npmjs.com/package/pleeease-brunch) for [pleeease](http://pleeease.io/) or [`postcss-brunch`](https://www.npmjs.com/package/postcss-brunch) for [PostCSS](https://github.com/postcss/postcss).
-  * [`autoprefixer-brunch`](https://www.npmjs.com/package/autoprefixer-brunch) focuses on auto-prefixing rules using the aptly-named [autoprefixer](https://github.com/postcss/autoprefixer), which is part of PostCSS, by the way.
   * When it comes to *coding style*, [CSSComb](http://csscomb.com/) is nice and offers plugins for builders, including [`csscomb-brunch`](https://www.npmjs.com/package/csscomb-brunch).
 
 ## Brunch and JavaScript
@@ -50,9 +48,8 @@ This is a similar landscape to CSS, except `type` is now `"javascript"`.  I’ll
   * In the same corner, but way less popular, you can get [`LiveScript-brunch`](https://www.npmjs.com/package/LiveScript-brunch) for [LiveScript](http://gkz.github.io/LiveScript/), [`ember-script-brunch`](https://www.npmjs.com/package/ember-script-brunch) for the rather niche [EmberScript](https://github.com/ghempton/ember-script), [`roy-brunch`](https://www.npmjs.com/package/roy-brunch) for the *even more niche* [Roy](http://roy.brianmckenna.org/) and [`typescript-brunch`](https://www.npmjs.com/package/typescript-brunch) for the vastly better-known [TypeScript](http://www.typescriptlang.org/).
   * Subtler stuff: [`wisp-brunch`](https://www.npmjs.com/package/wisp-brunch) handles [Wisp](https://github.com/Gozala/wisp), a kind of ClojureScript, and [`sweet-js-brunch`](https://www.npmjs.com/package/sweet-js-brunch) opens the heavenly doors of “hygienic macros” thanks to [sweet.js](http://sweetjs.org/).
 
-And just because this is 2015 after all, you’ll find a bunch of options for automatic JSX (React) processing and ES6 goodness:
+And just because this is 2017 after all, you’ll find a bunch of options for automatic JSX (React) processing and ES6 goodness:
 
-  * [`react-brunch`](https://www.npmjs.com/package/react-brunch) auto-compiles `.jsx` *via* React;
   * [`es6-module-transpiler-brunch`](https://www.npmjs.com/package/es6-module-transpiler-brunch) focuses on the native ES6 module syntax (the future!);
   * [`traceur-brunch`](https://www.npmjs.com/package/traceur-brunch) and [`babel-brunch`](https://www.npmjs.com/package/babel-brunch) let you use a ton of ES6 features.  Currently, [Babel](https://babeljs.io/) (formerly 6to5 + CoreJS) is [solidly ahead](http://kangax.github.io/compat-table/es6/#babel) when it comes to feature coverage, and what’s more, it can handle JSX too!
 
