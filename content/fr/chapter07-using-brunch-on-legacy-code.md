@@ -51,16 +51,20 @@ Si cela vous dérange, vous devrez fournir une fonction de calcul de nom de modu
 
 Par exemple, dans notre formation [JS Total](http://www.js-attitude.fr/js-total/), nous souhaitons isoler les bibliothèques tierces dans `app/externals/`, et préserver leurs noms longs par-dessus le marché (genre `jquery-1.11.2-min.js` et `moment-2.2.1-fr.js`), mais voulons conserver des **noms de modules simples** (du genre `"jquery"` et `"moment"`).  On a donc le code suivant dans `brunch-config.coffee` :
 
-```coffeescript
-modules:
-  nameCleaner: (path) ->
-    path
-      # Strip app/ and app/externals/ prefixes
-      .replace /^app\/(?:externals\/)?/, ''
-      # Allow -x.y[.z…] version suffixes in mantisses
-      .replace /-\d+(?:\.\d+)+/, ''
-      # Allow -fr lang suffixes in mantisses
-      .replace '-fr.', '.'
+```js
+module.exports = {
+  modules: {
+    nameCleaner(path) {
+      return path
+        // Strip app/ and app/externals/ prefixes
+        .replace(/^app\/(?:externals\/)?/, '')
+        // Allow -x.y[.z…] version suffixes in mantisses
+        .replace(/-\d+(?:\.\d+)+/, '')
+        // Allow -fr lang suffixes in mantisses
+        .replace('-fr.', '.')
+    }
+  }
+}
 ```
 
 Tranquille…

@@ -78,10 +78,10 @@ h1 {
 `app/application.js` :
 
 ```js
-"use strict";
+'use strict';
 
-var App = {
-  init: function init() {
+const App = {
+  init() {
     console.log('App initialized.');
   }
 };
@@ -116,11 +116,13 @@ simple-brunch@0.1.0 …
 
 Il nous faut à présent une **configuration Brunch** minimale.  Un fichier de configuration Brunch est un module Node qui exporte une propriété `config`, laquelle a, au minimum, besoin de la propriété `files` pour connaître les concaténations à effectuer.  Voici notre `brunch-config.coffee` :
 
-```coffeescript
-module.exports = config:
-  files:
-    javascripts: joinTo: 'app.js'
-    stylesheets: joinTo: 'app.css'
+```js
+module.exports = {
+  files: {
+    javascripts: {joinTo: 'app.js'},
+    stylesheets: {joinTo: 'app.css'}
+  }
+}
 ```
 
 Oui, **c'est tout** ! :grin:
@@ -226,10 +228,10 @@ Imaginons à présent que nous souhaitions utiliser jQuery, ou une autre bibliot
 Supposons que notre `application.js` attend en fait le chargement du DOM pour injecter son contenu en fin de `<body>` :
 
 ```js
-"use strict";
+'use strict';
 
-var App = {
-  init: function init() {
+const App = {
+  init() {
     $('body').append('App initialized.');
   }
 };
@@ -252,12 +254,12 @@ Déplaçons d'abord le `jquery.js` de `vendor` vers `app`, pour qu'il soit bien 
 Puis, ajustons `application.js` pour requérir explicitement jQuery, tant qu'à faire sous le nom local `$` (oui, local, souvenez-vous : on est dans un module, donc nos déclarations sont privées).  Regardez la ligne 3 :
 
 ```js
-"use strict";
+'use strict';
 
-var $ = require('jquery');
+const $ = require('jquery');
 
-var App = {
-  init: function init() {
+const App = {
+  init() {
     $('body').append('App initialized.');
   }
 };
@@ -275,13 +277,18 @@ Voici un exemple de configuration Brunch qui permet cela ; comme nos codes tier
 
 Voici notre `brunch-config.coffee` mis à jour :
 
-```coffeescript
-module.exports = config:
-  files:
-    javascripts: joinTo:
-      'libraries.js': /^app\/jquery\.js/
-      'app.js': /^(?!app\/jquery\.js)/
-    stylesheets: joinTo: 'app.css'
+```js
+module.exports = {
+  files: {
+    javascripts: {
+      joinTo: {
+        'libraries.js': /^app\/jquery\.js/,
+        'app.js': /^(?!app\/jquery\.js)/
+      }
+    },
+    stylesheets: {joinTo: 'app.css'}
+  }
+}
 ```
 
 Dès qu'on a plusieurs cibles, nos `joinTo` deviennent des objets qui mettent en correspondance un nom de cible (les noms de propriétés) avec une description des sources (les valeurs de propriétés).  Ces descriptions sont des [ensembles anymatch](https://github.com/es128/anymatch#anymatch--), à savoir des chemins spécifiques ou à base de *globbing*, des expressions rationnelles, des fonctions de prédicat, ou un tableau de ces composants (qui peuvent être mélangés).  Bref, c'est super flexible.

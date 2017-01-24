@@ -24,14 +24,17 @@ npm install --save-dev jade-brunch
 
 Indiquons ensuite à Brunch d'incorporer les modules résultats dans notre JS concaténé applicatif :
 
-```coffeescript
-module.exports = config:
-  files:
-    javascripts: joinTo:
-      'libraries.js': /^bower_components/
+```js
+module.exports = {
+  files: {
+    javascripts: {joinTo: {
+      'libraries.js': /^bower_components/,
       'app.js': /^app/
+    }},
     stylesheets: joinTo: 'app.css'
-    templates: joinTo: 'app.js'
+  },
+  templates: {joinTo: 'app.js'}
+}
 ```
 
 À présent ajoutons notre template, par exemple dans `app/views/list.jade` :
@@ -46,15 +49,17 @@ ul#mainTodo.tasks
 
 L’utilisation au sein de notre `application.js` est super simple :
 
-```javascript
+```js
 "use strict";
 
-var App = {
+const $ = require('jquery');
+
+const App = {
   items: ['Learn Brunch', 'Apply to my projects', '…', 'Profit!'],
 
-  init: function init() {
-    var tmpl = require('views/list');
-    var html = tmpl({ items: App.items });
+  init() {
+    const tmpl = require('views/list');
+    const html = tmpl({ items: App.items });
     $('body').append(html);
   }
 };

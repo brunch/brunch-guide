@@ -32,13 +32,16 @@ Cette commande interroge le référentiel de Bower pour obtenir la version la pl
 
 On peut désormais retirer le `jquery.js` de notre `app`.  On va ajuster `brunch-config.coffee` pour qu'il colle toujours nos éléments dans deux cibles distinctes, sachant que les *regexes* de tout à l'heure ne sont plus adaptées :
 
-```coffeescript
-module.exports = config:
-  files:
-    javascripts: joinTo:
-      'libraries.js': /^(?!app\/)/
+```js
+module.exports = {
+  files: {
+    javascripts: {joinTo: {
+      'libraries.js': /^(?!app\/)/,
       'app.js': /^app\//
-    stylesheets: joinTo: 'app.css'
+    }},
+    stylesheets: {joinTo: 'app.css'}
+  }
+}
 ```
 
 Qui plus est, c'est Bower, donc **ça n'expose pas de modules (ಥ﹏ಥ)**.  On ajuste notre `app/application.js` pour supposer à nouveau que `$` est global, en retirant la ligne `require(…)` (bleuargh).

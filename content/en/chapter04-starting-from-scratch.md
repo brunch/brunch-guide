@@ -77,11 +77,11 @@ h1 {
 
 `app/application.js`:
 
-```javascript
-"use strict";
+```js
+'use strict';
 
-var App = {
-  init: function init() {
+const App = {
+  init() {
     console.log('App initialized.');
   }
 };
@@ -116,7 +116,7 @@ simple-brunch@0.1.0 …
 
 Finally, we need a minimal **Brunch configuration**.  A Brunch configuration file is just a Node module that exports at least a `files` property that describes concatenations.  Here’s our `brunch-config.js`:
 
-```javascript
+```js
 module.exports = {
   files: {
     javascripts: {joinTo: 'app.js'},
@@ -174,7 +174,7 @@ h1 {
 
 Not too shabby.  What about `app.js`?  It starts with Brunch’s “bootstrapper,” less than a hundred lines of JS code that provide module management and `require(…)` logic, then we get our modules, neatly wrapped.  Here are lines 93 and below, check out the `require.register(…)` plumbing for module registration:
 
-```javascript
+```js
 require.register("application", function(exports, require, module) {
 "use strict";
 
@@ -226,11 +226,11 @@ Now let’s say we want to use jQuery, or another library.  If we already have c
 
 Let’s say our `application.js` needs to inject content at the end of the `<body>`:
 
-```javascript
-"use strict";
+```js
+'use strict';
 
-var App = {
-  init: function init() {
+const App = {
+  init() {
     $('body').append('App initialized.');
   }
 };
@@ -252,13 +252,13 @@ Let’s just move `jquery.js` from `vendor` to `app`, so it gets wrapped as a mo
 
 Next, let’s adjust our `application.js` so it explicitly requires `jquery`, using the idiomatic `$` name for it locally (yes, locally: we’re in a module, remember?).  See line 3 here:
 
-```javascript
-"use strict";
+```js
+'use strict';
 
-var $ = require('jquery');
+const $ = require('jquery');
 
-var App = {
-  init: function init() {
+const App = {
+  init() {
     $('body').append('App initialized.');
   }
 };
@@ -276,14 +276,14 @@ Here’s a sample Brunch configuration that achieves this split; because our thi
 
 This is our updated `brunch-config.js`:
 
-```javascript
+```js
 module.exports = {
   files: {
     javascripts: {
       joinTo: {
         'libraries.js': /^app\/jquery\.js/,
         'app.js': /^(?!app\/jquery\.js)/
-        }
+      }
     },
     stylesheets: {joinTo: 'app.css'}
   }

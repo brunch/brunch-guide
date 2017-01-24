@@ -24,23 +24,23 @@ npm install --save-dev jade-brunch
 
 Now let’s tell Brunch to add the resulting modules in our app’s JS build, with a new line at the end of our `brunch-config.js`file:
 
-```javascript
+```js
 module.exports = {
-    files: {
-        javascripts: {
-            joinTo: {
-                'app.js': '/^app/',
-                'libraries.js': '/^(?!app)/'
-            },
-            stylesheets: { joinTo: 'app.css' },
-            templates: { joinTo: 'app.js' }
-        },
-        npm: {
-            globals: {
-                $: 'jquery'
-            }
-        }
+  files: {
+    javascripts: {
+      joinTo: {
+          'app.js': '/^app/',
+          'libraries.js': '/^(?!app)/'
+      },
+      stylesheets: { joinTo: 'app.css' },
+      templates: { joinTo: 'app.js' }
+    },
+    npm: {
+      globals: {
+          $: 'jquery'
+      }
     }
+  }
 }
 ```
 

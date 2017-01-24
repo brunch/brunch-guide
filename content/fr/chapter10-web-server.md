@@ -13,9 +13,11 @@ Le serveur par défaut est fourni en fait par le module npm [`pushserve`](https:
 
 Si vous souhaitez **toujours lancer** ce serveur quand le *watcher* démarre, il vous suffit de rajouter à la configuration le réglage suivant :
 
-```coffeescript
-server:
-  run: yes
+```js
+module.exports = {
+  server: {run: true}
+  // ...
+}
 ```
 
 Si vous voulez **un port différent** de 3333, renseignez aussi le réglage `server.port` avec le numéro.
@@ -46,19 +48,19 @@ Voici notre serveur d’exemple.  Il aurait pu être écrit en CoffeeScript, mai
 ```js
 'use strict';
 
-var bodyParser = require('body-parser');
-var express    = require('express');
-var http       = require('http');
-var logger     = require('morgan');
-var Path       = require('path');
+const bodyParser = require('body-parser');
+const express    = require('express');
+const http       = require('http');
+const logger     = require('morgan');
+const Path       = require('path');
 
 // Notre fonction de démarrage serveur
 module.exports = function startServer(port, path, callback) {
-  var app = express();
-  var server = http.createServer(app);
+  const app = express();
+  const server = http.createServer(app);
 
   // Stockage en mémoire des entrées gérées via REST
-  var items = [];
+  const items = [];
 
   // Middlewares de base : fichiers statiques, logs, champs de formulaire
   app.use(express.static(Path.join(__dirname, path)));
@@ -66,13 +68,13 @@ module.exports = function startServer(port, path, callback) {
   app.use(bodyParser.urlencoded({ extended: true }));
 
   // GET `/items` -> JSON du tableau des entrées
-  app.get('/items', function(req, res) {
+  app.get('/items', (req, res) => {
     res.json(items);
   });
 
   // POST `/items` -> Ajout d’une entrée d’après le champ `title`
-  app.post('/items', function(req, res) {
-    var item = (req.body.title || '').trim();
+  app.post('/items', (req, res) => {
+    const item = (req.body.title || '').trim();
     if (!item) {
       return res.status(400).end('Nope!');
     }
@@ -95,9 +97,10 @@ $ npm install --save-dev express body-parser morgan
 
 Puis on modifie notre configuration, en rendant le serveur automatique tant qu’à faire :
 
-```coffeescript
-server:
-  run: yes
+```js
+module.exports = {
+  server: {run: true}
+}
 ```
 
 Tentez un *watcher* :
@@ -110,20 +113,20 @@ $ brunch w
 
 Remarquez les infos sur le serveur personnalisé.  Tentez un accès à `localhost:3333` désormais : ça marche !  Histoire de tester ça, modifions notre `application.js` pour qu’il utilise l’API exposée par le serveur :
 
-```javascript
-"use strict";
+```js
+'use strict';
 
-var count = 0;
+const count = 0;
 
-var App = {
+const App = {
   items: ['Learn Brunch', 'Apply to my projects', '…', 'Profit!'],
 
-  init: function init() {
-    var tmpl = require('views/list');
-    var html = tmpl({ items: App.items });
+  init() {
+    const tmpl = require('views/list');
+    const html = tmpl({ items: App.items });
     $('body').append(html);
 
-    $.each(App.items, function(i, item) { requestItem(item); });
+    App.items.forEach(item => requestItem(item));
   }
 };
 
@@ -131,11 +134,11 @@ function requestItem(item) {
   $.ajax('/items', {
     type: 'post',
     data: { title: item },
-    success: function(res) {
-      console.log('Successfully posted entry “' + item + '”: ' + res);
+    success: res => {
+      console.log(`Successfully posted entry “${item}”: ${res}`);
 
       if (++count === App.items.length) {
-        $.getJSON('/items', function(res) {
+        $.getJSON('/items', res => {
           console.log('Successfully fetched back entries:', res);
         });
       }
@@ -156,9 +159,13 @@ Tout roule ! (づ￣ ³￣)づ
 
 Un dernier réglage serveur qui mérite d’être mentionné : `server.command`, qui remplace en fait tous les autres réglages de `server`.  Il vous permet de spécifier une ligne de commande qui lancera votre serveur personnalisé, lequel peut donc utiliser une autre technique que Node, telle que PHP, Ruby ou Python…  Vous pourriez par exemple utiliser un truc de ce genre :
 
-```coffeescript
-server:
-  command: "php -S 0.0.0.0:3000 -t public"
+```js
+module.exports = {
+  server: {
+    command: "php -S 0.0.0.0:3000 -t public"
+  }
+  // ...
+}
 ```
 
 ----
