@@ -33,25 +33,25 @@ For instance, the [`appcache-brunch`](https://www.npmjs.com/package/appcache-bru
 CSS-related plugins feature a `type` of `"stylesheet"` on their prototype, and usually provide a specific value for their `extension` property.  These are mostly *transpilers*, what Brunch generically refers to as *compilers*.  At the time of this writing, the main ones are:
 
   * [`css-brunch`](https://www.npmjs.com/package/css-brunch), for vanilla (W3C) CSS files;
-  * [`less-brunch`](https://www.npmjs.com/package/less-brunch) and [`sass-brunch`](https://www.npmjs.com/package/sass-brunch) for [Less](http://lesscss.org/) and [Sass](http://sass-lang.com/). `sass-brunch` also comes with [Compass](http://compass-style.org/) support.
+  * [`less-brunch`](https://www.npmjs.com/package/less-brunch) and [`sass-brunch`](https://www.npmjs.com/package/sass-brunch) for [Less](http://lesscss.org/) and [Sass](http://sass-lang.com/). `sass-brunch` also comes with [Compass](http://compass-style.org/) support out of the box.
   * [`stylus-brunch`](https://www.npmjs.com/package/stylus-brunch) for [Stylus](http://learnboost.github.com/stylus/), my personal favorite;
-  * There are various Swiss-army knives for CSS; they get plugins, such as [`rework-brunch`](https://github.com/bolasblack/rework-brunch) for [rework](https://github.com/reworkcss/rework), [`pleeease-brunch`](https://www.npmjs.com/package/pleeease-brunch) for [pleeease](http://pleeease.io/) or [`postcss-brunch`](https://www.npmjs.com/package/postcss-brunch) for [PostCSS](https://github.com/postcss/postcss).
+  * There are various Swiss-army knives for CSS; they get plugins, such as
+  [`postcss-brunch`](https://www.npmjs.com/package/postcss-brunch) for [PostCSS](https://github.com/postcss/postcss), [`pleeease-brunch`](https://www.npmjs.com/package/pleeease-brunch) for [pleeease](http://pleeease.io/) or  [`rework-brunch`](https://github.com/bolasblack/rework-brunch) for [rework](https://github.com/reworkcss/rework).
   * When it comes to *coding style*, [CSSComb](http://csscomb.com/) is nice and offers plugins for builders, including [`csscomb-brunch`](https://www.npmjs.com/package/csscomb-brunch).
 
 ## Brunch and JavaScript
 
 This is a similar landscape to CSS, except `type` is now `"javascript"`.  I’ll talk about linters later, but sticking with *transpilers* we’re pretty well stocked already:
 
-  * [`javascript-brunch`](https://www.npmjs.com/package/javascript-brunch) for vanilla (ES3/5, ECMA-262 standards) JS;
-  * [`coffee-script-brunch`](https://www.npmjs.com/package/coffee-script-brunch), of course, and even [`iced-coffee-script-brunch`](https://www.npmjs.com/package/iced-coffee-script-brunch) for hotheads;
   * [`json-brunch`](https://www.npmjs.com/package/json-brunch), so you can use JSON files directly as modules;
+  * [`coffee-script-brunch`](https://www.npmjs.com/package/coffee-script-brunch), of course, and even [`iced-coffee-script-brunch`](https://www.npmjs.com/package/iced-coffee-script-brunch) for hotheads;
   * In the same corner, but way less popular, you can get [`LiveScript-brunch`](https://www.npmjs.com/package/LiveScript-brunch) for [LiveScript](http://gkz.github.io/LiveScript/), [`ember-script-brunch`](https://www.npmjs.com/package/ember-script-brunch) for the rather niche [EmberScript](https://github.com/ghempton/ember-script), [`roy-brunch`](https://www.npmjs.com/package/roy-brunch) for the *even more niche* [Roy](http://roy.brianmckenna.org/) and [`typescript-brunch`](https://www.npmjs.com/package/typescript-brunch) for the vastly better-known [TypeScript](http://www.typescriptlang.org/).
   * Subtler stuff: [`wisp-brunch`](https://www.npmjs.com/package/wisp-brunch) handles [Wisp](https://github.com/Gozala/wisp), a kind of ClojureScript, and [`sweet-js-brunch`](https://www.npmjs.com/package/sweet-js-brunch) opens the heavenly doors of “hygienic macros” thanks to [sweet.js](http://sweetjs.org/).
 
 And just because this is 2017 after all, you’ll find a bunch of options for automatic JSX (React) processing and ES6 goodness:
 
-  * [`es6-module-transpiler-brunch`](https://www.npmjs.com/package/es6-module-transpiler-brunch) focuses on the native ES6 module syntax (the future!);
-  * [`traceur-brunch`](https://www.npmjs.com/package/traceur-brunch) and [`babel-brunch`](https://www.npmjs.com/package/babel-brunch) let you use a ton of ES6 features.  Currently, [Babel](https://babeljs.io/) (formerly 6to5 + CoreJS) is [solidly ahead](http://kangax.github.io/compat-table/es6/#babel) when it comes to feature coverage, and what’s more, it can handle JSX too!
+  * [`babel-brunch`](https://www.npmjs.com/package/babel-brunch) let you use a ton of ES6 features.  Currently, [Babel](https://babeljs.io/) (formerly 6to5 + CoreJS) is [solidly ahead](http://kangax.github.io/compat-table/es6/#babel) when it comes to feature coverage, and what’s more, it can handle JSX too!
+  * [`traceur-brunch`](https://www.npmjs.com/package/traceur-brunch) transpiler by Google.
 
 ## Brunch and templates
 
@@ -87,10 +87,10 @@ There are many tools to help us get there, but having to manually install, setup
 
 **Linters** first:
 
+  * [`eslint-brunch`](https://www.npmjs.com/package/eslint-brunch) for [ESLint](http://eslint.org/) give you ability to lint your JavaScript with tons of new fancy ES201X features.
   * [`jshint-brunch`](https://www.npmjs.com/package/jshint-brunch) of course, that will run [JSHint](http://jshint.com/) with current settings (e.g. coming from `.jshintrc`) on all our applicative codebase (by default, `app`).  This can operate either in warning mode (log but don’t break the build) or error (stop the build).  Runs in watcher mode as well.
   * [`coffeelint-brunch`](https://www.npmjs.com/package/coffeelint-brunch) for [CoffeeLint](http://www.coffeelint.org/), if you’re going with CoffeeScript.
   * [`jsxhint-brunch`](https://www.npmjs.com/package/jsxhint-brunch) for [JSXHint](https://github.com/STRML/JSXHint/), which can run JSHint over JSX without tripping over markup literals.
-  * [`eslint-brunch`](https://www.npmjs.com/package/eslint-brunch) for [ESLint](http://eslint.org/), is also available.
   * No integration for JSLint, but I sure won’t whine about *that*…
 
 A **fast feedback loop** is a must-have when doing web front dev, that lets us see the result of our CSS or JS tweaks nearly instantly in our open browser(s).  There are a few plugins for this, all designed to run in watcher mode:

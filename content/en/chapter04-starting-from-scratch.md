@@ -172,7 +172,7 @@ h1 {
 /*# sourceMappingURL=app.css.map*/
 ```
 
-Not too shabby.  What about `app.js`?  It starts with Brunch’s “bootstrapper,” less than a hundred lines of JS code that provide module management and `require(…)` logic, then we get our modules, neatly wrapped.  Here are lines 93 and below, check out the `require.register(…)` plumbing for module registration:
+Not too shabby.  What about `app.js`?  It starts with Brunch’s “bootstrapper”, less than a hundred lines of JS code that provide module management and `require(…)` logic, then we get our modules, neatly wrapped.  Here are lines 93 and below, check out the `require.register(…)` plumbing for module registration:
 
 ```js
 require.register("application", function(exports, require, module) {
