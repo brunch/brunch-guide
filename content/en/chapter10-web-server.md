@@ -49,10 +49,10 @@ Here’s our example server.  I put this in the expected `brunch-server.js` file
 'use strict';
 
 const bodyParser = require('body-parser');
-const express    = require('express');
-const http       = require('http');
-const logger     = require('morgan');
-const Path       = require('path');
+const express = require('express');
+const http = require('http');
+const logger = require('morgan');
+const Path = require('path');
 
 // Our server start function
 module.exports = function startServer(port, path, callback) {

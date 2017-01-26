@@ -49,10 +49,10 @@ Voici notre serveur d’exemple.  Il aurait pu être écrit en CoffeeScript, mai
 'use strict';
 
 const bodyParser = require('body-parser');
-const express    = require('express');
-const http       = require('http');
-const logger     = require('morgan');
-const Path       = require('path');
+const express = require('express');
+const http = require('http');
+const logger = require('morgan');
+const Path = require('path');
 
 // Notre fonction de démarrage serveur
 module.exports = function startServer(port, path, callback) {
