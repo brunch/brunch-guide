@@ -94,7 +94,7 @@ This way, the default watched paths (`['app', 'vendor', 'test']`) yield the foll
 Now on to the marker.  The code to get it is a bit simpler:
 
 ```js
-let marker = (config.plugins.gitSHA || {}).marker || DEFAULT_MARKER;
+const {marker = DEFAULT_MARKER} = config.plugins.gitSHA;
 this.marker = new RegExp(`!${escapeRegex(marker)}!`, 'g');
 ```
 

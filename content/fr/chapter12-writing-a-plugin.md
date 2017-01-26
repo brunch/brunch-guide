@@ -92,7 +92,7 @@ Ainsi, les chemins par défaut (`['app', 'vendor', 'test']`) donneront l'express
 À présent le marqueur.  Le code sera un poil plus simple :
 
 ```js
-let marker = (config.plugins.gitSHA || {}).marker || DEFAULT_MARKER;
+const {marker = DEFAULT_MARKER} = config.plugins.gitSHA;
 this.marker = new RegExp(`!${escapeRegex(marker)}!`, 'g');
 ```
 
