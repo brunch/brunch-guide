@@ -35,8 +35,7 @@ de clé sont triviaux à deviner, mais ça peut varier, utiliser la casse Camel 
 Les plugins orientés CSS ont sur leur prototype le type `"stylesheet"`, et généralement une valeur spécifique pour `extension`.  Ce sont principalement des *transpilers*, ce que Brunch appelle génériquement des *compilers*.  À l'heure où j'écris ces lignes, on trouve notamment :
 
   * [`css-brunch`](https://www.npmjs.com/package/css-brunch), pour la gestion des CSS « nues » (celles du W3C) ;
-  * [`cssnext-brunch`](https://www.npmjs.com/package/cssnext-brunch), qui vise les évolutions en cours (CSS4+, etc.) grâce à [cssnext](https://cssnext.github.io/) ;
-  * [`less-brunch`](https://www.npmjs.com/package/less-brunch) et [`sass-brunch`](https://www.npmjs.com/package/sass-brunch), évidemment, ainsi que [`compass-brunch`](https://www.npmjs.com/package/compass-brunch) qui délègue à Compass pour ceux qui aiment les trucs un peu… euh… lourds ?!
+  * [`less-brunch`](https://www.npmjs.com/package/less-brunch) et [`sass-brunch`](https://www.npmjs.com/package/sass-brunch).
   * [`stylus-brunch`](https://www.npmjs.com/package/stylus-brunch) pour [Stylus](http://learnboost.github.com/stylus/), mon p’tit chéri ;
   * Divers outils essaient de jouer les couteaux suisses à CSS ; on trouve des plugins pour eux, par exemple [`rework-brunch`](https://github.com/bolasblack/rework-brunch) pour [rework](https://github.com/reworkcss/rework), [`pleeease-brunch`](https://www.npmjs.com/package/pleeease-brunch) pour [pleeease](http://pleeease.io/) ou encore [`postcss-brunch`](https://www.npmjs.com/package/postcss-brunch)pour [PostCSS](https://github.com/postcss/postcss).
   * [`autoprefixer-brunch`](https://www.npmjs.com/package/autoprefixer-brunch) se concentre sur l'auto-préfixage des règles à l'aide du bien-nommé [autoprefixer](https://github.com/postcss/autoprefixer), qui fait justement partie de PostCSS.
@@ -46,7 +45,6 @@ Les plugins orientés CSS ont sur leur prototype le type `"stylesheet"`, et gén
 
 Paysage similaire aux CSS, mais pour un `type` valant `"javascript"`.  Je vous parlerai des *linters* plus loin, mais côté *transpilers*, on est déjà grave servis :
 
-  * [`javascript-brunch`](https://www.npmjs.com/package/javascript-brunch) pour du JS « nu » (ES3/5, standards ECMA-262) ;
   * [`coffee-script-brunch`](https://www.npmjs.com/package/coffee-script-brunch), évidemment, et [`iced-coffee-script-brunch`](https://www.npmjs.com/package/iced-coffee-script-brunch) pour les têtes brulées ;
   * [`json-brunch`](https://www.npmjs.com/package/json-brunch), pour utiliser directement des fichiers JSON comme modules ;
   * dans le même univers, mais infiniment moins usité, on trouvera [`LiveScript-brunch`](https://www.npmjs.com/package/LiveScript-brunch) pour [LiveScript](http://gkz.github.io/LiveScript/), [`ember-script-brunch`](https://www.npmjs.com/package/ember-script-brunch) pour le plutôt niche [EmberScript](https://github.com/ghempton/ember-script), [`roy-brunch`](https://www.npmjs.com/package/roy-brunch) pour le *encore plus niche* [Roy](http://roy.brianmckenna.org/) et [`typescript-brunch`](https://www.npmjs.com/package/typescript-brunch) pour le déjà nettement plus populaire [TypeScript](http://www.typescriptlang.org/) (David & David, c’est vous que je regarde !).
@@ -54,9 +52,8 @@ Paysage similaire aux CSS, mais pour un `type` valant `"javascript"`.  Je vous p
 
 Et parce qu'on est quand même en 2015, hein, on trouve aussi une gestion automatique des JSX de React et plusieurs voies pour ES6 :
 
-  * [`react-brunch`](https://www.npmjs.com/package/react-brunch) qui auto-compile les `.jsx` via React ;
-  * [`es6-module-transpiler-brunch`](https://www.npmjs.com/package/es6-module-transpiler-brunch) pour gérer seulement la syntaxe de modules d'ES6 (c'est l'avenir !) ;
   * [`traceur-brunch`](https://www.npmjs.com/package/traceur-brunch) et [`babel-brunch`](https://www.npmjs.com/package/babel-brunch) pour accéder à un maximum d’ES6.  Actuellement, [Babel](https://babeljs.io/) (anciennement 6to5 + CoreJS) a [nettement l'avantage](http://kangax.github.io/compat-table/es6/#babel) côté taux de prise en charge du standard, et en plus, il intègre directement JSX !
+  * [`es6-module-transpiler-brunch`](https://www.npmjs.com/package/es6-module-transpiler-brunch) pour gérer seulement la syntaxe de modules d'ES6 (c'est l'avenir !) ;
 
 ## Brunch et les templates
 

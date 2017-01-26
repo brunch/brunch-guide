@@ -124,7 +124,7 @@ That being said, it looks like 2014 was a renaissance year for Brunch, as develo
 
 <blockquote class="twitter-tweet" data-conversation="none" data-cards="hidden" data-partner="tweetdeck"><p><a href="https://twitter.com/Ken_Stanley">@Ken_Stanley</a> Just discovered brunch.io today too which makes life even easier.</p>&mdash; Hugh Durkin (@hughdurkin) <a href="https://twitter.com/hughdurkin/status/553993540070830080">January 10, 2015</a></blockquote>
 
-So there’s hope!
+So there’s a hope!
 
 Personally, I’ve been using Brunch on absolutely every front build I do, from the tiny personal project to the corporate mammoth, ever since 2012. And **it’s still an absolute joy**.
 

@@ -49,18 +49,21 @@ If that doesn’t cut it for you, you can provide a custom name-computing functi
 
 For instance, in one of my JS training classes, I have this situation where I wrap third-party libraries in modules but want to group them inside my `app/externals` directory, and also retain version and language info in their filenames (so I have, say, `jquery-1.11.2-min.js` and `moment-2.2.1-fr.js`), but **I still want generic module names** (e.g. `"jquery"` and `"moment"`).  So I put in the following code in `brunch-config.js`:
 
-```javascript
-modules:
-  nameCleaner: function(path)  {
-    return path
-      // Strip app/ and app/externals/ prefixes
-      .replace(/^app\/(?:externals\/)?/, '')
-      // Allow -x.y[.z…] version suffixes in mantisses
-      .replace(/-\d+(?:\.\d+)+/, '')
-      // Allow -fr lang suffixes in mantisses
-      .replace('-fr.', '.')
+```js
+module.exports = {
+  modules: {
+    nameCleaner(path) {
+      return path
+        // Strip app/ and app/externals/ prefixes
+        .replace(/^app\/(?:externals\/)?/, '')
+        // Allow -x.y[.z…] version suffixes in mantisses
+        .replace(/-\d+(?:\.\d+)+/, '')
+        // Allow -fr lang suffixes in mantisses
+        .replace('-fr.', '.')
+      }
     }
   }
+}
 ```
 
 No biggie.

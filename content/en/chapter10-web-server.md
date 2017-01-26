@@ -13,8 +13,11 @@ The built-in server is provided through an npm module named `pushserve`, and is 
 
 If you want that server to **always run** when the watcher starts, you just need to add this to your configuration:
 
-```javascript
-server: {run: true}
+```js
+module.exports = {
+  server: {run: true}
+  // ...
+}
 ```
 
 If you want a **different port** than 3333, you can use the `-P` or `--port` CLI option, or the `server.port` setting.
@@ -32,7 +35,7 @@ By default, Brunch will look for a `brunch-server.js` or `brunch-server.coffee` 
 
 This module must **directly export a function** (default export, using `module.exports = `) with the following signature:
 
-```javascript
+```js
 yourFunction(port, path, callback)
 ```
 
@@ -42,22 +45,22 @@ When your server is up and ready ([to serve](http://www.thanatosrealms.com/war2/
 
 Here’s our example server.  I put this in the expected `brunch-server.js` file.
 
-```javascript
+```js
 'use strict';
 
-var bodyParser = require('body-parser');
-var express    = require('express');
-var http       = require('http');
-var logger     = require('morgan');
-var Path       = require('path');
+const bodyParser = require('body-parser');
+const express = require('express');
+const http = require('http');
+const logger = require('morgan');
+const Path = require('path');
 
 // Our server start function
 module.exports = function startServer(port, path, callback) {
-  var app = express();
-  var server = http.createServer(app);
+  const app = express();
+  const server = http.createServer(app);
 
   // We’ll just store entries sent through REST in-memory here
-  var items = [];
+  const items = [];
 
   // Basic middlewares: static files, logs, form fields
   app.use(express.static(Path.join(__dirname, path)));
@@ -65,13 +68,13 @@ module.exports = function startServer(port, path, callback) {
   app.use(bodyParser.urlencoded({ extended: true }));
 
   // GET `/items` -> JSON for the entries array
-  app.get('/items', function(req, res) {
+  app.get('/items', (req, res) => {
     res.json(items);
   });
 
   // POST `/items` -> Add an entry using the `title` field
-  app.post('/items', function(req, res) {
-    var item = (req.body.title || '').trim();
+  app.post('/items', (req, res) => {
+    const item = (req.body.title || '').trim();
     if (!item) {
       return res.status(400).end('Nope!');
     }
@@ -93,8 +96,11 @@ $ npm install --save-dev express body-parser morgan
 
 Then we’ll let our `brunch-config.js` know about it, and make the server auto-run in watch mode, too:
 
-```javascript
-server: {run: true}
+```js
+modules.exports = {
+  server: {run: true}
+  // ...
+}
 ```
 
 Let’s try watching:
@@ -107,20 +113,23 @@ $ brunch w
 
 Notice the custom server info in there.  Try loading `http://localhost:3333/` in your browser now: it works!  In order to test this more thoroughly, let’s adjust our `application.js` to use the server’s API:
 
-```javascript
-"use strict";
+```js
+'use strict';
 
-var count = 0;
+const $ = require('jquery');
 
-var App = {
+const count = 0;
+
+const App = {
   items: ['Learn Brunch', 'Apply to my projects', '…', 'Profit!'],
 
-  init: function init() {
-    var tmpl = require('views/list');
-    var html = tmpl({ items: App.items });
+  init() {
+    const tmpl = require('views/list');
+    const html = tmpl({ items: App.items });
+
     $('body').append(html);
 
-    $.each(App.items, function(i, item) { requestItem(item); });
+    App.items.forEach(item => requestItem(item));
   }
 };
 
@@ -128,11 +137,11 @@ function requestItem(item) {
   $.ajax('/items', {
     type: 'post',
     data: { title: item },
-    success: function(res) {
-      console.log('Successfully posted entry “' + item + '”: ' + res);
+    success: res => {
+      console.log(`Successfully posted entry “${item}”: ${res}`);
 
       if (++count === App.items.length) {
-        $.getJSON('/items', function(res) {
+        $.getJSON('/items', res => {
           console.log('Successfully fetched back entries:', res);
         });
       }
@@ -153,8 +162,11 @@ All good! (づ￣ ³￣)づ
 
 A final setting you can use is `server.command`, which basically replaces all the other `server` settings: it lets you define a custom server-running command line, in case you want to write your own server using another tech, such as PHP, Ruby or Python…  You could go something like this:
 
-```javascript
-server: {command: "php -S 0.0.0.0:3000 -t public"}
+```js
+module.exports = {
+  server: {command: "php -S 0.0.0.0:3000 -t public"}
+  // ...
+}
 ```
 
 ----

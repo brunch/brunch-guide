@@ -43,35 +43,37 @@ Comme on n'a pas précisé de champ `main`, Node supposera que notre point d'ent
 
 Nous allons donc partir du squelette suivant dans `index.js` :
 
-```javascript
-"use strict";
+```js
+'use strict';
 
-// Marqueur par défaut.  Peut être configuré via `plugins.gitSHA.marker`.
-var DEFAULT_MARKER = 'GIT-SHA';
+// Default marker.  Can be configured via `plugins.gitSHA.marker`.
+const DEFAULT_MARKER = 'GIT-SHA';
 
-function GitShaPlugin(config) {
-  // 1. Construire le `pattern` en fonction de la config
-
-  // 2. Définir la regexp du marqueur en fonction de la config
-}
-
-// Indique à Brunch qu’on est bien un plugin
-GitShaPlugin.prototype.brunchPlugin = true;
-
-// Callback de compilation à la volée (fichier par fichier) ; suppose
-// que Brunch a fait la correspondance avec notre `type`, `extension` ou
-// `pattern`.
-GitShaPlugin.prototype.compile = function processMarkers(params, callback) {
-  // Zéro transfo pour le moment
-  callback(null, params);
-};
-
-// Utilitaire : échappe tout caractère spécial de regex
+// Helper: escapes any regex-special character
 function escapeRegex(str) {
   return String(str).replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
 }
 
-// Le plugin est l’export par défaut du module
+class GitShaPlugin {
+  constructor(config) {
+    // 1. Build `pattern` from config
+
+    // 2. Precompile the marker regexp from config
+  }
+
+  // On-the-fly compilation callback (file by file); assumes Brunch already
+  // accepted that file for our plugin by checking `type`, `extension` and
+  // `pattern`.
+  compile(file) {
+    // No transformation for now
+    return Promise.resolve(file);
+  }
+}
+
+// Tell Brunch we are indeed a plugin for it
+GitShaPlugin.prototype.brunchPlugin = true;
+
+// The plugin has to be the module’s default export
 module.exports = GitShaPlugin;
 ```
 
@@ -79,9 +81,9 @@ OK, commençons par le constructeur.  On n'est pas spécialisés sur un type de 
 
 Comme celui-ci dépend des chemins, pas des extensions, il a besoin de la configuration, et sera créé dynamiquement à partir de ça.  Le code sera celui-ci, au début du constructeur :
 
-```javascript
-var pattern = config.paths.watched.map(escapeRegex).join('|');
-pattern = '^(?:' + pattern + ')/(?!assets/).+';
+```js
+let pattern = config.paths.watched.map(escapeRegex).join('|');
+pattern = `^(?:${pattern})/(?!assets/).+`;
 this.pattern = new RegExp(pattern, 'i');
 ```
 
@@ -89,9 +91,9 @@ Ainsi, les chemins par défaut (`['app', 'vendor', 'test']`) donneront l'express
 
 À présent le marqueur.  Le code sera un poil plus simple :
 
-```javascript
-var marker = (config.plugins.gitSHA || {}).marker || DEFAULT_MARKER;
-this.marker = new RegExp('!' + escapeRegex(marker) + '!', 'g');
+```js
+const {marker = DEFAULT_MARKER} = config.plugins.gitSHA;
+this.marker = new RegExp(`!${escapeRegex(marker)}!`, 'g');
 ```
 
 On est sûrs que `config.plugins` existe, même s’il est un objet vide.  Du coup sa propriété `gitSHA` pourrait être `undefined` d'où le `|| {}` pour obtenir un objet vide dans ce cas.  On y choppe `marker`, là aussi potentiellement `undefined`, ce qui nous amènerait de toutes façons à `DEFAULT_MARKER`.  Mais si la clé de configuration est là, on prend.
@@ -106,7 +108,9 @@ Cette récupération se fait en exécutant un `git rev-parse --short HEAD` en li
 
 Voici notre petite fonction utilitaire :
 
-```javascript
+```js
+const {exec} = require('child_process');
+
 function getSHA(callback) {
   exec('git rev-parse --short HEAD', function(err, stdout) {
     callback(err, err ? null : stdout.trim());
@@ -116,16 +120,16 @@ function getSHA(callback) {
 
 Et maintenant, à nous la transformation à proprement parler :
 
-```javascript
-GitShaPlugin.prototype.compile = function processMarkers(params, callback) {
-  var self = this;
-  getSHA(function(err, sha) {
-    if (!err) {
-      params.data = params.data.replace(self.marker, sha);
-    }
-    callback(err, params);
+```js
+compile(file) {
+  return new Promise((resolve, reject) => {
+    getSHA((err, sha) => {
+      if (err) return reject(err);
+      file.data = file.data.replace(this.marker, sha);
+      resolve(file);
+    });
   });
-};
+}
 ```
 
 Et hop !

@@ -25,8 +25,8 @@ La nature exacte des fichiers concaténés dépend des **plugins installés**, e
 
 Brunch va rechercher son fichier de configuration parmi les noms suivants, dans cet ordre :
 
-  * **`brunch-config.coffee`**
-  * `brunch-config.js`
+  * **`brunch-config.js`**
+  * `brunch-config.coffee`
 
 On note une préférence pour CoffeeScript (Brunch est écrit en CoffeeScript, et transpilé en JS à chaque release) ; historiquement, il cherchait des fichiers `config.*`, mais c'est vite devenu un peu trop générique, donc il préfère désormais le nom spécifique.
 

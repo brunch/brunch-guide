@@ -18,7 +18,7 @@ This command looks up the NPM registry for the latest jQuery version, installs i
 
 We then can strip `jquery.js` from our `app`.  In order to retain the split targets we had in the previous chapter, we need to adjust our `brunch-config.js` so regexes match the new file layout:
 
-```javascript
+```js
 module.exports = {
   files: {
     javascripts: {
@@ -35,7 +35,7 @@ module.exports = {
 Then, you can simply `require` jQuery in your application code, and Brunch will automatically know to bundle it:
 
 ```javascript
-var $ = require('jquery');
+const $ = require('jquery');
 ```
 
 Rebuild, refresh: it works!
@@ -44,7 +44,7 @@ Rebuild, refresh: it works!
 
 It can be a case that you absolutely **must** expose a certain package via a global variable.  To do so, you would add a `globals` definition into the config.  For example, if we wanted to expose jQuery globally as `$`, we would modify the config to look like this:
 
-```javascript
+```js
 module.exports = {
   npm: {globals: {
     $: 'jquery'
@@ -64,7 +64,7 @@ module.exports = {
 
 Additionally, some packages ship with stylesheets.  To instruct Brunch to add these into the build, use the `styles` property in the npm config.  For example, if we installed the Pikaday package and wanted to include its styles, we'd adjust the config like this:
 
-```javascript
+```js
 module.exports = {
   npm: {styles: {
     pikaday: ['css/pikaday.css']

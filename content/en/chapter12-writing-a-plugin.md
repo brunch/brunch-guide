@@ -45,8 +45,8 @@ Because we didn’t specify a `main` property in our package file, Node will ass
 
 So here’s our skeleton `index.js` file:
 
-```javascript
-"use strict";
+```js
+'use strict';
 
 // Default marker.  Can be configured via `plugins.gitSHA.marker`.
 const DEFAULT_MARKER = 'GIT-SHA';
@@ -83,7 +83,7 @@ Alright!  Let’s start with the constructor.  We don’t mandate a specific fil
 
 Because we are dependent on paths, not extensions, we need access to the configuration, so we can dynamically build our filters from it.  That makes for the following code at the beginning of the constructor:
 
-```javascript
+```js
 let pattern = config.paths.watched.map(escapeRegex).join('|');
 pattern = `^(?:${pattern})/(?!assets/).+`;
 this.pattern = new RegExp(pattern, 'i');
@@ -93,8 +93,8 @@ This way, the default watched paths (`['app', 'vendor', 'test']`) yield the foll
 
 Now on to the marker.  The code to get it is a bit simpler:
 
-```javascript
-let marker = (config.plugins.gitSHA || {}).marker || DEFAULT_MARKER;
+```js
+const {marker = DEFAULT_MARKER} = config.plugins.gitSHA;
 this.marker = new RegExp(`!${escapeRegex(marker)}!`, 'g');
 ```
 
@@ -110,7 +110,7 @@ We get this information by running a `git rev-parse --short HEAD` as a command l
 
 Here’s our small helper function:
 
-```javascript
+```js
 const {exec} = require('child_process');
 
 function getSHA(callback) {
@@ -122,7 +122,7 @@ function getSHA(callback) {
 
 Finally, we write the processing proper:
 
-```javascript
+```js
 compile(file) {
   return new Promise((resolve, reject) => {
     getSHA((err, sha) => {
