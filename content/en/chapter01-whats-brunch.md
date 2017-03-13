@@ -62,11 +62,11 @@ But all pipelines are not equal, and their performance varies wildly.  In fact, 
 
 As with most tool categories, you’ll get two approaches: the one based on code and configuration on the one hand, and that based on conventions on the other hand.
 
-The first approach has the advantage of being explicit, devoid of any “magic” for beginners, at the cost of an often distasteful verbosity that hinders productivity, and a ton of [boilerplate](http://gruntjs.com/sample-gruntfile): the same segments of code that get copy-pasted on new projects over and over again, drowning the core semantics under thick layers of no-value-added code.
+The first approach has the advantage of being explicit, devoid of any “magic”, at the cost of an often distasteful verbosity that hinders productivity, and adds a ton of [boilerplate](http://gruntjs.com/sample-gruntfile): the same segments of code that get copy-pasted on new projects over and over again, drowning the core semantics.
 
 The convention-based approach trims down the required code or configuration to whatever “strays from the established path,” a path crystallized by the tool’s elected conventions.  Follow these, and you’ll have next to nothing to write or customize; get custom, and you’ll have to write code or use settings for your specific needs.
 
-The advantage is clear: **brevity and expressiveness** of your content, that doesn’t include anything superfluous.  The drawback: for anyone who hasn’t read the docs (and developers *loathe* reading the docs, as they apparently all expect instant knowledge), this feels a bit like “black-box magic.”
+The advantage is clear: **brevity and expressiveness** of your content that doesn’t include anything superfluous.  The drawback: it can feel a bit like “black-box magic”.
 
 **Brunch relies on solid conventions, reducing your configuration needs to the bare minimum.**
 
