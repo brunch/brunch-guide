@@ -29,16 +29,16 @@ module.exports = {
   files: {
     javascripts: {
       joinTo: {
-        "app.js": "/^app/",
-        "libraries.js": "/^(?!app)/",
+        'app.js': '/^app/',
+        'libraries.js': '/^(?!app)/',
       },
     },
-    stylesheets: { joinTo: "app.css" },
-    templates: { joinTo: "app.js" },
+    stylesheets: { joinTo: 'app.css' },
+    templates: { joinTo: 'app.js' },
   },
   npm: {
     globals: {
-      $: "jquery",
+      $: 'jquery',
     },
   },
 };
