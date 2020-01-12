@@ -29,19 +29,19 @@ module.exports = {
   files: {
     javascripts: {
       joinTo: {
-          'app.js': '/^app/',
-          'libraries.js': '/^(?!app)/'
+        "app.js": "/^app/",
+        "libraries.js": "/^(?!app)/",
       },
-      stylesheets: { joinTo: 'app.css' },
-      templates: { joinTo: 'app.js' }
     },
-    npm: {
-      globals: {
-          $: 'jquery'
-      }
-    }
-  }
-}
+    stylesheets: { joinTo: "app.css" },
+    templates: { joinTo: "app.js" },
+  },
+  npm: {
+    globals: {
+      $: "jquery",
+    },
+  },
+};
 ```
 
 We can then add our template file, perhaps in `app/views/list.jade`:
