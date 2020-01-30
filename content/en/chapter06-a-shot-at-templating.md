@@ -16,10 +16,10 @@ From a code editor standpoint, having separate files also means we usually get b
 
 We’re going to use [Pug](https://pugjs.org/api/getting-started.html) ([formerly known as Jade](https://github.com/pugjs/pug/issues/2184)) because, well, it is very nice.  If you already do a lot of Ember, you might want to check out [Emblem](http://emblemjs.com/) too, that ties Ember and Pug-style code nicely together.
 
-Let’s start by installing the plugin for Pug ([that hasn't been renamed from jade-brunch yet](https://github.com/pugjs/pug/issues/2184)):
+Let’s start by installing the plugin for Pug:
 
 ```sh
-npm install --save-dev jade-brunch
+npm install --save-dev pug-brunch
 ```
 
 Now let’s tell Brunch to add the resulting modules in our app’s JS build, with a new line at the end of our `brunch-config.js`file:

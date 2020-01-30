@@ -19,7 +19,7 @@ On va utiliser [Jade](http://jade-lang.com/), parce que voilà, Jade, c'est symp
 Commençons par installer le plugin :
 
 ```sh
-npm install --save-dev jade-brunch
+npm install --save-dev pug-brunch
 ```
 
 Indiquons ensuite à Brunch d'incorporer les modules résultats dans notre JS concaténé applicatif :
